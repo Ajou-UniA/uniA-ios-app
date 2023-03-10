@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         infoPageBtn.addTarget(self, action: #selector(infoPageBtnTapped), for: .touchUpInside)
         myPageBtn.addTarget(self, action: #selector(myPageBtnTapped), for: .touchUpInside)
 
+        setUpNavBar()
         setUpView()
         setUpConstraint()
     }
@@ -103,30 +104,30 @@ class ViewController: UIViewController {
     @objc
     func loginBtnTapped() {
         let loginViewController = LoginViewController()
-        pushView(viewController: loginViewController)
+        navigationController?.pushViewController(loginViewController, animated: false)
     }
 
     @objc
     func homeBtnTapped() {
         let homeViewController = HomeViewController()
-        pushView(viewController: homeViewController)
+        navigationController?.pushViewController(homeViewController, animated: false)
     }
 
     @objc
     func scheduleBtnTapped() {
         let scheduleViewController = ScheduleViewController()
-        pushView(viewController: scheduleViewController)
+        navigationController?.pushViewController(scheduleViewController, animated: false)
     }
 
     @objc
     func infoPageBtnTapped() {
         let infoPageViewController = InfoPageViewController()
-        pushView(viewController: infoPageViewController)
+        navigationController?.pushViewController(infoPageViewController, animated: false)
     }
 
     @objc
     func myPageBtnTapped() {
         let myPageViewController = MyPageViewController()
-        pushView(viewController: myPageViewController)
+        navigationController?.pushViewController(myPageViewController, animated: false)
     }
 }

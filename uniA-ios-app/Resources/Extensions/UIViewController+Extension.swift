@@ -9,16 +9,17 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+
     // 네비게이션 바 커스텀
     func setUpNavBar() {
         let backButton = UIBarButtonItem()
         backButton.tintColor = .black
         backButton.width = 30
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFPro-Medium", size: 16)!]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "", size: 16)!]
     }
 
-    // collectionView의 Cell에서 다른 viewController로 이동
+    // collectionView의 Cell에서 다른 viewController로 이동할 때 주로 사용
     func pushView(viewController: UIViewController) {
         let transition = CATransition()
         transition.duration = 0.15
