@@ -7,23 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211629BB6D890045C456 /* CombineMoya */; };
+		8A0D211929BB6D890045C456 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211829BB6D890045C456 /* Moya */; };
+		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
+		8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211C29BB6D890045C456 /* RxMoya */; };
+		8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211F29BB6DBB0045C456 /* SnapKit */; };
+		8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212729BB72520045C456 /* HomeViewController.swift */; };
+		8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212929BB72520045C456 /* InfoPageViewController.swift */; };
+		8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212B29BB72520045C456 /* MyPageViewController.swift */; };
+		8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212D29BB72520045C456 /* ScheduleViewController.swift */; };
+		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
+		8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213529BB725F0045C456 /* GenericResponse.swift */; };
+		8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213629BB725F0045C456 /* NetworkResult.swift */; };
+		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
+		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
-		8ADFDAD729BB421E006824B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD529BB421E006824B8 /* Main.storyboard */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
 		8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */; };
+		8ADFDAE429BB448E006824B8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAE329BB448E006824B8 /* .gitignore */; };
+		8ADFDAE729BB452D006824B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAE629BB452D006824B8 /* Then */; };
+		8ADFDAF629BB6A5C006824B8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAF529BB6A5C006824B8 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
+		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		8A0D212D29BB72520045C456 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8A0D213529BB725F0045C456 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		8A0D213629BB725F0045C456 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8ADFDAD629BB421E006824B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8ADFDAD829BB421F006824B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADFDADB29BB421F006824B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ADFDADD29BB421F006824B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ADFDAE329BB448E006824B8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8ADFDAF529BB6A5C006824B8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +57,138 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */,
+				8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */,
+				8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */,
+				8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */,
+				8ADFDAE729BB452D006824B8 /* Then in Frameworks */,
+				8A0D211929BB6D890045C456 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0D212129BB71E90045C456 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213B29BB72B00045C456 /* Extensions */,
+				8A0D213A29BB72860045C456 /* Assets */,
+				8A0D213929BB727F0045C456 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8A0D212229BB71FF0045C456 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
+				8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */,
+				8A0D212529BB72250045C456 /* Views */,
+				8A0D212429BB72200045C456 /* Models */,
+				8A0D212329BB720E0045C456 /* ViewControllers */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8A0D212329BB720E0045C456 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212629BB72520045C456 /* HomeView */,
+				8A0D212829BB72520045C456 /* InfoPageView */,
+				8A0D212E29BB72520045C456 /* LoginView */,
+				8A0D212A29BB72520045C456 /* MyPageView */,
+				8A0D212C29BB72520045C456 /* ScheduleView */,
+				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8A0D212429BB72200045C456 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213529BB725F0045C456 /* GenericResponse.swift */,
+				8A0D213629BB725F0045C456 /* NetworkResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8A0D212529BB72250045C456 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8A0D212629BB72520045C456 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212729BB72520045C456 /* HomeViewController.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		8A0D212829BB72520045C456 /* InfoPageView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212929BB72520045C456 /* InfoPageViewController.swift */,
+			);
+			path = InfoPageView;
+			sourceTree = "<group>";
+		};
+		8A0D212A29BB72520045C456 /* MyPageView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212B29BB72520045C456 /* MyPageViewController.swift */,
+			);
+			path = MyPageView;
+			sourceTree = "<group>";
+		};
+		8A0D212C29BB72520045C456 /* ScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212D29BB72520045C456 /* ScheduleViewController.swift */,
+			);
+			path = ScheduleView;
+			sourceTree = "<group>";
+		};
+		8A0D212E29BB72520045C456 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212F29BB72520045C456 /* LoginViewController.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		8A0D213929BB727F0045C456 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8A0D213A29BB72860045C456 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8ADFDAD829BB421F006824B8 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		8A0D213B29BB72B00045C456 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213C29BB72B00045C456 /* Constant.swift */,
+				8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8ADFDAC329BB421E006824B8 = {
 			isa = PBXGroup;
 			children = (
+				8ADFDAF529BB6A5C006824B8 /* .swiftlint.yml */,
+				8ADFDAE329BB448E006824B8 /* .gitignore */,
 				8ADFDACE29BB421E006824B8 /* uniA-ios-app */,
 				8ADFDACD29BB421E006824B8 /* Products */,
 			);
@@ -56,11 +205,8 @@
 		8ADFDACE29BB421E006824B8 /* uniA-ios-app */ = {
 			isa = PBXGroup;
 			children = (
-				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
-				8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */,
-				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
-				8ADFDAD529BB421E006824B8 /* Main.storyboard */,
-				8ADFDAD829BB421F006824B8 /* Assets.xcassets */,
+				8A0D212229BB71FF0045C456 /* Sources */,
+				8A0D212129BB71E90045C456 /* Resources */,
 				8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */,
 				8ADFDADD29BB421F006824B8 /* Info.plist */,
 			);
@@ -77,12 +223,21 @@
 				8ADFDAC829BB421E006824B8 /* Sources */,
 				8ADFDAC929BB421E006824B8 /* Frameworks */,
 				8ADFDACA29BB421E006824B8 /* Resources */,
+				8ADFDAF429BB6A1A006824B8 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "uniA-ios-app";
+			packageProductDependencies = (
+				8ADFDAE629BB452D006824B8 /* Then */,
+				8A0D211629BB6D890045C456 /* CombineMoya */,
+				8A0D211829BB6D890045C456 /* Moya */,
+				8A0D211A29BB6D890045C456 /* ReactiveMoya */,
+				8A0D211C29BB6D890045C456 /* RxMoya */,
+				8A0D211F29BB6DBB0045C456 /* SnapKit */,
+			);
 			productName = "uniA-ios-app";
 			productReference = 8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +266,11 @@
 				Base,
 			);
 			mainGroup = 8ADFDAC329BB421E006824B8;
+			packageReferences = (
+				8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */,
+				8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */,
+				8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 8ADFDACD29BB421E006824B8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,36 +285,58 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ADFDAF629BB6A5C006824B8 /* .swiftlint.yml in Resources */,
+				8ADFDAE429BB448E006824B8 /* .gitignore in Resources */,
 				8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */,
 				8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */,
-				8ADFDAD729BB421E006824B8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8ADFDAF429BB6A1A006824B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8ADFDAC829BB421E006824B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
+				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
+				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
+				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */,
+				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
+				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
+				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
+				8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */,
+				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8ADFDAD529BB421E006824B8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8ADFDAD629BB421E006824B8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,7 +473,6 @@
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,7 +499,6 @@
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,6 +536,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A0D211629BB6D890045C456 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		8A0D211829BB6D890045C456 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		8A0D211A29BB6D890045C456 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		8A0D211C29BB6D890045C456 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		8A0D211F29BB6DBB0045C456 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		8ADFDAE629BB452D006824B8 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8ADFDAC429BB421E006824B8 /* Project object */;
 }
