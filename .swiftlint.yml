@@ -1,0 +1,8 @@
+excluded:
+- Libraries
+disabled_rules:
+- line_length
+
+disabled_rules:
+- leading_whitespace
+- trailing_whitespace
