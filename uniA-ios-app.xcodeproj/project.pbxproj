@@ -12,6 +12,15 @@
 		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
 		8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211C29BB6D890045C456 /* RxMoya */; };
 		8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211F29BB6DBB0045C456 /* SnapKit */; };
+		8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212729BB72520045C456 /* HomeViewController.swift */; };
+		8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212929BB72520045C456 /* InfoPageViewController.swift */; };
+		8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212B29BB72520045C456 /* MyPageViewController.swift */; };
+		8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212D29BB72520045C456 /* ScheduleViewController.swift */; };
+		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
+		8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213529BB725F0045C456 /* GenericResponse.swift */; };
+		8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213629BB725F0045C456 /* NetworkResult.swift */; };
+		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
+		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
@@ -23,6 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
+		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		8A0D212D29BB72520045C456 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8A0D213529BB725F0045C456 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		8A0D213629BB725F0045C456 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +69,121 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0D212129BB71E90045C456 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213B29BB72B00045C456 /* Extensions */,
+				8A0D213A29BB72860045C456 /* Assets */,
+				8A0D213929BB727F0045C456 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8A0D212229BB71FF0045C456 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
+				8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */,
+				8A0D212529BB72250045C456 /* Views */,
+				8A0D212429BB72200045C456 /* Models */,
+				8A0D212329BB720E0045C456 /* ViewControllers */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8A0D212329BB720E0045C456 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212629BB72520045C456 /* HomeView */,
+				8A0D212829BB72520045C456 /* InfoPageView */,
+				8A0D212E29BB72520045C456 /* LoginView */,
+				8A0D212A29BB72520045C456 /* MyPageView */,
+				8A0D212C29BB72520045C456 /* ScheduleView */,
+				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8A0D212429BB72200045C456 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213529BB725F0045C456 /* GenericResponse.swift */,
+				8A0D213629BB725F0045C456 /* NetworkResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8A0D212529BB72250045C456 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8A0D212629BB72520045C456 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212729BB72520045C456 /* HomeViewController.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		8A0D212829BB72520045C456 /* InfoPageView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212929BB72520045C456 /* InfoPageViewController.swift */,
+			);
+			path = InfoPageView;
+			sourceTree = "<group>";
+		};
+		8A0D212A29BB72520045C456 /* MyPageView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212B29BB72520045C456 /* MyPageViewController.swift */,
+			);
+			path = MyPageView;
+			sourceTree = "<group>";
+		};
+		8A0D212C29BB72520045C456 /* ScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212D29BB72520045C456 /* ScheduleViewController.swift */,
+			);
+			path = ScheduleView;
+			sourceTree = "<group>";
+		};
+		8A0D212E29BB72520045C456 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D212F29BB72520045C456 /* LoginViewController.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		8A0D213929BB727F0045C456 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8A0D213A29BB72860045C456 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8ADFDAD829BB421F006824B8 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		8A0D213B29BB72B00045C456 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D213C29BB72B00045C456 /* Constant.swift */,
+				8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8ADFDAC329BB421E006824B8 = {
 			isa = PBXGroup;
 			children = (
@@ -72,10 +205,8 @@
 		8ADFDACE29BB421E006824B8 /* uniA-ios-app */ = {
 			isa = PBXGroup;
 			children = (
-				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
-				8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */,
-				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
-				8ADFDAD829BB421F006824B8 /* Assets.xcassets */,
+				8A0D212229BB71FF0045C456 /* Sources */,
+				8A0D212129BB71E90045C456 /* Resources */,
 				8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */,
 				8ADFDADD29BB421F006824B8 /* Info.plist */,
 			);
@@ -188,9 +319,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
+				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
+				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
+				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */,
+				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
+				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
+				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
+				8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */,
+				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
