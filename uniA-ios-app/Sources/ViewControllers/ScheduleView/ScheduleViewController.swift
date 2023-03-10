@@ -10,6 +10,7 @@ import Then
 import UIKit
 
 class ScheduleViewController: UIViewController {
+    
     lazy var backBtn = UIButton().then {
         $0.setTitle("뒤로", for: .normal)
         $0.setTitleColor(.white, for: .normal)
