@@ -14,6 +14,12 @@
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
 		8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */; };
 		8ADFDAE429BB448E006824B8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAE329BB448E006824B8 /* .gitignore */; };
+		8ADFDAE729BB452D006824B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAE629BB452D006824B8 /* Then */; };
+		8ADFDAEA29BB4541006824B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAE929BB4541006824B8 /* SnapKit */; };
+		8ADFDAED29BB455B006824B8 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAEC29BB455B006824B8 /* CombineMoya */; };
+		8ADFDAEF29BB455B006824B8 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAEE29BB455B006824B8 /* Moya */; };
+		8ADFDAF129BB455B006824B8 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAF029BB455B006824B8 /* ReactiveMoya */; };
+		8ADFDAF329BB455B006824B8 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAF229BB455B006824B8 /* RxMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +39,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ADFDAF329BB455B006824B8 /* RxMoya in Frameworks */,
+				8ADFDAE729BB452D006824B8 /* Then in Frameworks */,
+				8ADFDAEA29BB4541006824B8 /* SnapKit in Frameworks */,
+				8ADFDAEF29BB455B006824B8 /* Moya in Frameworks */,
+				8ADFDAF129BB455B006824B8 /* ReactiveMoya in Frameworks */,
+				8ADFDAED29BB455B006824B8 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +98,14 @@
 			dependencies = (
 			);
 			name = "uniA-ios-app";
+			packageProductDependencies = (
+				8ADFDAE629BB452D006824B8 /* Then */,
+				8ADFDAE929BB4541006824B8 /* SnapKit */,
+				8ADFDAEC29BB455B006824B8 /* CombineMoya */,
+				8ADFDAEE29BB455B006824B8 /* Moya */,
+				8ADFDAF029BB455B006824B8 /* ReactiveMoya */,
+				8ADFDAF229BB455B006824B8 /* RxMoya */,
+			);
 			productName = "uniA-ios-app";
 			productReference = 8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +134,11 @@
 				Base,
 			);
 			mainGroup = 8ADFDAC329BB421E006824B8;
+			packageReferences = (
+				8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */,
+				8ADFDAE829BB4541006824B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 8ADFDACD29BB421E006824B8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,6 +385,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8ADFDAE829BB4541006824B8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8ADFDAE629BB452D006824B8 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		8ADFDAE929BB4541006824B8 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAE829BB4541006824B8 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		8ADFDAEC29BB455B006824B8 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		8ADFDAEE29BB455B006824B8 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		8ADFDAF029BB455B006824B8 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		8ADFDAF229BB455B006824B8 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ADFDAEB29BB455B006824B8 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8ADFDAC429BB421E006824B8 /* Project object */;
 }
