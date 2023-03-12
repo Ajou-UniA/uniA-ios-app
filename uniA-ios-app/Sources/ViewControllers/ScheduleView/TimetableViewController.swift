@@ -9,15 +9,14 @@ import SnapKit
 import Then
 import UIKit
 
-class ScheduleViewController: UIViewController {
+class TimetableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
 
         setUpView()
-        setUpConstraint()
+        setUpConstraints()
     }
 
     func setUpView() {
@@ -26,6 +25,6 @@ class ScheduleViewController: UIViewController {
         }
     }
 
-    func setUpConstraint() {
+    func setUpConstraints() {
     }
 }

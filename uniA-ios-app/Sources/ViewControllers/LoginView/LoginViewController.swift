@@ -13,11 +13,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
 
         setUpView()
-        setUpConstraint()
+        setUpConstraints()
     }
 
     func setUpView() {
@@ -26,6 +25,6 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func setUpConstraint() {
+    func setUpConstraints() {
     }
 }
