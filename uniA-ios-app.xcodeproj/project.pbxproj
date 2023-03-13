@@ -15,12 +15,13 @@
 		8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212729BB72520045C456 /* HomeViewController.swift */; };
 		8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212929BB72520045C456 /* InfoPageViewController.swift */; };
 		8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212B29BB72520045C456 /* MyPageViewController.swift */; };
-		8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212D29BB72520045C456 /* ScheduleViewController.swift */; };
+		8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212D29BB72520045C456 /* TimetableViewController.swift */; };
 		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
 		8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213529BB725F0045C456 /* GenericResponse.swift */; };
 		8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213629BB725F0045C456 /* NetworkResult.swift */; };
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
+		8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2644229BDD31100AA890D /* TabBarController.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
@@ -35,12 +36,13 @@
 		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		8A0D212D29BB72520045C456 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		8A0D212D29BB72520045C456 /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A0D213529BB725F0045C456 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		8A0D213629BB725F0045C456 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		8AA2644229BDD31100AA890D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				8A0D212A29BB72520045C456 /* MyPageView */,
 				8A0D212C29BB72520045C456 /* ScheduleView */,
 				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
+				8AA2644229BDD31100AA890D /* TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -147,7 +150,7 @@
 		8A0D212C29BB72520045C456 /* ScheduleView */ = {
 			isa = PBXGroup;
 			children = (
-				8A0D212D29BB72520045C456 /* ScheduleViewController.swift */,
+				8A0D212D29BB72520045C456 /* TimetableViewController.swift */,
 			);
 			path = ScheduleView;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
+				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
 				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
@@ -329,7 +333,7 @@
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
-				8A0D213329BB72520045C456 /* ScheduleViewController.swift in Sources */,
+				8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */,
 				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
