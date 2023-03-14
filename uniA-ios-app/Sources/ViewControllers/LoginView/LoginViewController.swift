@@ -8,14 +8,13 @@
 import SnapKit
 import Then
 import UIKit
-import SwiftUI
 
 class LoginViewController: UIViewController {
     //MARK: - Properties
 
     lazy var titleLabel = UILabel().then {
         $0.text = "Welcome!"
-        $0.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
     }
     
     lazy var emailLabel = UILabel().then {
@@ -66,11 +65,12 @@ class LoginViewController: UIViewController {
 
    
 
-    //MARK: - Life cycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
 
         setUpView()
         setUpConstraints()
@@ -144,29 +144,12 @@ class LoginViewController: UIViewController {
         }
         
     }
-}
-
-
-    //MARK: - SwiftUI
-
-struct MyViewController_PreViews: PreviewProvider {
-    static var previews: some View {
-        LoginViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
+    
+    @objc
+    func signUpBtnTapped() {
+        let signUpViewController = SignUpViewController()
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-            let LoginViewController: UIViewController
 
-            func makeUIViewController(context: Context) -> UIViewController {
-                return LoginViewController
-            }
 
-            func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-            }
-        }
-
-    func toPreview() -> some View {
-        Preview(LoginViewController: self)
-    }
-}
