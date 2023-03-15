@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
         }
         
     }
-    
+    //MARK: -Navigaiton
     @objc
     func signUpBtnTapped() {
         let signUpViewController = SignUpViewController()

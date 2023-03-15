@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640629C0A8F600DA9E6A /* SignUpViewController.swift */; };
+		0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640829C0AFA100DA9E6A /* VerificationViewController.swift */; };
 		8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211629BB6D890045C456 /* CombineMoya */; };
 		8A0D211929BB6D890045C456 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211829BB6D890045C456 /* Moya */; };
 		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		0788640629C0A8F600DA9E6A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0788640829C0AFA100DA9E6A /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				8A0D212F29BB72520045C456 /* LoginViewController.swift */,
 				0788640629C0A8F600DA9E6A /* SignUpViewController.swift */,
+				0788640829C0AFA100DA9E6A /* VerificationViewController.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
+				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
 				8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */,
 				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
 			);

@@ -8,7 +8,6 @@
 import SnapKit
 import Then
 import UIKit
-import SwiftUI
 
 class SignUpViewController: UIViewController {
     //MARK: - Properties
@@ -49,7 +48,8 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
+        confirmBtn.addTarget(self, action: #selector(confirmBtnTapped), for: .touchUpInside)
+
         setUpView()
         setUpConstraints()
     }
@@ -93,28 +93,12 @@ class SignUpViewController: UIViewController {
             $0.height.equalTo(Constant.height * 30)
         }
     }
-}
-
-//MARK: - SwiftUI
-
-struct MyViewController_PreViews: PreviewProvider {
-static var previews: some View {
-    SignUpViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
-}
-}
-extension UIViewController {
-private struct Preview: UIViewControllerRepresentable {
-        let SignUpViewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return SignUpViewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
+    //MARK: -Navigation
+    @objc
+    func confirmBtnTapped() {
+        let verificationViewController = VerificationViewController()
+        navigationController?.pushViewController(verificationViewController, animated: true)
     }
+}
 
-func toPreview() -> some View {
-    Preview(SignUpViewController: self)
-}
-}
+
