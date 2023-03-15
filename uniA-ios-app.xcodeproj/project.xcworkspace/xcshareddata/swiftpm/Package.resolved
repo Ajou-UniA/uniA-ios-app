@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "chiotpfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChiliLabs/CHIOTPField.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a8b489a48e002394d8e57def24fc60168b741704"
+      }
+    },
+    {
       "identity" : "moya",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Moya/Moya",
