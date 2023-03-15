@@ -8,16 +8,9 @@
 import SnapKit
 import Then
 import UIKit
-import SwiftUI
 
 class CreateAccountViewController: UIViewController {
     //MARK: - Properties
-    /*
-    lazy var contentScrollView = UIScrollView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
-        $0.showsVerticalScrollIndicator = false
-    }*/
     
     lazy var titleLabel = UILabel().then {
         $0.text = "Create Account"
@@ -91,9 +84,16 @@ class CreateAccountViewController: UIViewController {
     
     //MARK: - Lifecycles
 
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+         self.navigationItem.hidesBackButton = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
+
         setUpView()
         setUpConstraints()
     }
@@ -101,23 +101,16 @@ class CreateAccountViewController: UIViewController {
     //MARK: - Helper
 
     func setUpView() {
-       /* [contentScrollView].forEach {
-            view.addSubview($0)
-        }*/
+       
         [titleLabel,nameLabel,nameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
             view.addSubview($0)
         }
     }
 
     func setUpConstraints() {
-       /* contentScrollView.snp.makeConstraints {
-                    $0.top.equalTo(view.safeAreaLayoutGuide)
-                    $0.leading.trailing.equalToSuperview()
-                    $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(4)
-                }
-        */
+      
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(84)
+            $0.top.equalToSuperview().offset(100)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
             $0.width.equalTo(Constant.width * 220)
             $0.height.equalTo(Constant.height * 25)
@@ -196,29 +189,10 @@ class CreateAccountViewController: UIViewController {
         }
 
     }
-}
-
-//MARK: - SwiftUI
-
-struct MyViewController_PreViews: PreviewProvider {
-static var previews: some View {
-    CreateAccountViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
-}
-}
-extension UIViewController {
-private struct Preview: UIViewControllerRepresentable {
-        let CreateAccountViewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return CreateAccountViewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
+    @objc
+    func signUpBtnTapped() {
+        let congratulationsViewController = CongratulationsViewController()
+        navigationController?.pushViewController(congratulationsViewController, animated: true)
     }
-
-func toPreview() -> some View {
-    Preview(CreateAccountViewController: self)
-}
 }
 
