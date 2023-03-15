@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
 
    
 
-    //MARK: - Lifecycle
+    //MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()

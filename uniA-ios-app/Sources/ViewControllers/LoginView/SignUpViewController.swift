@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
         $0.numberOfLines = 2
     }
     
-    //MARK: - Lifecycle
+    //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white

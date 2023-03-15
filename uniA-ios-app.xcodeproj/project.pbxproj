@@ -10,6 +10,8 @@
 		0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640629C0A8F600DA9E6A /* SignUpViewController.swift */; };
 		0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640829C0AFA100DA9E6A /* VerificationViewController.swift */; };
 		0788641129C1719500DA9E6A /* CHIOTPField in Frameworks */ = {isa = PBXBuildFile; productRef = 0788641029C1719500DA9E6A /* CHIOTPField */; };
+		0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641229C179C500DA9E6A /* CreateAccountViewController.swift */; };
+		0788641529C1B9C300DA9E6A /* CongratulationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641429C1B9C300DA9E6A /* CongratulationsView.swift */; };
 		8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211629BB6D890045C456 /* CombineMoya */; };
 		8A0D211929BB6D890045C456 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211829BB6D890045C456 /* Moya */; };
 		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		0788640629C0A8F600DA9E6A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0788640829C0AFA100DA9E6A /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		0788641229C179C500DA9E6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		0788641429C1B9C300DA9E6A /* CongratulationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsView.swift; sourceTree = "<group>"; };
 		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				8A0D212F29BB72520045C456 /* LoginViewController.swift */,
 				0788640629C0A8F600DA9E6A /* SignUpViewController.swift */,
 				0788640829C0AFA100DA9E6A /* VerificationViewController.swift */,
+				0788641229C179C500DA9E6A /* CreateAccountViewController.swift */,
+				0788641429C1B9C300DA9E6A /* CongratulationsView.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
 				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
+				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
@@ -343,6 +350,7 @@
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
+				0788641529C1B9C300DA9E6A /* CongratulationsView.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
 				8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */,

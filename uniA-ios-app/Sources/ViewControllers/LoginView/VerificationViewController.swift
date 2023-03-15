@@ -8,7 +8,6 @@
 import SnapKit
 import Then
 import UIKit
-import SwiftUI
 import CHIOTPField
 
 class VerificationViewController: UIViewController, UITextFieldDelegate {
@@ -48,12 +47,13 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    //MARK: - Lifecycle
+    //MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         otpField.delegate = self
+        submitBtn.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
 
         setUpView()
         setUpConstraints()
@@ -98,28 +98,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.height.equalTo(Constant.height * 22)
         }
     }
-   
-}
-//MARK: - SwiftUI
-
-struct MyViewController_PreViews: PreviewProvider {
-static var previews: some View {
-    VerificationViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
-}
-}
-extension UIViewController {
-private struct Preview: UIViewControllerRepresentable {
-        let VerificationViewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return VerificationViewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
+    //MARK: -Navigation
+    @objc
+    func submitBtnTapped() {
+        let createAccountViewController = CreateAccountViewController()
+        navigationController?.pushViewController(createAccountViewController, animated: true)
     }
-
-func toPreview() -> some View {
-    Preview(VerificationViewController: self)
-}
 }
