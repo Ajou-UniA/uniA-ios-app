@@ -8,7 +8,6 @@
 import SnapKit
 import Then
 import UIKit
-import SwiftUI
 
 class CongratulationsViewController: UIViewController {
     //MARK: - Properties
@@ -28,6 +27,7 @@ class CongratulationsViewController: UIViewController {
         $0.backgroundColor = .systemBlue
         $0.layer.cornerRadius = 10
     }
+    
     
     //MARK: - Lifecycles
     
@@ -78,28 +78,5 @@ class CongratulationsViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
 
     }
-}
-//MARK: - SwiftUI
-
-struct MyViewController_PreViews: PreviewProvider {
-static var previews: some View {
-    CongratulationsViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
-}
-}
-extension UIViewController {
-private struct Preview: UIViewControllerRepresentable {
-        let CongratulationsViewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return CongratulationsViewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-
-func toPreview() -> some View {
-    Preview(CongratulationsViewController: self)
-}
 }
 

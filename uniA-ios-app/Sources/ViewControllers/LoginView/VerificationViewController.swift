@@ -100,8 +100,15 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: -Navigation
     @objc
-    func submitBtnTapped() {
-        let createAccountViewController = CreateAccountViewController()
-        navigationController?.pushViewController(createAccountViewController, animated: true)
+    func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+        let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
+            let createAccountViewController = CreateAccountViewController()
+            self.navigationController?.pushViewController(createAccountViewController, animated: true)
+            
+        }
+        msg.addAction(okAction)
+        self.present(msg, animated: true)
     }
 }
+

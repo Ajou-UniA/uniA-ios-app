@@ -8,6 +8,7 @@
 import SnapKit
 import Then
 import UIKit
+import SwiftUI
 
 class LoginViewController: UIViewController {
     //MARK: - Properties
@@ -151,5 +152,26 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
+//MARK: - SwiftUI
 
+struct MyViewController_PreViews: PreviewProvider {
+static var previews: some View {
+    LoginViewController().toPreview() //원하는 VC를 여기다 입력하면 된다.
+}
+}
+extension UIViewController {
+private struct Preview: UIViewControllerRepresentable {
+        let LoginViewController: UIViewController
 
+        func makeUIViewController(context: Context) -> UIViewController {
+            return LoginViewController
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        }
+    }
+
+func toPreview() -> some View {
+    Preview(LoginViewController: self)
+}
+}
