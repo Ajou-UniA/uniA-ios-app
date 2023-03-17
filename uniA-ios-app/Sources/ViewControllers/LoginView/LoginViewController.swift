@@ -11,7 +11,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     //MARK: - Properties
-
     lazy var titleLabel = UILabel().then {
         $0.text = "Welcome!"
         $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)

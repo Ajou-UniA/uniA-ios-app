@@ -13,8 +13,6 @@ class CreateAccountViewController: UIViewController{
     //MARK: - Properties
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
-        //$0.isScrollEnabled = true
-        //$0.showsVerticalScrollIndicator = false
     }
     
     lazy var titleLabel = UILabel().then {
