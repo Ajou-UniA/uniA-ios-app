@@ -24,13 +24,13 @@ class CongratulationsViewController: UIViewController {
     lazy var signInBtn = UIButton().then {
         $0.setTitle("Sign in", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .systemBlue
+        $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
     }
     
     
     //MARK: - Lifecycles
-    
+    //navigation Backbutton 지우기
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
          self.navigationItem.hidesBackButton = true

@@ -27,13 +27,14 @@ class SignUpViewController: UIViewController {
     lazy var emailTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.addLeftPadding()
     }
     
     lazy var confirmBtn = UIButton().then {
         $0.setTitle("Confirm", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .systemBlue
+        $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
     }
     
@@ -96,9 +97,9 @@ class SignUpViewController: UIViewController {
     //MARK: -Navigation
     @objc
     func confirmBtnTapped() {
+        emailTextField.text = nil
         let verificationViewController = VerificationViewController()
         navigationController?.pushViewController(verificationViewController, animated: true)
     }
 }
-
 

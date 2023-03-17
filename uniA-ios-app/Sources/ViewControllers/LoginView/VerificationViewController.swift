@@ -27,7 +27,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     lazy var otpField = CHIOTPFieldOne().then{
         $0.numberOfDigits = 4
-        $0.borderColor = .lightGray
+        $0.borderColor = .systemGray5
         $0.cornerRadius = 8
         $0.spacing = 18
         $0.font = UIFont.systemFont(ofSize: 20)
@@ -37,7 +37,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .systemBlue
+        $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
     }
     lazy var resendBtn = UIButton().then {
