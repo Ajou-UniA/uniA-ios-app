@@ -117,11 +117,14 @@ class CreateAccountViewController: UIViewController{
     }
     
     //MARK: - Helper
-
     func setUpView() {
         self.view.addSubview(scrollView)
 
-        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
+        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField].forEach {
+            scrollView.addSubview($0)
+        }
+
+        [passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
