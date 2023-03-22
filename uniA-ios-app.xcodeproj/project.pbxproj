@@ -110,7 +110,7 @@
 				8A0D212829BB72520045C456 /* InfoPageView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
 				8A0D212A29BB72520045C456 /* MyPageView */,
-				8A0D212C29BB72520045C456 /* ScheduleView */,
+				8A0D212C29BB72520045C456 /* TimetableView */,
 				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
 				8AA2644229BDD31100AA890D /* TabBarController.swift */,
 			);
@@ -157,12 +157,12 @@
 			path = MyPageView;
 			sourceTree = "<group>";
 		};
-		8A0D212C29BB72520045C456 /* ScheduleView */ = {
+		8A0D212C29BB72520045C456 /* TimetableView */ = {
 			isa = PBXGroup;
 			children = (
 				8A0D212D29BB72520045C456 /* TimetableViewController.swift */,
 			);
-			path = ScheduleView;
+			path = TimetableView;
 			sourceTree = "<group>";
 		};
 		8A0D212E29BB72520045C456 /* LoginView */ = {
