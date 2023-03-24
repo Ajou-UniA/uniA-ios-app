@@ -9,7 +9,7 @@ import SnapKit
 import Then
 import UIKit
 
-class CreateAccountViewController: UIViewController{
+class CreateAccountViewController: UIViewController, UITextFieldDelegate{
     //MARK: - Properties
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
@@ -111,7 +111,12 @@ class CreateAccountViewController: UIViewController{
         super.viewDidLoad()
         self.view.backgroundColor = .white
         signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
-
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        studentIdTextField.delegate = self
+        departmentTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
         setUpView()
         setUpConstraints()
     }
@@ -120,11 +125,7 @@ class CreateAccountViewController: UIViewController{
     func setUpView() {
         self.view.addSubview(scrollView)
 
-        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField].forEach {
-            scrollView.addSubview($0)
-        }
-
-        [passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
+        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
@@ -229,6 +230,7 @@ class CreateAccountViewController: UIViewController{
         }
 
     }
+    //MARK: -Navigation
     @objc
     func signUpBtnTapped() {
         firstNameTextField.text = nil
@@ -240,5 +242,22 @@ class CreateAccountViewController: UIViewController{
         
         let congratulationsViewController = CongratulationsViewController()
         navigationController?.pushViewController(congratulationsViewController, animated: true)
+    }
+    //MARK: - TextFieldDelegate
+    
+    //textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
+    }
+    //화면 터치시 keybord 내림
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
