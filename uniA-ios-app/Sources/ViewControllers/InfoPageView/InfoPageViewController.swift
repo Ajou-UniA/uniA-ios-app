@@ -11,7 +11,6 @@ import UIKit
 
 class InfoPageViewController: UIViewController {
     //MARK: - Properties
-    var navBar = UINavigationBar()
     
     lazy var aboutBtn = UIButton().then {
         $0.layer.cornerRadius = 20.0
@@ -72,32 +71,23 @@ class InfoPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigation title bar setting
-        self.navigationItem.title = "Info Page"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.backgroundColor = .white
-        
         self.view.backgroundColor = .systemGray6
 
         aboutBtn.addTarget(self, action: #selector(aboutBtnTapped), for: .touchUpInside)
         setUpView()
         setUpConstraints()
+        naviSetUp()
     }
     
     //MARK: - Helper
 
     func setUpView() {
-        [navBar,aboutBtn,academicBtn,immigrationBtn,campusBtn,lifeBtn,touristsBtn].forEach {
+        [aboutBtn,academicBtn,immigrationBtn,campusBtn,lifeBtn,touristsBtn].forEach {
             view.addSubview($0)
         }
     }
 
     func setUpConstraints() {
-        navBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-300)
-                  
-        }
         aboutBtn.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             $0.centerX.equalToSuperview()
@@ -135,6 +125,15 @@ class InfoPageViewController: UIViewController {
             $0.width.equalTo(Constant.width * 315)
             $0.height.equalTo(Constant.height * 72)
         }
+    }
+    func naviSetUp() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationItem.title = "Info Page"
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "", style: .plain, target: nil, action: nil)
+
     }
     @objc func aboutBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
