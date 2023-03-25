@@ -9,8 +9,11 @@ import SnapKit
 import Then
 import UIKit
 
-class CreateAccountViewController: UIViewController, UITextFieldDelegate{
+class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     //MARK: - Properties
+    let pickerView = UIPickerView()
+    let pick = pickerdata
+    var selectCity = ""
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
     }
@@ -100,8 +103,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
         $0.textAlignment = .left
         $0.numberOfLines = 2
     }
+    lazy var toolbar = UIToolbar().then {
+        $0.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonTapped))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        $0.setItems([cancelButton,space,doneButton], animated: true)
+        $0.isUserInteractionEnabled = true
+    }
+    
     
         //MARK: - Lifecycles
+   
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
          self.navigationItem.hidesBackButton = true
@@ -117,12 +130,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
         departmentTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = .white
+        departmentTextField.inputView = pickerView
+        departmentTextField.inputAccessoryView = toolbar
+
         scrollTap()
         setUpView()
         setUpConstraints()
     }
     
     //MARK: - Helper
+
     func setUpView() {
         self.view.addSubview(scrollView)
 
@@ -230,6 +251,38 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
             $0.height.equalTo(Constant.height * 30)
         }
     }
+    //MARK: -PickerView
+    //pickerView column 수
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+    //pickerView row 수
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return pickerdata.count
+        }
+    //pickerView 보여지는 값
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return pickerdata[row]
+        }
+    //pickerView 선택시 데이터 호출
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+          selectCity = pickerdata[row]
+      }
+    //pickerView text color
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
+//    }
+    @objc func onDoneButtonTapped() {
+        departmentTextField.text = selectCity
+        departmentTextField.resignFirstResponder() //pickerView 내리기
+        selectCity = ""
+        }
+    
+    @objc func onCancelButtonTapped() {
+        departmentTextField.resignFirstResponder()
+        selectCity = ""
+        }
+    
     //MARK: - scrollView tap시 keboard 내리기
     func scrollTap(){
             let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
@@ -240,9 +293,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
     }
     @objc
     func MyTapMethod(sender: UITapGestureRecognizer) {
-                self.view.endEditing(true)
-        }
-
+            self.view.endEditing(true)
+    }
     //MARK: -Navigation
     @objc
     func signUpBtnTapped() {
@@ -257,7 +309,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
         navigationController?.pushViewController(congratulationsViewController, animated: true)
     }
     //MARK: - TextFieldDelegate
-    
     //textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField){
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
