@@ -117,6 +117,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
         departmentTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+        scrollTap()
         setUpView()
         setUpConstraints()
     }
@@ -228,8 +229,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
             $0.width.equalTo(Constant.width * 320)
             $0.height.equalTo(Constant.height * 30)
         }
-
     }
+    //MARK: - scrollView tap시 keboard 내리기
+    func scrollTap(){
+            let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+            singleTapGestureRecognizer.numberOfTapsRequired = 1
+            singleTapGestureRecognizer.isEnabled = true
+            singleTapGestureRecognizer.cancelsTouchesInView = false
+            scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    @objc
+    func MyTapMethod(sender: UITapGestureRecognizer) {
+                self.view.endEditing(true)
+        }
+
     //MARK: -Navigation
     @objc
     func signUpBtnTapped() {
@@ -252,12 +265,5 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.systemGray5.cgColor
     }
-    //화면 터치시 keybord 내림
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+   
 }
