@@ -114,7 +114,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     
         //MARK: - Lifecycles
-   
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
          self.navigationItem.hidesBackButton = true

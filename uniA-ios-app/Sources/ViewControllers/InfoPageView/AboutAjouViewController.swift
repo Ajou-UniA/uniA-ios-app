@@ -54,7 +54,6 @@ class AboutAjouViewController: UIViewController {
         self.view.backgroundColor = .systemGray6
         self.navigationController?.navigationBar.backgroundColor = .white
         self.title = "About Ajou"
-        
         self.navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(descriptor: UIFontDescriptor(name: "SF Mono SemiBold", size: 30), size: 30)]
         
