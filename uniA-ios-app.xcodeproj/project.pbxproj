@@ -48,9 +48,9 @@
 		8A8081D529D077F300CE375D /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C329D077F300CE375D /* Urbanist-ExtraLight.ttf */; };
 		8A8081D629D077F300CE375D /* Urbanist-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C429D077F300CE375D /* Urbanist-MediumItalic.ttf */; };
 		8A8081D729D077F300CE375D /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */; };
+		8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8081D829D1B77D00CE375D /* SceneDelegate.swift */; };
 		8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2644229BDD31100AA890D /* TabBarController.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
-		8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
 		8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */; };
@@ -97,10 +97,10 @@
 		8A8081C329D077F300CE375D /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
 		8A8081C429D077F300CE375D /* Urbanist-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-MediumItalic.ttf"; sourceTree = "<group>"; };
 		8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
+		8A8081D829D1B77D00CE375D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8AA2644229BDD31100AA890D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ADFDAD829BB421F006824B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADFDADB29BB421F006824B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
-				8ADFDAD129BB421E006824B8 /* SceneDelegate.swift */,
+				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
 				8A0D212529BB72250045C456 /* Views */,
 				8A0D212429BB72200045C456 /* Models */,
 				8A0D212329BB720E0045C456 /* ViewControllers */,
@@ -443,13 +443,13 @@
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
 				8AE456C929CF1930008E63FD /* TimetableView.swift in Sources */,
+				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
 				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
-				8ADFDAD229BB421E006824B8 /* SceneDelegate.swift in Sources */,
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
