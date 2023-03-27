@@ -9,9 +9,9 @@ import SnapKit
 import Then
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
-
+    
     lazy var titleLabel = UILabel().then {
         $0.text = "Confirm Your \nAjou University Email"
         $0.textAlignment = .left
@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         confirmBtn.addTarget(self, action: #selector(confirmBtnTapped), for: .touchUpInside)
-
+        emailTextField.delegate = self
         setUpView()
         setUpConstraints()
     }
@@ -100,6 +100,23 @@ class SignUpViewController: UIViewController {
         emailTextField.text = nil
         let verificationViewController = VerificationViewController()
         navigationController?.pushViewController(verificationViewController, animated: true)
+    }
+    //MARK: - TextFieldDelegate
+    
+    //textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
+    }
+    //화면 터치시 keybord 내림
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
