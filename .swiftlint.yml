@@ -10,3 +10,8 @@ disabled_rules:
 line_length:
     warning: 250
     ignores_comments: true
+
+force_cast: warning # implicitly. Give warning only for force casting
+
+force_try:
+  severity: warning
