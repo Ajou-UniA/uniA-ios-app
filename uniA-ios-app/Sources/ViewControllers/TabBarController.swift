@@ -22,22 +22,24 @@ class TabBarController: UITabBarController {
 
         // MARK: - timetableTab
         timetableTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.timetable") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.timetable.fill") ?? UIImage())
-        timetableTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0.0)
-        timetableTab.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "", size: 12) ?? .systemFont(ofSize: 12)], for: .normal)
+        timetableTab.tabBarItem.imageInsets = .init(top: 19.83, left: 0, bottom: -19.83, right: 0)
 
         // MARK: - homeTab
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.home") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.home.fill") ?? UIImage())
-        homeTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0.0)
-        homeTab.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "", size: 12) ?? .systemFont(ofSize: 12)], for: .normal)
+        homeTab.tabBarItem.imageInsets = .init(top: 19.83, left: 0, bottom: -19.83, right: 0)
 
         // MARK: - infoPageTab
         infoPageTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.infoPage") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.infoPage.fill") ?? UIImage())
-        infoPageTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0.0)
-        infoPageTab.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "", size: 12) ?? .systemFont(ofSize: 12)], for: .normal)
+        infoPageTab.tabBarItem.imageInsets = .init(top: 19.83, left: 0, bottom: -19.83, right: 0)
 
         // MARK: - myPageTab
         myPageTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.myPage") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.myPage.fill") ?? UIImage())
-        myPageTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0.0)
-        myPageTab.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "", size: 12) ?? .systemFont(ofSize: 12)], for: .normal)
+        myPageTab.tabBarItem.imageInsets = .init(top: 19.83, left: 0, bottom: -19.83, right: 0)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tabBar.frame.size.height = 85
+        tabBar.frame.origin.y = view.frame.height - 85
     }
 }
