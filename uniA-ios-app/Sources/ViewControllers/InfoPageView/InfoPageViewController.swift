@@ -11,6 +11,14 @@ import UIKit
 
 class InfoPageViewController: UIViewController {
     //MARK: - Properties
+    lazy var topView = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
+    lazy var titleLabel = UILabel().then {
+        $0.text = "Info Page"
+        $0.textAlignment = .left
+        $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+    }
     
     lazy var aboutBtn = UIButton().then {
         $0.layer.cornerRadius = 20.0
@@ -20,6 +28,8 @@ class InfoPageViewController: UIViewController {
         $0.titleLabel?.font = .systemFont(ofSize: 9)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         $0.contentHorizontalAlignment = .left
+        $0.addTarget(self, action: #selector(aboutBtnTapped), for: .touchUpInside)
+
     }
     lazy var academicBtn = UIButton().then {
         $0.layer.cornerRadius = 20.0
@@ -71,25 +81,36 @@ class InfoPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true;
 
-        aboutBtn.addTarget(self, action: #selector(aboutBtnTapped), for: .touchUpInside)
         setUpView()
         setUpConstraints()
-        naviSetUp()
     }
     
     //MARK: - Helper
 
     func setUpView() {
+        self.view.addSubview(topView)
+        self.view.addSubview(titleLabel)
         [aboutBtn,academicBtn,immigrationBtn,campusBtn,lifeBtn,touristsBtn].forEach {
-            view.addSubview($0)
+            topView.addSubview($0)
         }
     }
 
     func setUpConstraints() {
+        topView.snp.makeConstraints{
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(68)
+        }
+        titleLabel.snp.makeConstraints{
+            $0.bottom.equalTo(topView.snp.top).offset(-15)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
+            $0.width.equalTo(Constant.width * 125)
+            $0.height.equalTo(Constant.height * 35)
+        }
         aboutBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
+            $0.top.equalTo(topView.snp.top).offset(17)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Constant.width * 315)
             $0.height.equalTo(Constant.height * 72)
@@ -126,15 +147,7 @@ class InfoPageViewController: UIViewController {
             $0.height.equalTo(Constant.height * 72)
         }
     }
-    func naviSetUp() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationItem.title = "Info Page"
-        self.navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(
-            title: "", style: .plain, target: nil, action: nil)
-
-    }
+ 
     @objc func aboutBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
         let aboutAjouViewController = AboutAjouViewController()

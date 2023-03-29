@@ -11,6 +11,20 @@ import UIKit
 
 class AboutAjouViewController: UIViewController {
     //MARK: - Properties
+    lazy var topView = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
+    lazy var backBtn = UIButton().then {
+        $0.backgroundColor = .clear
+        $0.setImage(UIImage(named: "chevron_left"), for: .normal)
+        $0.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+
+    }
+    lazy var titleLabel = UILabel().then {
+        $0.text = "About Ajou"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+    }
     lazy var firstLabel = UILabel().then {
         $0.text = "Card1"
         $0.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
@@ -30,6 +44,8 @@ class AboutAjouViewController: UIViewController {
     lazy var firstNewsBtn = UIButton().then {
         $0.layer.cornerRadius = 20.0
         $0.backgroundColor = .white
+        $0.addTarget(self, action: #selector(firstNewsBtnTapped), for: .touchUpInside)
+
     }
     
     lazy var secondNewsBtn = UIButton().then {
@@ -51,12 +67,9 @@ class AboutAjouViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.title = "About Ajou"
-        self.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(descriptor: UIFontDescriptor(name: "SF Mono SemiBold", size: 30), size: 30)]
-        
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true;
+
         setUpView()
         setUpConstraints()
     }
@@ -64,21 +77,43 @@ class AboutAjouViewController: UIViewController {
     //MARK: - Helper
 
     func setUpView() {
+        self.view.addSubview(topView)
+        self.view.addSubview(titleLabel)
+        self.view.addSubview(backBtn)
         [firstNewsBtn,secondNewsBtn,thirdNewsBtn,fourthNewsBtn,firstLabel,secondLabel,thirdLabel,fourthLabel].forEach {
-            view.addSubview($0)
+            topView.addSubview($0)
         }
     }
 
     func setUpConstraints() {
+        
+        topView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(68)
+        }
+        titleLabel.snp.makeConstraints{
+            $0.bottom.equalTo(topView.snp.top).offset(-20)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(Constant.width * 160)
+            $0.height.equalTo(Constant.height * 30)
+        }
+        backBtn.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(23)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
+            $0.width.equalTo(Constant.width * 35)
+            $0.height.equalTo(Constant.height * 35)
+                  
+        }
         firstNewsBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(17)
+            $0.top.equalTo(topView.snp.top).offset(17)
+            $0.leading.equalTo(topView.snp.leading).offset(17)
             $0.width.equalTo(Constant.width * 169)
             $0.height.equalTo(Constant.height * 169)
                   
         }
+        
         secondNewsBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
+            $0.top.equalTo(topView.snp.top).offset(17)
             $0.leading.equalTo(firstNewsBtn.snp.trailing).offset(17)
             $0.width.equalTo(Constant.width * 169)
             $0.height.equalTo(Constant.height * 169)
@@ -126,5 +161,14 @@ class AboutAjouViewController: UIViewController {
             $0.height.equalTo(Constant.height * 25)
                   
         }
+    }
+    //MARK: - Navigation
+    @objc func firstNewsBtnTapped() {
+        let popUpViewController = PopUpViewController()
+        navigationController?.pushViewController(popUpViewController, animated: false)
+    }
+    
+    @objc func cancelBtnTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
