@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     lazy var checkBoxBtn = UIButton().then {
         $0.setImage(UIImage(named: "checkbox"), for: .normal)
+        $0.addTarget(self, action: #selector(checkBoxBtnTapped), for: .touchUpInside)
     }
     
     lazy var remeberLabel = UILabel().then {
@@ -68,15 +69,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
+
     }
     //MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
-        checkBoxBtn.addTarget(self, action: #selector(checkBoxBtnTapped), for: .touchUpInside)
-
         emailTextField.delegate = self
         passwordTextField.delegate = self
         

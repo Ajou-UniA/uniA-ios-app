@@ -39,6 +39,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
     }
     lazy var resendBtn = UIButton().then {
         $0.setTitle("Resend Code", for: .normal)
@@ -53,7 +54,6 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         otpField.delegate = self
-        submitBtn.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
 
         setUpView()
         setUpConstraints()

@@ -26,6 +26,7 @@ class CongratulationsViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(signInBtnTapped), for: .touchUpInside)
     }
     
     
@@ -39,8 +40,6 @@ class CongratulationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        signInBtn.addTarget(self, action: #selector(signInBtnTapped), for: .touchUpInside)
-
         setUpView()
         setUpConstraints()
     }

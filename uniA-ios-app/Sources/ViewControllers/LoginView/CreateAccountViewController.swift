@@ -95,6 +95,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
     }
     
     lazy var policyLabel = UILabel().then {
@@ -122,7 +123,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         studentIdTextField.delegate = self
