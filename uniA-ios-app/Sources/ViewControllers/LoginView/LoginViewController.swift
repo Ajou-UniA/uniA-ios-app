@@ -14,12 +14,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 
     lazy var titleLabel = UILabel().then {
         $0.text = "Welcome!"
-        $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+        $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
     
     lazy var emailLabel = UILabel().then {
         $0.text = "Email"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var emailTextField = UITextField().then {
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     lazy var passwordLabel = UILabel().then {
         $0.text = "Password"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var passwordTextField = UITextField().then {
@@ -48,18 +48,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     lazy var remeberLabel = UILabel().then {
         $0.text = "Remember-me"
-        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
-    lazy var forgotBtn = UIButton().then {
-        $0.setTitle("Forgot password?", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 12)
+    lazy var forgotLabel = UILabel().then {
+        $0.text = "Forgot password?"
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
     lazy var signInBtn = UIButton().then {
         $0.setTitle("Sign in", for: .normal)
         $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
     }
@@ -67,6 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     lazy var signUpBtn = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
         $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
@@ -86,77 +86,70 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     //MARK: - Helper
 
     func setUpView() {
-        [titleLabel,emailLabel,emailTextField,passwordLabel,passwordTextField,remeberLabel,forgotBtn,signInBtn,signUpBtn,checkBoxBtn].forEach {
+        [titleLabel,emailLabel,emailTextField,passwordLabel,passwordTextField,remeberLabel,forgotLabel,signInBtn,signUpBtn,checkBoxBtn].forEach {
             view.addSubview($0)
         }
     }
 
     func setUpConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(161)
+            $0.top.equalToSuperview().offset(119)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 140)
-            $0.height.equalTo(Constant.height * 22)
+            
         }
         
         emailLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(28)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(52)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 126)
-            $0.height.equalTo(Constant.height * 22)
         }
         
         emailTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(50)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(74)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.bottom.equalTo(titleLabel.snp.bottom).offset(126)
+            
         }
         passwordLabel.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(27)
+            $0.top.equalTo(emailTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 140)
-            $0.height.equalTo(Constant.height * 22)
+            
         }
         passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(49)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.top.equalTo(emailTextField.snp.bottom).offset(44)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.bottom.equalTo(emailTextField.snp.bottom).offset(96)
         }
         
-        forgotBtn.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(15)
+        forgotLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(38)
-            $0.width.equalTo(Constant.width * 110)
-            $0.height.equalTo(Constant.height * 22)
+           
         }
         
         checkBoxBtn.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(17)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(21)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(38)
             $0.width.equalTo(Constant.width * 20)
             $0.height.equalTo(Constant.height * 20)
         }
         
         remeberLabel.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(15)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.leading.equalTo(checkBoxBtn.snp.trailing).offset(3)
-            $0.width.equalTo(Constant.width * 90)
-            $0.height.equalTo(Constant.height * 22)
+            
         }
 
         signInBtn.snp.makeConstraints {
-            $0.top.equalTo(remeberLabel.snp.bottom).offset(26)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.top.equalTo(remeberLabel.snp.bottom).offset(20)
+            $0.bottom.equalTo(remeberLabel.snp.bottom).offset(72)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+
         }
         signUpBtn.snp.makeConstraints {
-            $0.top.equalTo(signInBtn.snp.bottom).offset(11)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.top.equalTo(signInBtn.snp.bottom).offset(10)
+            $0.bottom.equalTo(signInBtn.snp.bottom).offset(62)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+
         }
     }
     //MARK: -BtnAction
