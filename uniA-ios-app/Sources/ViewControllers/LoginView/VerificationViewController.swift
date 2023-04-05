@@ -32,7 +32,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     lazy var otpField = CHIOTPFieldOne().then{
         $0.numberOfDigits = 4
-        $0.borderColor = .systemGray5
+        $0.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
         $0.cornerRadius = 8
         $0.spacing = 18
         $0.font = UIFont.systemFont(ofSize: 20)

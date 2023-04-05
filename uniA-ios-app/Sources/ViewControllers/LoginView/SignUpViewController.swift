@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var emailTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     

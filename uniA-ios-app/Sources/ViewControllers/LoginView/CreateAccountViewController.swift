@@ -37,7 +37,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var firstNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var lastNameLabel = UILabel().then {
@@ -48,7 +48,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var lastNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var studentIdLabel = UILabel().then {
@@ -59,7 +59,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var studentIdTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var departmentLabel = UILabel().then {
@@ -70,7 +70,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var departmentTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var passwordLabel = UILabel().then {
@@ -81,7 +81,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var passwordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var confirmPasswordLabel = UILabel().then {
@@ -92,7 +92,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var confirmPasswordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     
