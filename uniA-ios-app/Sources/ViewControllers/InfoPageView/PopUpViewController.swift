@@ -22,6 +22,7 @@ class PopUpViewController: UIViewController {
     }
     lazy var cardView = UIImageView().then{
         $0.image = UIImage(named: imageName[numImage])
+        $0.layer.cornerRadius = 20.0
     }
    
     //MARK: - Lifecycles

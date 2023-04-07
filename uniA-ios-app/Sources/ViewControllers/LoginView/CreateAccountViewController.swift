@@ -18,91 +18,102 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.backgroundColor = .white
     }
     
+    lazy var backBtn = UIButton().then {
+        $0.backgroundColor = .clear
+        $0.setImage(UIImage(named: "chevron_left"), for: .normal)
+        $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
+    }
+    
     lazy var titleLabel = UILabel().then {
         $0.text = "Create Account"
-        $0.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+        $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
     
     lazy var firstNameLabel = UILabel().then {
         $0.text = "First Name"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var firstNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var lastNameLabel = UILabel().then {
         $0.text = "Last Name"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var lastNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var studentIdLabel = UILabel().then {
         $0.text = "Student ID"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var studentIdTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var departmentLabel = UILabel().then {
         $0.text = "Department"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var departmentTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var passwordLabel = UILabel().then {
         $0.text = "Password"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var passwordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     lazy var confirmPasswordLabel = UILabel().then {
         $0.text = "Confirm Password"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
     lazy var confirmPasswordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
     
-    lazy var signUpBtn = UIButton().then {
-        $0.setTitle("Sign up", for: .normal)
+    lazy var submitBtn = UIButton().then {
+        $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
     }
     
     lazy var policyLabel = UILabel().then {
-        $0.text = "By signing up, you agree to the User Agreement & Privace \nPolicy."
-        $0.font = UIFont.systemFont(ofSize: 11)
-        $0.textAlignment = .left
+        $0.lineBreakMode = .byWordWrapping
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.41
+        $0.attributedText = NSMutableAttributedString(string: "By signing up, you agree to the User Agreement & Privace \nPolicy.", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         $0.numberOfLines = 2
-    }
+        $0.font = UIFont.systemFont(ofSize: 13)
+        }
+    
     lazy var toolbar = UIToolbar().then {
         $0.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
@@ -114,15 +125,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     
         //MARK: - Lifecycles
-    override func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
-         self.navigationItem.hidesBackButton = true
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        signUpBtn.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         studentIdTextField.delegate = self
@@ -135,6 +141,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         pickerView.backgroundColor = .white
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
+        
+        self.navigationController?.navigationBar.isHidden = true;
 
         scrollTap()
         setUpView()
@@ -145,109 +153,91 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
 
     func setUpView() {
         self.view.addSubview(scrollView)
-
-        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,signUpBtn,policyLabel].forEach {
+        self.view.addSubview(backBtn)
+        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,submitBtn,policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
 
     func setUpConstraints() {
-        
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview() // pin to all edges of superview
+        backBtn.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
+            $0.width.equalTo(Constant.width * 24)
+            $0.height.equalTo(Constant.height * 24)
         }
-     
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(backBtn.snp.bottom).offset(39)
+            $0.bottom.trailing.leading.equalToSuperview()
+            //$0.edges.equalToSuperview()
+        }
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview()
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 220)
-            $0.height.equalTo(Constant.height * 25)
-                  
         }
         firstNameLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(35)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 22)
         }
         firstNameTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(57)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(titleLabel.snp.bottom).offset(109)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         lastNameLabel.snp.makeConstraints {
             $0.top.equalTo(firstNameTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 22)
         }
         lastNameTextField.snp.makeConstraints {
             $0.top.equalTo(firstNameTextField.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(firstNameTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         studentIdLabel.snp.makeConstraints {
             $0.top.equalTo(lastNameTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 22)
         }
         studentIdTextField.snp.makeConstraints {
             $0.top.equalTo(lastNameTextField.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(lastNameTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         departmentLabel.snp.makeConstraints {
             $0.top.equalTo(studentIdTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 22)
         }
         departmentTextField.snp.makeConstraints {
             $0.top.equalTo(studentIdTextField.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(studentIdTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         passwordLabel.snp.makeConstraints {
             $0.top.equalTo(departmentTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 22)
         }
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(departmentTextField.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(departmentTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 140)
-            $0.height.equalTo(Constant.height * 22)
         }
         confirmPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+            $0.bottom.equalTo(passwordTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        signUpBtn.snp.makeConstraints {
-            $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(30)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Constant.width * 315)
-            $0.height.equalTo(Constant.height * 52)
+        submitBtn.snp.makeConstraints {
+            $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(40)
+            $0.bottom.equalTo(confirmPasswordTextField.snp.bottom).offset(96)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         policyLabel.snp.makeConstraints {
-            $0.top.equalTo(signUpBtn.snp.bottom).offset(18)
+            $0.top.equalTo(submitBtn.snp.bottom).offset(18)
             $0.bottom.equalToSuperview() //마지막에 있는건 무조건..바텀값 주자..안그러면 작동안한다..
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            $0.width.equalTo(Constant.width * 320)
-            $0.height.equalTo(Constant.height * 30)
         }
     }
     //MARK: -PickerView
@@ -296,7 +286,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     //MARK: -Navigation
     @objc
-    func signUpBtnTapped() {
+    func submitBtnTapped() {
         firstNameTextField.text = nil
         lastNameTextField.text = nil
         studentIdTextField.text = nil
@@ -306,6 +296,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
         let congratulationsViewController = CongratulationsViewController()
         navigationController?.pushViewController(congratulationsViewController, animated: true)
+    }
+    @objc func backBtnTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     //MARK: - TextFieldDelegate
     //textfield 입력 시 borderColor 색깔변경
