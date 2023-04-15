@@ -12,6 +12,10 @@
 		0788641129C1719500DA9E6A /* CHIOTPField in Frameworks */ = {isa = PBXBuildFile; productRef = 0788641029C1719500DA9E6A /* CHIOTPField */; };
 		0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641229C179C500DA9E6A /* CreateAccountViewController.swift */; };
 		0788641729C1E69100DA9E6A /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641629C1E69100DA9E6A /* CongratulationsViewController.swift */; };
+		0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790540A29E7F30E00EECF2B /* CreateAccountApiModel.swift */; };
+		0790540D29E7F36700EECF2B /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790540C29E7F36700EECF2B /* CreateAccount.swift */; };
+		0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790541229E966DE00EECF2B /* CheckEmailApiModel.swift */; };
+		0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790541429E99FAD00EECF2B /* VerificationApiModel.swift */; };
 		07DBD46229CC764800608A93 /* AboutAjouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBD46129CC764800608A93 /* AboutAjouViewController.swift */; };
 		07DBD46429CE955F00608A93 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBD46329CE955F00608A93 /* PopUpViewController.swift */; };
 		07DBD46629CF376000608A93 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBD46529CF376000608A93 /* Department.swift */; };
@@ -68,6 +72,10 @@
 		0788640829C0AFA100DA9E6A /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		0788641229C179C500DA9E6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		0788641629C1E69100DA9E6A /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
+		0790540A29E7F30E00EECF2B /* CreateAccountApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountApiModel.swift; sourceTree = "<group>"; };
+		0790540C29E7F36700EECF2B /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		0790541229E966DE00EECF2B /* CheckEmailApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailApiModel.swift; sourceTree = "<group>"; };
+		0790541429E99FAD00EECF2B /* VerificationApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationApiModel.swift; sourceTree = "<group>"; };
 		07DBD46129CC764800608A93 /* AboutAjouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAjouViewController.swift; sourceTree = "<group>"; };
 		07DBD46329CE955F00608A93 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		07DBD46529CF376000608A93 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
@@ -175,6 +183,10 @@
 				8A0D213529BB725F0045C456 /* GenericResponse.swift */,
 				8A0D213629BB725F0045C456 /* NetworkResult.swift */,
 				07DBD46529CF376000608A93 /* Department.swift */,
+				0790540A29E7F30E00EECF2B /* CreateAccountApiModel.swift */,
+				0790540C29E7F36700EECF2B /* CreateAccount.swift */,
+				0790541229E966DE00EECF2B /* CheckEmailApiModel.swift */,
+				0790541429E99FAD00EECF2B /* VerificationApiModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +464,7 @@
 				8AE456C929CF1930008E63FD /* TimetableView.swift in Sources */,
 				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
 				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
+				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
@@ -459,6 +472,7 @@
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
+				0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
@@ -467,7 +481,9 @@
 				07DBD46229CC764800608A93 /* AboutAjouViewController.swift in Sources */,
 				8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */,
 				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
+				0790540D29E7F36700EECF2B /* CreateAccount.swift in Sources */,
 				8A6EA58B29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift in Sources */,
+				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

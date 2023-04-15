@@ -70,7 +70,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
     lazy var saveBtn = UIButton().then {
         $0.setTitle("Save", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+        $0.backgroundColor = UIColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(saveBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)

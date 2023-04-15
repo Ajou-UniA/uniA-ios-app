@@ -58,7 +58,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     lazy var signInBtn = UIButton().then {
         $0.setTitle("Sign in", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
     }
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     lazy var signUpBtn = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)

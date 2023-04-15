@@ -8,6 +8,7 @@
 import SnapKit
 import Then
 import UIKit
+import Alamofire
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     //MARK: - Properties
@@ -102,7 +103,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
     
     lazy var policyLabel = UILabel().then {
@@ -285,15 +286,46 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             self.view.endEditing(true)
     }
     //MARK: -Navigation
+    let createAccountAccess = CreateAccountApiModel()
+
     @objc
     func submitBtnTapped() {
-        firstNameTextField.text = nil
-        lastNameTextField.text = nil
-        studentIdTextField.text = nil
-        departmentTextField.text = nil
-        passwordTextField.text = nil
-        confirmPasswordTextField.text = nil
+//        firstNameTextField.text = nil
+//        lastNameTextField.text = nil
+//        studentIdTextField.text = nil
+//        departmentTextField.text = nil
+//        passwordTextField.text = nil
+//        confirmPasswordTextField.text = nil
         
+//        guard let firstName = firstNameTextField.text,
+//         let lastName = lastNameTextField.text,
+//         let memberId = studentIdTextField.text,
+//         let memberMajor = departmentTextField.text,
+//         let memberPassword = passwordTextField.text,
+//         let memberConfirmPassword = confirmPasswordTextField.text else {return}
+
+         let bodyData : Parameters = [
+//            "firstName": firstName,
+//            "lastName": lastName,
+//            "memberConfirmPassword": memberConfirmPassword,
+//            "memberEmail": "hello@ajou.ac.kr",
+//            "memberId": Int(memberId),
+//            "memberMajor": memberMajor,
+//            "memberPassword": memberPassword
+
+                "firstName": "mm",
+                "lastName": "kim",
+                "memberId": 201720178,
+                "memberMajor":"media",
+                "memberEmail": "uniaunia@ajou.ac.kr",
+                "memberPassword":"12345678",
+                "memberConfirmPassword":"12345678"
+
+        ]
+
+        createAccountAccess.requestSignUpDataModel(bodyData: bodyData){ data in
+            print(data.body)
+        }
         let congratulationsViewController = CongratulationsViewController()
         navigationController?.pushViewController(congratulationsViewController, animated: true)
     }

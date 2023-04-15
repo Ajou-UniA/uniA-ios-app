@@ -9,6 +9,7 @@ import SnapKit
 import Then
 import UIKit
 import CHIOTPField
+import Alamofire
 
 class VerificationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
@@ -42,7 +43,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
@@ -104,10 +105,17 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     //MARK: -Navigation
+    let verificationAccess = VerificationApiModel()
+    
     @objc
     func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+      
         let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
+            
+            let bodyData : Parameters = ["email" : "hello@ajou.ac.kr", "verificationCode" : "1234"]
+            self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
+            
             let createAccountViewController = CreateAccountViewController()
             self.navigationController?.pushViewController(createAccountViewController, animated: true)
             
