@@ -28,6 +28,7 @@ class VerificationApiModel {
                 case .success(let value):
                     // 서버 응답이 성공적으로 수신된 경우 처리할 코드 작성
                     print("Success: \(value)")
+                    
                 case .failure(let error):
                     // 서버 응답이 실패한 경우 처리할 코드 작성
                     print("Error: \(error.localizedDescription)")

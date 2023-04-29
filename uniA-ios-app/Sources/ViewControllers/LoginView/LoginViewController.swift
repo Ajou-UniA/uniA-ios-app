@@ -54,6 +54,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     lazy var forgotLabel = UILabel().then {
         $0.text = "Forgot password?"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
+        $0.isUserInteractionEnabled = true // Label에 사용자 상호 작용을 활성화합니다.
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(forgotLabelTapped)))
     }
     lazy var signInBtn = UIButton().then {
         $0.setTitle("Sign in", for: .normal)
@@ -159,6 +161,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         passwordTextField.text = nil
         let signUpViewController = SignUpViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
+    @objc func forgotLabelTapped() {
+        emailTextField.text = nil
+        passwordTextField.text = nil
+        let forgotPasswordViewController = ForgotPasswordViewController()
+        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+        
     }
     var flag = 1
     @objc func checkBoxBtnTapped() {

@@ -161,7 +161,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
     
     //textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField){
-        textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+        textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.systemGray5.cgColor

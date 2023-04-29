@@ -313,11 +313,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
 //            "memberMajor": memberMajor,
 //            "memberPassword": memberPassword
 
-                "firstName": "mm",
-                "lastName": "kim",
-                "memberId": 201720178,
+                "firstName": "Taeseon",
+                "lastName": "Ha",
+                "memberId": 201821054,
                 "memberMajor":"media",
-                "memberEmail": "uniaunia@ajou.ac.kr",
+                "memberEmail": "gkxotjs12@ajou.ac.kr",
                 "memberPassword":"12345678",
                 "memberConfirmPassword":"12345678"
 

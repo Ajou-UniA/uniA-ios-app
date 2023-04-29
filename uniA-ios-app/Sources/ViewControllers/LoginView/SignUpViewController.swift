@@ -107,18 +107,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
+    
     //MARK: -Navigation
     let checkEmailAccess = CheckEmailApiModel()
-
+    let sendCodeAccess = SendCodeApiModel()
+    
     @objc
     func confirmBtnTapped() {
-        checkEmailAccess.CheckEmail(email: emailTextField.text!){
-            data in
-            print("OK")
-        }
-        emailTextField.text = nil
-        let verificationViewController = VerificationViewController()
-        navigationController?.pushViewController(verificationViewController, animated: true)
+//        guard let vc = self.storyboard?.instantiateViewController(identifier: "verificationViewController") as? VerificationViewController else { return }
+//        if (data.statusCodeValue == 200){
+//            print("OK")
+//           // vc.email = self.emailTextField.text ?? ""
+//            let verificationViewController = VerificationViewController()
+//            self.navigationController?.pushViewController(verificationViewController, animated: true)
+//
+//            }
+        checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
+            print(data)
+            print("HEllo")
+           }
     }
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)

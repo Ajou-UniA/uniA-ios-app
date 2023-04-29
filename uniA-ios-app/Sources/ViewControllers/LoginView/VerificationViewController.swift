@@ -106,14 +106,16 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: -Navigation
     let verificationAccess = VerificationApiModel()
+    var email : String = ""
     
     @objc
     func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-      
+        guard let code = otpField.text else {return}
+
         let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
             
-            let bodyData : Parameters = ["email" : "hello@ajou.ac.kr", "verificationCode" : "1234"]
+            let bodyData : Parameters = ["email" : self.email, "verificationCode" : code ]
             self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
             
             let createAccountViewController = CreateAccountViewController()
