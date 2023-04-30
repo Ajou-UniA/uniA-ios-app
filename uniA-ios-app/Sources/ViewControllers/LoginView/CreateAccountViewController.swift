@@ -322,7 +322,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 "memberConfirmPassword":"12345678"
 
         ]
-
         createAccountAccess.requestSignUpDataModel(bodyData: bodyData){ data in
             print(data.body)
         }

@@ -15,11 +15,10 @@ class SendCodeApiModel {
         let urlSTR = "http://ec2-43-201-47-102.ap-northeast-2.compute.amazonaws.com:8080/api/v1/verify/\(email)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
-        let header: HTTPHeaders = ["Content-Type" : "application/json"]
+        let header: HTTPHeaders = ["accept": "*/*"]
         
-        AF.request(url, method: .get)
-          .validate(statusCode: 200..<300)
-          .responseJSON { response in
+        AF.request(url, method: .get, parameters: nil,headers: header).validate().responseData{
+            response in
               switch response.result {
               case .success(let value):
                   print(response.debugDescription)

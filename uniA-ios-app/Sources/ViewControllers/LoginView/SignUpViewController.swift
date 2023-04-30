@@ -114,17 +114,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func confirmBtnTapped() {
-//        guard let vc = self.storyboard?.instantiateViewController(identifier: "verificationViewController") as? VerificationViewController else { return }
-//        if (data.statusCodeValue == 200){
-//            print("OK")
-//           // vc.email = self.emailTextField.text ?? ""
-//            let verificationViewController = VerificationViewController()
-//            self.navigationController?.pushViewController(verificationViewController, animated: true)
-//
-//            }
+       let verificationViewController = VerificationViewController()
+        
         checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
-            print(data)
-            print("HEllo")
+            if (data.statusCodeValue == 200){
+                print("OK")
+                self.sendCodeAccess.sendCode(email: self.emailTextField.text!) { data in
+                    print("Sent")
+                }
+                verificationViewController.email = self.emailTextField.text ?? ""
+                self.navigationController?.pushViewController(verificationViewController, animated: true)
+
+                }
            }
     }
     @objc func backBtnTapped() {

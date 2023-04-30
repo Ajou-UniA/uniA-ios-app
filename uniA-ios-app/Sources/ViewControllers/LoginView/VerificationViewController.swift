@@ -52,6 +52,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.setTitle("Resend Code", for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.setTitleColor(.black, for: .normal)
+        $0.addTarget(self, action: #selector(resendBtnTapped), for: .touchUpInside)
     }
     
     //MARK: - Lifecycles
@@ -106,6 +107,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: -Navigation
     let verificationAccess = VerificationApiModel()
+    let sendCodeAccess = SendCodeApiModel()
     var email : String = ""
     
     @objc
@@ -115,12 +117,12 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
             
-            let bodyData : Parameters = ["email" : self.email, "verificationCode" : code ]
+            let bodyData : Parameters = ["email" : self.email , "verificationCode" : code ]
             self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
             
             let createAccountViewController = CreateAccountViewController()
             self.navigationController?.pushViewController(createAccountViewController, animated: true)
-            
+
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
@@ -128,6 +130,13 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func resendBtnTapped() {
+        sendCodeAccess.sendCode(email: "gkxotjs12@ajou.ac.kr"){  data in
+            print(data)
+        }
+        
     }
 }
 
