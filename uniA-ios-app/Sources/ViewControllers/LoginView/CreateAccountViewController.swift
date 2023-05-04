@@ -317,20 +317,23 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 "lastName": "Ha",
                 "memberId": 201821054,
                 "memberMajor":"media",
-                "memberEmail": "gkxotjs12@ajou.ac.kr",
+                "memberEmail": "gkxotjs123456@ajou.ac.kr",
                 "memberPassword":"12345678",
                 "memberConfirmPassword":"12345678"
 
         ]
+        
         createAccountAccess.requestSignUpDataModel(bodyData: bodyData){ data in
             print(data.body)
         }
+        
         let congratulationsViewController = CongratulationsViewController()
         navigationController?.pushViewController(congratulationsViewController, animated: true)
     }
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
     //MARK: - TextFieldDelegate
     //textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField){

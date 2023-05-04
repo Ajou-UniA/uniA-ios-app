@@ -119,7 +119,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
             if (data.statusCodeValue == 200){
                 print("OK")
-                self.sendCodeAccess.sendCode(email: self.emailTextField.text!) { data in
+                self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
                     print("Sent")
                 }
                 verificationViewController.email = self.emailTextField.text ?? ""

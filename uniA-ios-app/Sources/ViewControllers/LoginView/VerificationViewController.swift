@@ -133,7 +133,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func resendBtnTapped() {
-        sendCodeAccess.sendCode(email: "gkxotjs12@ajou.ac.kr"){  data in
+        sendCodeAccess.sendCode(memberEmail: "gkxotjs12@ajou.ac.kr"){  data in
             print(data)
         }
         

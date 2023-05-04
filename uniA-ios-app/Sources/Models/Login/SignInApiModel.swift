@@ -1,26 +1,26 @@
 //
-//  VerificationApiModel.swift
+//  SignInApiModel.swift
 //  uniA-ios-app
 //
-//  Created by HA on 2023/04/14.
+//  Created by HA on 2023/05/04.
 //
 
 import Foundation
 import Alamofire
 
-class VerificationApiModel {
+class SignInApiModel {
     
     var urlString : String?
     
-    func requestVerificationDataModel(bodyData : Parameters){
+    func requestSignInDataModel(bodyData : Parameters, onCompleted : @escaping(CreateAccount) -> Void){
 
-        urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/verify"
+        urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/login"
         
         guard let urlString = urlString else{ return}
         guard let url = URL(string: urlString) else {return print("error")}
-        let header : HTTPHeaders = ["Content-Type" : "application/json"]
+        let header : HTTPHeaders = ["Content-Type": "application/json"]
         
-        AF.request(url, method: .post, parameters: bodyData, encoding: JSONEncoding.default, headers: header)
+        AF.request(url, method: .post, parameters: bodyData, encoding: URLEncoding.default, headers: header)
             .validate()
             .responseData { response in
                 print(response.debugDescription)
@@ -35,6 +35,7 @@ class VerificationApiModel {
                 }
         
         }
+
 
     }
     
