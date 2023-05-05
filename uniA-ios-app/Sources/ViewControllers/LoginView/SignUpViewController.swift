@@ -115,13 +115,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc
     func confirmBtnTapped() {
        let verificationViewController = VerificationViewController()
-        
+
         checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
             if (data.statusCodeValue == 200){
                 print("OK")
                 self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
                     print("Sent")
                 }
+                UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
                 verificationViewController.email = self.emailTextField.text ?? ""
                 self.navigationController?.pushViewController(verificationViewController, animated: true)
 

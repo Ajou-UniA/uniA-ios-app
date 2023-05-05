@@ -287,7 +287,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     //MARK: -Navigation
     let createAccountAccess = CreateAccountApiModel()
-
+    let memberEmail = UserDefaults.standard.string(forKey: "email")
+    
     @objc
     func submitBtnTapped() {
 //        firstNameTextField.text = nil
@@ -297,30 +298,26 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
 //        passwordTextField.text = nil
 //        confirmPasswordTextField.text = nil
         
-//        guard let firstName = firstNameTextField.text,
-//         let lastName = lastNameTextField.text,
-//         let memberId = studentIdTextField.text,
-//         let memberMajor = departmentTextField.text,
-//         let memberPassword = passwordTextField.text,
-//         let memberConfirmPassword = confirmPasswordTextField.text else {return}
+        guard let firstName = firstNameTextField.text,
+         let lastName = lastNameTextField.text,
+         let memberId = studentIdTextField.text,
+         let memberMajor = departmentTextField.text,
+         let memberPassword = passwordTextField.text,
+         let memberConfirmPassword = confirmPasswordTextField.text else {return}
+        
+        UserDefaults.standard.set(firstNameTextField.text, forKey: "firstName")
+        UserDefaults.standard.set(lastNameTextField.text, forKey: "lastName")
+        UserDefaults.standard.set(studentIdTextField.text, forKey: "studentId")
+        UserDefaults.standard.set(departmentTextField.text, forKey: "department")
 
          let bodyData : Parameters = [
-//            "firstName": firstName,
-//            "lastName": lastName,
-//            "memberConfirmPassword": memberConfirmPassword,
-//            "memberEmail": "hello@ajou.ac.kr",
-//            "memberId": Int(memberId),
-//            "memberMajor": memberMajor,
-//            "memberPassword": memberPassword
-
-                "firstName": "Taeseon",
-                "lastName": "Ha",
-                "memberId": 201821054,
-                "memberMajor":"media",
-                "memberEmail": "gkxotjs123456@ajou.ac.kr",
-                "memberPassword":"12345678",
-                "memberConfirmPassword":"12345678"
-
+            "firstName": firstName,
+            "lastName": lastName,
+            "memberConfirmPassword": memberConfirmPassword,
+            "memberEmail": memberEmail,
+            "memberId": Int(memberId),
+            "memberMajor": memberMajor,
+            "memberPassword": memberPassword
         ]
         
         createAccountAccess.requestSignUpDataModel(bodyData: bodyData){ data in

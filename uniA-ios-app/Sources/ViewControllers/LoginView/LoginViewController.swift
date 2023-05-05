@@ -160,6 +160,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     //MARK: -BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
+    
     @objc func signUpBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
         emailTextField.text = nil
@@ -167,33 +168,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let signUpViewController = SignUpViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
+    
     @objc func signInBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
         let bodyData : Parameters = [
-//            "firstName": firstName,
-//            "lastName": lastName,
-//            "memberConfirmPassword": memberConfirmPassword,
-//            "memberEmail": "hello@ajou.ac.kr",
-//            "memberId": Int(memberId),
-//            "memberMajor": memberMajor,
-//            "memberPassword": memberPassword
-
-               "loginId": 201821054,
-               //"loginId": "gkxotjs123456@ajou.ac.kr",
-               "password":"12345678",
-
-       ]
+            
+            "loginId": "gkxotjs12345@ajou.ac.kr",
+            "password": "12345678"
+       
+        ]
         signInAccess.requestSignInDataModel(bodyData: bodyData){ data in
             print(data.body)
+            
         }
-        loginCheckAccess.checkSuccess(){ data in
-            print(data.body)
-        }
-        loginCheckAccess.checkFail(){ data in
-            print(data.body)
-        }
+//        loginCheckAccess.checkSuccess(){ data in
+//            print(data.body)
+//        }
+//        loginCheckAccess.checkFail(){ data in
+//            print(data.body)
+//        }
         let homeViewController = HomeViewController()
         navigationController?.pushViewController(homeViewController, animated: true)
     }

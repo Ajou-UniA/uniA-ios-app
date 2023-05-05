@@ -11,6 +11,12 @@ import UIKit
 
 class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
+    
+    let firstName = UserDefaults.standard.string(forKey: "firstName")
+    let lastName = UserDefaults.standard.string(forKey: "lastName")
+    let studentId = UserDefaults.standard.string(forKey: "studentId")
+    let department = UserDefaults.standard.string(forKey: "department")
+    
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -30,6 +36,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     lazy var firstNameTextField = UITextField().then {
+        $0.text = firstName
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
@@ -75,6 +82,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(saveBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
+
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
