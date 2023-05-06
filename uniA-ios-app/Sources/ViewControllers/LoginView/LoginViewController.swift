@@ -192,7 +192,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        }
         let myPageViewController = MyPageViewController()
         navigationController?.pushViewController(myPageViewController, animated: true)
-
 //        let homeViewController = HomeViewController()
 //        navigationController?.pushViewController(homeViewController, animated: true)
     }
