@@ -34,12 +34,9 @@
 		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
 		8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211C29BB6D890045C456 /* RxMoya */; };
 		8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211F29BB6DBB0045C456 /* SnapKit */; };
-		8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212729BB72520045C456 /* HomeViewController.swift */; };
 		8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212929BB72520045C456 /* InfoPageViewController.swift */; };
 		8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212B29BB72520045C456 /* MyPageViewController.swift */; };
 		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
-		8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213529BB725F0045C456 /* GenericResponse.swift */; };
-		8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213629BB725F0045C456 /* NetworkResult.swift */; };
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
 		8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */; };
@@ -67,6 +64,13 @@
 		8AAF51012A067DA600E5CC02 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FD2A067DA600E5CC02 /* URL.swift */; };
 		8AAF51022A067DA600E5CC02 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FE2A067DA600E5CC02 /* Const.swift */; };
 		8AAF51042A067DF900E5CC02 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51032A067DF900E5CC02 /* Body.swift */; };
+		8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51062A06827900E5CC02 /* FavoriteView.swift */; };
+		8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51072A06827900E5CC02 /* HomeViewController.swift */; };
+		8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */; };
+		8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */; };
+		8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */; };
+		8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */; };
+		8AAF511E2A06842400E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF511D2A06842400E5CC02 /* TaskViewController.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
@@ -98,12 +102,9 @@
 		07E298BF29FCECBF000C137E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		07E7124329D9273F00E6899C /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		07E7124529D9275900E6899C /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
-		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		8A0D213529BB725F0045C456 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
-		8A0D213629BB725F0045C456 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
@@ -131,6 +132,13 @@
 		8AAF50FD2A067DA600E5CC02 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		8AAF50FE2A067DA600E5CC02 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		8AAF51032A067DF900E5CC02 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
+		8AAF51062A06827900E5CC02 /* FavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		8AAF51072A06827900E5CC02 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUniAMembersView.swift; sourceTree = "<group>"; };
+		8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		8AAF511D2A06842400E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -217,7 +225,8 @@
 		8A0D212329BB720E0045C456 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8A0D212629BB72520045C456 /* HomeView */,
+				8AAF51122A06840400E5CC02 /* TaskView */,
+				8AAF51052A06827900E5CC02 /* HomeView */,
 				8A0D212829BB72520045C456 /* InfoPageView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
 				8A0D212A29BB72520045C456 /* MyPageView */,
@@ -230,11 +239,12 @@
 		8A0D212429BB72200045C456 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
+				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
+				8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */,
 				07E298BA29FB9E67000C137E /* Data */,
 				07E298B929FB9E4B000C137E /* Login */,
 				07E298B829FB9E37000C137E /* MyPage */,
-				8A0D213529BB725F0045C456 /* GenericResponse.swift */,
-				8A0D213629BB725F0045C456 /* NetworkResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,14 +254,6 @@
 			children = (
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		8A0D212629BB72520045C456 /* HomeView */ = {
-			isa = PBXGroup;
-			children = (
-				8A0D212729BB72520045C456 /* HomeViewController.swift */,
-			);
-			path = HomeView;
 			sourceTree = "<group>";
 		};
 		8A0D212829BB72520045C456 /* InfoPageView */ = {
@@ -349,6 +351,24 @@
 				8AAF50FE2A067DA600E5CC02 /* Const.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		8AAF51052A06827900E5CC02 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				8AAF51062A06827900E5CC02 /* FavoriteView.swift */,
+				8AAF51072A06827900E5CC02 /* HomeViewController.swift */,
+				8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		8AAF51122A06840400E5CC02 /* TaskView */ = {
+			isa = PBXGroup;
+			children = (
+				8AAF511D2A06842400E5CC02 /* TaskViewController.swift */,
+			);
+			path = TaskView;
 			sourceTree = "<group>";
 		};
 		8ADFDAC329BB421E006824B8 = {
@@ -512,17 +532,18 @@
 				07E298C029FCECBF000C137E /* ForgotPasswordViewController.swift in Sources */,
 				07E7124429D9273F00E6899C /* ResetPasswordViewController.swift in Sources */,
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
-				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
 				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
-				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
+				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
+				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
 				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
 				8AAF51012A067DA600E5CC02 /* URL.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
+				8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
 				8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */,
@@ -532,17 +553,20 @@
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				07DBD46429CE955F00608A93 /* PopUpViewController.swift in Sources */,
+				8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
+				8AAF511E2A06842400E5CC02 /* TaskViewController.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
 				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
+				8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */,
 				07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */,
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				07DBD46229CC764800608A93 /* AboutAjouViewController.swift in Sources */,
-				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
+				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

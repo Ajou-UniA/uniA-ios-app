@@ -13,6 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+//    func handleLoginSuccess() {
+//        // UITabBarController 생성
+//        let tabBarController = UITabBarController()
+//
+//        // RootViewController로 지정
+//        window?.rootViewController = tabBarController
+//    }
+
+
     // MARK: UISceneSession Lifecycle
 
     func application(_: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
