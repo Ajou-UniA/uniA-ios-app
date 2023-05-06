@@ -70,7 +70,10 @@
 		8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */; };
 		8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */; };
 		8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */; };
-		8AAF511E2A06842400E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF511D2A06842400E5CC02 /* TaskViewController.swift */; };
+		8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */; };
+		8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */; };
+		8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */; };
+		8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
@@ -138,7 +141,10 @@
 		8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		8AAF511D2A06842400E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTaskViewController.swift; sourceTree = "<group>"; };
+		8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -225,7 +231,7 @@
 		8A0D212329BB720E0045C456 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8AAF51122A06840400E5CC02 /* TaskView */,
+				8AAF512B2A06A15C00E5CC02 /* TaskView */,
 				8AAF51052A06827900E5CC02 /* HomeView */,
 				8A0D212829BB72520045C456 /* InfoPageView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
@@ -363,10 +369,13 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		8AAF51122A06840400E5CC02 /* TaskView */ = {
+		8AAF512B2A06A15C00E5CC02 /* TaskView */ = {
 			isa = PBXGroup;
 			children = (
-				8AAF511D2A06842400E5CC02 /* TaskViewController.swift */,
+				8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */,
+				8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */,
+				8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */,
+				8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */,
 			);
 			path = TaskView;
 			sourceTree = "<group>";
@@ -531,6 +540,7 @@
 				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
 				07E298C029FCECBF000C137E /* ForgotPasswordViewController.swift in Sources */,
 				07E7124429D9273F00E6899C /* ResetPasswordViewController.swift in Sources */,
+				8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */,
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
@@ -550,12 +560,12 @@
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
 				0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
+				8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */,
 				8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				07DBD46429CE955F00608A93 /* PopUpViewController.swift in Sources */,
 				8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
-				8AAF511E2A06842400E5CC02 /* TaskViewController.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
 				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
@@ -564,8 +574,10 @@
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				07DBD46229CC764800608A93 /* AboutAjouViewController.swift in Sources */,
+				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
+				8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */,
 				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
 			);
