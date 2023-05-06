@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
         }()
 
     let favoriteView = FavoriteView()
-    let aboutUniAMembersView = AboutUniAMembersView()
+    let ajouCampusMapView = AjouCampusMapView()
     let cell = TaskCollectionViewCell()
     
     override func viewDidLoad() {
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
         }
         self.titleView.addSubview(logoImageView)
         self.scrollView.addSubview(contentView)
-        [helloLabel, taskCollectionView, favoriteView, aboutUniAMembersView].forEach {
+        [helloLabel, taskCollectionView, favoriteView, ajouCampusMapView].forEach {
             contentView.addSubview($0)
         }
         // MARK: - StackView 여러개 만들지 생각
@@ -129,7 +129,7 @@ class HomeViewController: UIViewController {
             $0.top.equalTo(taskCollectionView.snp.bottom).offset(50)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
-        aboutUniAMembersView.snp.makeConstraints {
+        ajouCampusMapView.snp.makeConstraints {
             $0.top.equalTo(favoriteView.snp.bottom).offset(50)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(10)
