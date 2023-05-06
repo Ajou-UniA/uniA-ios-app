@@ -64,6 +64,11 @@
 		8A8081D729D077F300CE375D /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */; };
 		8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8081D829D1B77D00CE375D /* SceneDelegate.swift */; };
 		8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2644229BDD31100AA890D /* TabBarController.swift */; };
+		8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */; };
+		8AAF51002A067DA600E5CC02 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FC2A067DA600E5CC02 /* Header.swift */; };
+		8AAF51012A067DA600E5CC02 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FD2A067DA600E5CC02 /* URL.swift */; };
+		8AAF51022A067DA600E5CC02 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FE2A067DA600E5CC02 /* Const.swift */; };
+		8AAF51042A067DF900E5CC02 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51032A067DF900E5CC02 /* Body.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
@@ -127,6 +132,11 @@
 		8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
 		8A8081D829D1B77D00CE375D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8AA2644229BDD31100AA890D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		8AAF50FC2A067DA600E5CC02 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		8AAF50FD2A067DA600E5CC02 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		8AAF50FE2A067DA600E5CC02 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		8AAF51032A067DF900E5CC02 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +202,7 @@
 		8A0D212129BB71E90045C456 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8AAF50FA2A067DA600E5CC02 /* Constants */,
 				8A0D213B29BB72B00045C456 /* Extensions */,
 				8A0D213A29BB72860045C456 /* Assets */,
 				8A0D213929BB727F0045C456 /* Fonts */,
@@ -346,6 +357,18 @@
 			);
 			name = Urbanist;
 			path = "uniA-ios-app/Resources/Fonts/Urbanist";
+			sourceTree = "<group>";
+		};
+		8AAF50FA2A067DA600E5CC02 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */,
+				8AAF51032A067DF900E5CC02 /* Body.swift */,
+				8AAF50FC2A067DA600E5CC02 /* Header.swift */,
+				8AAF50FD2A067DA600E5CC02 /* URL.swift */,
+				8AAF50FE2A067DA600E5CC02 /* Const.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		8ADFDAC329BB421E006824B8 = {
@@ -504,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE456CB29CF1955008E63FD /* TimetableTableViewCell.swift in Sources */,
+				8AAF51002A067DA600E5CC02 /* Header.swift in Sources */,
 				0788641729C1E69100DA9E6A /* CongratulationsViewController.swift in Sources */,
 				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
 				07E298C029FCECBF000C137E /* ForgotPasswordViewController.swift in Sources */,
@@ -517,10 +541,13 @@
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
+				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
+				8AAF51012A067DA600E5CC02 /* URL.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
+				8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */,
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
 				0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
@@ -530,6 +557,7 @@
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
+				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
 				07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */,
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
