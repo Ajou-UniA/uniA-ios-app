@@ -190,8 +190,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        loginCheckAccess.checkFail(){ data in
 //            print(data.body)
 //        }
-        let myPageViewController = MyPageViewController()
-        navigationController?.pushViewController(myPageViewController, animated: true)
+
 //        let homeViewController = HomeViewController()
 //        navigationController?.pushViewController(homeViewController, animated: true)
     }
