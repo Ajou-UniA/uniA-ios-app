@@ -9,8 +9,13 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Urbanist-ExtraBold.ttf</string>
 		<string>Urbanist-SemiBold.ttf</string>
 		<string>Urbanist-Bold.ttf</string>
+		<string>Urbanist-Medium.ttf</string>
+		<string>Urbanist-Regular.ttf</string>
+		<string>Urbanist-ExtraLight.ttf</string>
+		<string>Urbanist-Light.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

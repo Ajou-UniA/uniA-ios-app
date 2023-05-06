@@ -14,9 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        self.window?.rootViewController = UINavigationController(rootViewController: ViewController())
-        window?.makeKeyAndVisible()
+//        self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
 
+        // MARK: 자동로그인을 위한 코드
+        var loginSuccess: Bool = UserDefaults.standard.bool(forKey: "loginSuccess") ?? false
+
+        print("자동로그인 \(loginSuccess)")
+
+        if loginSuccess == true {
+            print("자동로그인 성공")
+            self.window?.rootViewController = TabBarController()
+        } else if loginSuccess == false {
+            window?.rootViewController = LoginViewController()
+        }
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_: UIScene) {}

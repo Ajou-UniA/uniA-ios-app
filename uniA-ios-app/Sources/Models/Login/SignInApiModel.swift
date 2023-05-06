@@ -26,9 +26,11 @@ class SignInApiModel {
                 print(response.debugDescription)
                 switch response.result {
                 case .success(let value):
+                    UserDefaults.standard.set(true, forKey: "loginSuccess")
                     print("Success: \(value)")
                     
                 case .failure(let error):
+                    UserDefaults.standard.set(false, forKey: "loginSuccess")
                     print("Error: \(error.localizedDescription)")
                 }
         }
