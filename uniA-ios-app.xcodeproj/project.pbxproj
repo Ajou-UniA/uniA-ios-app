@@ -37,13 +37,11 @@
 		8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212729BB72520045C456 /* HomeViewController.swift */; };
 		8A0D213129BB72520045C456 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212929BB72520045C456 /* InfoPageViewController.swift */; };
 		8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212B29BB72520045C456 /* MyPageViewController.swift */; };
-		8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212D29BB72520045C456 /* TimetableViewController.swift */; };
 		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
 		8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213529BB725F0045C456 /* GenericResponse.swift */; };
 		8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213629BB725F0045C456 /* NetworkResult.swift */; };
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
-		8A6EA58B29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA58A29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift */; };
 		8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */; };
 		8A8081C729D077F300CE375D /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */; };
 		8A8081C829D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */; };
@@ -76,8 +74,6 @@
 		8ADFDAE429BB448E006824B8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAE329BB448E006824B8 /* .gitignore */; };
 		8ADFDAE729BB452D006824B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 8ADFDAE629BB452D006824B8 /* Then */; };
 		8ADFDAF629BB6A5C006824B8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAF529BB6A5C006824B8 /* .swiftlint.yml */; };
-		8AE456C929CF1930008E63FD /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE456C829CF1930008E63FD /* TimetableView.swift */; };
-		8AE456CB29CF1955008E63FD /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE456CA29CF1955008E63FD /* TimetableTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,13 +101,11 @@
 		8A0D212729BB72520045C456 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		8A0D212D29BB72520045C456 /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A0D213529BB725F0045C456 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		8A0D213629BB725F0045C456 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		8A6EA58A29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoursePopUpViewController.swift; sourceTree = "<group>"; };
 		8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -145,8 +139,6 @@
 		8ADFDADD29BB421F006824B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ADFDAE329BB448E006824B8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8ADFDAF529BB6A5C006824B8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		8AE456C829CF1930008E63FD /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
-		8AE456CA29CF1955008E63FD /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +221,6 @@
 				8A0D212829BB72520045C456 /* InfoPageView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
 				8A0D212A29BB72520045C456 /* MyPageView */,
-				8A0D212C29BB72520045C456 /* TimetableView */,
 				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
 				8AA2644229BDD31100AA890D /* TabBarController.swift */,
 			);
@@ -282,17 +273,6 @@
 				0790541629EAB5D500EECF2B /* DeleteAccountViewController.swift */,
 			);
 			path = MyPageView;
-			sourceTree = "<group>";
-		};
-		8A0D212C29BB72520045C456 /* TimetableView */ = {
-			isa = PBXGroup;
-			children = (
-				8A0D212D29BB72520045C456 /* TimetableViewController.swift */,
-				8AE456C829CF1930008E63FD /* TimetableView.swift */,
-				8AE456CA29CF1955008E63FD /* TimetableTableViewCell.swift */,
-				8A6EA58A29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift */,
-			);
-			path = TimetableView;
 			sourceTree = "<group>";
 		};
 		8A0D212E29BB72520045C456 /* LoginView */ = {
@@ -526,7 +506,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE456CB29CF1955008E63FD /* TimetableTableViewCell.swift in Sources */,
 				8AAF51002A067DA600E5CC02 /* Header.swift in Sources */,
 				0788641729C1E69100DA9E6A /* CongratulationsViewController.swift in Sources */,
 				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
@@ -534,7 +513,6 @@
 				07E7124429D9273F00E6899C /* ResetPasswordViewController.swift in Sources */,
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A0D213729BB725F0045C456 /* GenericResponse.swift in Sources */,
-				8AE456C929CF1930008E63FD /* TimetableView.swift in Sources */,
 				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
 				8A0D213829BB725F0045C456 /* NetworkResult.swift in Sources */,
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
@@ -562,9 +540,7 @@
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				07DBD46229CC764800608A93 /* AboutAjouViewController.swift in Sources */,
-				8A0D213329BB72520045C456 /* TimetableViewController.swift in Sources */,
 				8A0D213029BB72520045C456 /* HomeViewController.swift in Sources */,
-				8A6EA58B29CF1AE3009C3391 /* DetailCoursePopUpViewController.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
