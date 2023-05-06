@@ -18,6 +18,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Verification Code"
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
+    lazy var timerLabel = UILabel().then {
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 12)
+    }
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -54,13 +58,18 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.setTitleColor(.black, for: .normal)
         $0.addTarget(self, action: #selector(resendBtnTapped), for: .touchUpInside)
     }
+
+    var timer: Timer?
+    var secondsLeft: Int = 5
     
+
     //MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         otpField.delegate = self
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 
         setUpView()
         setUpConstraints()
@@ -68,7 +77,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Helper
 
     func setUpView() {
-        [titleLabel,subtitleLabel,otpField,submitBtn,resendBtn,backBtn].forEach {
+        [titleLabel,subtitleLabel,otpField,timerLabel,submitBtn,resendBtn,backBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -85,6 +94,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
            
         }
+        
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(25)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
@@ -93,6 +103,12 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(25)
             $0.bottom.equalTo(subtitleLabel.snp.bottom).offset(73)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(38)
+        }
+        
+        timerLabel.snp.makeConstraints {
+            $0.top.equalTo(otpField.snp.bottom).offset(10)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(38)
+           
         }
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(otpField.snp.bottom).offset(40)
@@ -128,15 +144,34 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         self.present(msg, animated: true)
     }
     
+    @objc func updateTimer() {
+        var minutes = self.secondsLeft / 60
+        var seconds = self.secondsLeft % 60
+        secondsLeft -= 1
+
+        if self.secondsLeft >= -1 {
+            self.timerLabel.text = String(format: "Time remaining %02d:%02d", minutes, seconds)
+        }else{
+            timer?.invalidate()
+        }
+        
+    }
+
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+    func resetTimer() {
+        self.secondsLeft = 10
+        timer?.invalidate()
+        timer = nil
+        
+    }
     @objc func resendBtnTapped() {
-        sendCodeAccess.sendCode(memberEmail: "gkxotjs12@ajou.ac.kr"){  data in
+        resetTimer()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        sendCodeAccess.sendCode(memberEmail: self.email){  data in
             print(data)
         }
-        
     }
 }
 

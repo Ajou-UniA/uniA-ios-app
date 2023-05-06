@@ -163,6 +163,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @objc func signUpBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
         let signUpViewController = SignUpViewController()
@@ -194,6 +195,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func forgotLabelTapped() {
+        UserDefaults.standard.set(1, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
         let forgotPasswordViewController = ForgotPasswordViewController()
@@ -217,7 +219,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     //화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

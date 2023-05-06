@@ -125,7 +125,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     //화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

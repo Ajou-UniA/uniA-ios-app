@@ -123,7 +123,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.setItems([cancelButton,space,doneButton], animated: true)
         $0.isUserInteractionEnabled = true
     }
-    
+    lazy var warningLabel = UILabel().then {
+        $0.text = ""
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
+    }
     
         //MARK: - Lifecycles
     
@@ -148,6 +152,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         scrollTap()
         setUpView()
         setUpConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
     }
     
     //MARK: - Helper
@@ -155,7 +161,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     func setUpView() {
         self.view.addSubview(scrollView)
         self.view.addSubview(backBtn)
-        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,confirmPasswordLabel,confirmPasswordTextField,submitBtn,policyLabel].forEach {
+        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,warningLabel,confirmPasswordLabel,confirmPasswordTextField,submitBtn,policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
@@ -220,6 +226,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             $0.top.equalTo(departmentTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(departmentTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+        }
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(1)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
@@ -337,7 +347,37 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-   
+    @objc private func textDidChange(_ notification: Notification) {
+            if let textField = notification.object as? UITextField {
+                if let text = textField.text {
+                    
+                    if text.count > 12 {
+                        // 8글자 넘어가면 자동으로 키보드 내려감
+                        textField.resignFirstResponder()
+                    }
+                    
+                    // 초과되는 텍스트 제거
+                    if text.count >= 12 {
+                        let index = text.index(text.startIndex, offsetBy: 12)
+                        let newString = text[text.startIndex..<index]
+                        textField.text = String(newString)
+                    }
+                    
+                    else if text.count < 8 {
+                        warningLabel.text = "Your password must contain at least 8 characthers and 1 special characther."
+                        warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                        passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
+                        passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    }
+                    else {
+                        warningLabel.text = ""
+                        warningLabel.textColor = .green
+                        passwordTextField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+                        passwordLabel.textColor = .black
+                    }
+                }
+            }
+        }
 }
