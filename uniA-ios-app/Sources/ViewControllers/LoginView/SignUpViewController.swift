@@ -8,6 +8,7 @@
 import SnapKit
 import Then
 import UIKit
+import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
@@ -34,7 +35,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var confirmBtn = UIButton().then {
         $0.setTitle("Confirm", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(confirmBtnTapped), for: .touchUpInside)
@@ -60,7 +61,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true;
-
+        
         emailTextField.delegate = self
         setUpView()
         setUpConstraints()
@@ -106,16 +107,33 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
+    
     //MARK: -Navigation
+    let checkEmailAccess = CheckEmailApiModel()
+    let sendCodeAccess = SendCodeApiModel()
+    
     @objc
     func confirmBtnTapped() {
-        emailTextField.text = nil
-        let verificationViewController = VerificationViewController()
-        navigationController?.pushViewController(verificationViewController, animated: true)
+       let verificationViewController = VerificationViewController()
+
+        checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
+            if (data.statusCodeValue == 200){
+                print("OK")
+                self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
+                    print("Sent")
+                }
+                UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
+                verificationViewController.email = self.emailTextField.text ?? ""
+                self.navigationController?.pushViewController(verificationViewController, animated: true)
+
+                }
+           }
     }
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
     //MARK: - TextFieldDelegate
     
     //textfield 입력 시 borderColor 색깔변경
@@ -123,7 +141,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     //화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

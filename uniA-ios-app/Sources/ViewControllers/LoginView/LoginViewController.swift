@@ -8,6 +8,7 @@
 import SnapKit
 import Then
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
     //MARK: - Properties
@@ -54,19 +55,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     lazy var forgotLabel = UILabel().then {
         $0.text = "Forgot password?"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
+        $0.isUserInteractionEnabled = true // Label에 사용자 상호 작용을 활성화합니다.
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(forgotLabelTapped)))
     }
     lazy var signInBtn = UIButton().then {
         $0.setTitle("Sign in", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(signInBtnTapped), for: .touchUpInside)
+
     }
     
     lazy var signUpBtn = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
@@ -153,12 +158,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         }
     }
     //MARK: -BtnAction
+    let signInAccess = SignInApiModel()
+    let loginCheckAccess = LoginCheckApiModel()
+    
     @objc func signUpBtnTapped() {
         //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
         let signUpViewController = SignUpViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
+    @objc func signInBtnTapped() {
+        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+//        emailTextField.text = nil
+//        passwordTextField.text = nil
+        let bodyData : Parameters = [
+            
+            "loginId": "gkxotjs12345@ajou.ac.kr",
+            "password": "12345678"
+       
+        ]
+        signInAccess.requestSignInDataModel(bodyData: bodyData){ data in
+            print(data.body)
+            
+        }
+//        loginCheckAccess.checkSuccess(){ data in
+//            print(data.body)
+//        }
+//        loginCheckAccess.checkFail(){ data in
+//            print(data.body)
+//        }
+        let homeViewController = HomeViewController()
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
+    @objc func forgotLabelTapped() {
+        UserDefaults.standard.set(1, forKey: "branch")
+        emailTextField.text = nil
+        passwordTextField.text = nil
+        let forgotPasswordViewController = ForgotPasswordViewController()
+        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+        
     }
     var flag = 1
     @objc func checkBoxBtnTapped() {
@@ -177,7 +219,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     //화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

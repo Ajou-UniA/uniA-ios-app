@@ -9,6 +9,7 @@ import SnapKit
 import Then
 import UIKit
 import CHIOTPField
+import Alamofire
 
 class VerificationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
@@ -16,6 +17,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     lazy var titleLabel = UILabel().then {
         $0.text = "Verification Code"
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
+    }
+    lazy var timerLabel = UILabel().then {
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 12)
     }
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
@@ -42,7 +47,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Urbanist-Bold", size: 15)
+        $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
@@ -51,14 +56,20 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.setTitle("Resend Code", for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.setTitleColor(.black, for: .normal)
+        $0.addTarget(self, action: #selector(resendBtnTapped), for: .touchUpInside)
     }
+
+    var timer: Timer?
+    var secondsLeft: Int = 5
     
+
     //MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         otpField.delegate = self
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 
         setUpView()
         setUpConstraints()
@@ -66,7 +77,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Helper
 
     func setUpView() {
-        [titleLabel,subtitleLabel,otpField,submitBtn,resendBtn,backBtn].forEach {
+        [titleLabel,subtitleLabel,otpField,timerLabel,submitBtn,resendBtn,backBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -83,6 +94,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
            
         }
+        
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(25)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
@@ -91,6 +103,12 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(25)
             $0.bottom.equalTo(subtitleLabel.snp.bottom).offset(73)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(38)
+        }
+        
+        timerLabel.snp.makeConstraints {
+            $0.top.equalTo(otpField.snp.bottom).offset(10)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(38)
+           
         }
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(otpField.snp.bottom).offset(40)
@@ -104,20 +122,56 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     //MARK: -Navigation
+    let verificationAccess = VerificationApiModel()
+    let sendCodeAccess = SendCodeApiModel()
+    var email : String = ""
+    
     @objc
     func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+        guard let code = otpField.text else {return}
+
         let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
+            
+            let bodyData : Parameters = ["email" : self.email , "verificationCode" : code ]
+            self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
+            
             let createAccountViewController = CreateAccountViewController()
             self.navigationController?.pushViewController(createAccountViewController, animated: true)
-            
+
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
     }
     
+    @objc func updateTimer() {
+        var minutes = self.secondsLeft / 60
+        var seconds = self.secondsLeft % 60
+        secondsLeft -= 1
+
+        if self.secondsLeft >= -1 {
+            self.timerLabel.text = String(format: "Time remaining %02d:%02d", minutes, seconds)
+        }else{
+            timer?.invalidate()
+        }
+        
+    }
+
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    func resetTimer() {
+        self.secondsLeft = 10
+        timer?.invalidate()
+        timer = nil
+        
+    }
+    @objc func resendBtnTapped() {
+        resetTimer()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        sendCodeAccess.sendCode(memberEmail: self.email){  data in
+            print(data)
+        }
     }
 }
 

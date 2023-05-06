@@ -52,6 +52,7 @@ class MyPageViewController: UIViewController {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.contentHorizontalAlignment = .left
+        $0.addTarget(self, action: #selector(deleteBtnTapped), for: .touchUpInside)
 }
     lazy var editBtn = UIButton().then {
         $0.setTitle("Edit my Profile", for: .normal)
@@ -73,11 +74,17 @@ class MyPageViewController: UIViewController {
         $0.image = UIImage(named: "profileLogo")
         
     }
-//    lazy var circleView = UIView().then{
-//        $0.backgroundColor = .white
-//        $0.layer.cornerRadius = 20.0
-//
-//    }
+    
+    let borderView = UIView().then {
+        $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    }
+    lazy var circleView = UIView().then{
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 42.0
+        $0.layer.borderWidth = 1.0
+        $0.layer.borderColor = UIColor.systemGray5.cgColor
+
+    }
     
     //MARK: - Lifecycles
 
@@ -91,10 +98,10 @@ class MyPageViewController: UIViewController {
     //MARK: - Helper
 
     func setUpView() {
-        [titleLabel,midView,subtitleLabel,resetBtn,deleteBtn,editBtn,logoutBtn].forEach {
+        [titleLabel,midView,subtitleLabel,resetBtn,deleteBtn,editBtn,logoutBtn,borderView].forEach {
             view.addSubview($0)
         }
-        [majorLabel,numberLabel,nameLabel,profileView].forEach {
+        [circleView,majorLabel,numberLabel,nameLabel,profileView].forEach {
             midView.addSubview($0)
         }
     }
@@ -110,8 +117,13 @@ class MyPageViewController: UIViewController {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.height.equalTo(Constant.width * 143)
         }
+        borderView.snp.makeConstraints {
+            $0.top.equalTo(numberLabel.snp.bottom).offset(38)
+            $0.height.equalTo(Constant.height * 0.5)
+            $0.leading.trailing.equalToSuperview()
+        }
         subtitleLabel.snp.makeConstraints{
-            $0.top.equalTo(midView.snp.bottom).offset(21)
+            $0.top.equalTo(borderView.snp.bottom).offset(21)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
         }
         resetBtn.snp.makeConstraints{
@@ -138,6 +150,13 @@ class MyPageViewController: UIViewController {
             $0.width.equalTo(Constant.width * 95)
             $0.height.equalTo(Constant.height * 25)
         }
+        circleView.snp.makeConstraints{
+            $0.top.equalTo(midView.snp.top).offset(31)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
+            $0.width.equalTo(Constant.width * 84)
+            $0.height.equalTo(Constant.height * 84)
+        }
+        
         profileView.snp.makeConstraints{
             $0.top.equalTo(midView.snp.top).offset(49)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(36)
@@ -160,6 +179,7 @@ class MyPageViewController: UIViewController {
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
             
         }
+        
     }
     //MARK: - Navigation
     @objc
@@ -173,9 +193,15 @@ class MyPageViewController: UIViewController {
         navigationController?.pushViewController(editMyProfileViewController, animated: true)
     }
     @objc
+    func deleteBtnTapped() {
+        let deleteAccountController = DeleteAccountViewController()
+        navigationController?.pushViewController(deleteAccountController, animated: true)
+    }
+    
+    @objc
     func logoutBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "cancel", style: . default){ (_) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: . default){ (_) in
 //            let createAccountViewController = CreateAccountViewController()
 //            self.navigationController?.pushViewController(createAccountViewController, animated: true)
 //

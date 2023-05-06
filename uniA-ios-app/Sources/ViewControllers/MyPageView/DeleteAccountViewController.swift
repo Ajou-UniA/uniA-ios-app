@@ -1,15 +1,15 @@
 //
-//  ResetPasswordViewController.swift
+//  DeleteAccountController.swift
 //  uniA-ios-app
 //
-//  Created by HA on 2023/04/02.
+//  Created by HA on 2023/04/15.
 //
 
 import SnapKit
 import Then
 import UIKit
 
-class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
+class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Properties
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
@@ -17,46 +17,36 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
     }
     lazy var titleLabel = UILabel().then {
-        $0.text = "Reset Password"
+        $0.text = "Delete Account"
         $0.textColor = .black
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
-    lazy var emailLabel = UILabel().then {
-        $0.text = "Email"
-        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
-    }
-    
-    lazy var emailTextField = UITextField().then {
-        $0.layer.cornerRadius = 10.0
-        $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-        $0.addLeftPadding()
-    }
-    lazy var passwordLabel = UILabel().then {
+    lazy var pwLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
-    lazy var passwordTextField = UITextField().then {
+    lazy var pwTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
-    lazy var confirmLabel = UILabel().then {
+    lazy var confirmPwLabel = UILabel().then {
         $0.text = "Confirm Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
-    lazy var confirmTextField = UITextField().then {
+    lazy var confirmPwTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
+
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -71,9 +61,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true;
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        confirmTextField.delegate = self
+        pwTextField.delegate = self
+        confirmPwTextField.delegate = self
         
         setUpView()
         setUpConstraints()
@@ -81,7 +70,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Helper
 
     func setUpView() {
-        [borderView,backBtn,titleLabel,emailLabel,emailTextField,passwordLabel,passwordTextField,confirmLabel,confirmTextField,submitBtn].forEach {
+        [borderView,backBtn,titleLabel,pwLabel,pwTextField,confirmPwLabel,confirmPwTextField,submitBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -103,37 +92,28 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.height.equalTo(Constant.height * 0.5)
             $0.leading.trailing.equalToSuperview()
         }
-        emailLabel.snp.makeConstraints {
+        pwLabel.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom).offset(35)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        emailTextField.snp.makeConstraints {
+        pwTextField.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom).offset(59)
             $0.bottom.equalTo(borderView.snp.bottom).offset(111)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        passwordLabel.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(22)
+        confirmPwLabel.snp.makeConstraints {
+            $0.top.equalTo(pwTextField.snp.bottom).offset(22)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(44)
-            $0.bottom.equalTo(emailTextField.snp.bottom).offset(96)
+        confirmPwTextField.snp.makeConstraints {
+            $0.top.equalTo(pwTextField.snp.bottom).offset(44)
+            $0.bottom.equalTo(pwTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        confirmLabel.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        confirmTextField.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(44)
-            $0.bottom.equalTo(passwordTextField.snp.bottom).offset(96)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-
-        }
+     
         submitBtn.snp.makeConstraints {
-            $0.top.equalTo(confirmTextField.snp.bottom).offset(40)
-            $0.bottom.equalTo(confirmTextField.snp.bottom).offset(96)
+            $0.top.equalTo(confirmPwTextField.snp.bottom).offset(44)
+            $0.bottom.equalTo(confirmPwTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         
@@ -163,11 +143,20 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-        let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
-            self.navigationController?.popViewController(animated: true)
+        let msg = UIAlertController(title: "Delete account", message: "Are you sure to leave UniA?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: . default){ (_) in
+
         }
-        msg.addAction(okAction)
+        let yesAction = UIAlertAction(title: "Yes", style: . cancel){ (_) in
+            let msg = UIAlertController(title: "Account deleted", message: "Your UniA account has been deleted successfully.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+        }
+        msg.addAction(cancelAction)
+        msg.addAction(yesAction)
         self.present(msg, animated: true)
     }
 }
