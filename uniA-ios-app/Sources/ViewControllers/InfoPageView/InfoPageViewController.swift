@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class InfoPageViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var topView = UIView().then {
         $0.backgroundColor = .systemGray6
     }
@@ -77,7 +77,7 @@ class InfoPageViewController: UIViewController {
         $0.contentHorizontalAlignment = .left
     }
     
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,22 +88,22 @@ class InfoPageViewController: UIViewController {
         setUpConstraints()
     }
     
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
         self.view.addSubview(topView)
         self.view.addSubview(titleLabel)
-        [aboutBtn,academicBtn,immigrationBtn,campusBtn,lifeBtn,touristsBtn].forEach {
+        [aboutBtn, academicBtn, immigrationBtn, campusBtn, lifeBtn, touristsBtn].forEach {
             topView.addSubview($0)
         }
     }
 
     func setUpConstraints() {
-        topView.snp.makeConstraints{
+        topView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(68)
         }
-        titleLabel.snp.makeConstraints{
+        titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(topView.snp.top).offset(-15)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
             $0.width.equalTo(Constant.width * 125)
@@ -149,9 +149,8 @@ class InfoPageViewController: UIViewController {
     }
  
     @objc func aboutBtnTapped() {
-        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         let aboutAjouViewController = AboutAjouViewController()
         navigationController?.pushViewController(aboutAjouViewController, animated: true)
     }
 }
-

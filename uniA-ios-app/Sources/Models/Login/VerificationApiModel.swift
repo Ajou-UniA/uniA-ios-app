@@ -10,15 +10,15 @@ import Alamofire
 
 class VerificationApiModel {
     
-    var urlString : String?
+    var urlString: String?
     
-    func requestVerificationDataModel(bodyData : Parameters){
+    func requestVerificationDataModel(bodyData: Parameters) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/verify"
         
-        guard let urlString = urlString else{ return}
+        guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}
-        let header : HTTPHeaders = ["Content-Type" : "application/json"]
+        let header: HTTPHeaders = ["Content-Type": "application/json"]
         
         AF.request(url, method: .post, parameters: bodyData, encoding: JSONEncoding.default, headers: header)
             .validate()

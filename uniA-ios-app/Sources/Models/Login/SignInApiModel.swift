@@ -10,15 +10,15 @@ import Alamofire
 
 class SignInApiModel {
     
-    var urlString : String?
+    var urlString: String?
     
-    func requestSignInDataModel(bodyData : Parameters, onCompleted : @escaping(CreateAccount) -> Void){
+    func requestSignInDataModel(bodyData: Parameters, onCompleted: @escaping(CreateAccount) -> Void) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/login"
         
-        guard let urlString = urlString else{ return }
+        guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}
-        let header : HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
         AF.request(url, method: .post, parameters: bodyData, encoding: URLEncoding.default, headers: header)
             .validate()

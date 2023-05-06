@@ -10,8 +10,8 @@ import Then
 import UIKit
 import Alamofire
 
-class LoginViewController: UIViewController, UITextFieldDelegate{
-    //MARK: - Properties
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    // MARK: - Properties
 
     lazy var titleLabel = UILabel().then {
         $0.text = "Welcome!"
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
 
     }
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +88,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [titleLabel,emailLabel,emailTextField,passwordLabel,passwordTextField,remeberLabel,forgotLabel,signInBtn,signUpBtn,checkBoxBtn].forEach {
+        [titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, remeberLabel, forgotLabel, signInBtn, signUpBtn, checkBoxBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -157,12 +157,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 
         }
     }
-    //MARK: -BtnAction
+    // MARK: -BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
     
     @objc func signUpBtnTapped() {
-        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
@@ -171,16 +171,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func signInBtnTapped() {
-        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
-        let bodyData : Parameters = [
+        let bodyData: Parameters = [
             
             "loginId": "gkxotjs12345@ajou.ac.kr",
             "password": "12345678"
        
         ]
-        signInAccess.requestSignInDataModel(bodyData: bodyData){ data in
+        signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
             print(data.body)
             
         }
@@ -190,8 +190,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 //        loginCheckAccess.checkFail(){ data in
 //            print(data.body)
 //        }
-        let homeViewController = HomeViewController()
-        navigationController?.pushViewController(homeViewController, animated: true)
+        let myPageViewController = MyPageViewController()
+        navigationController?.pushViewController(myPageViewController, animated: true)
+
+//        let homeViewController = HomeViewController()
+//        navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     @objc func forgotLabelTapped() {
@@ -204,24 +207,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     var flag = 1
     @objc func checkBoxBtnTapped() {
-        if flag == 1{
+        if flag == 1 {
             checkBoxBtn.setImage(UIImage(named: "checkboxSelected"), for: .normal)
             flag = 0
-        }else {
+        } else {
             checkBoxBtn.setImage(UIImage(named: "checkbox"), for: .normal)
             flag = 1
         }
     }
-    //MARK: - TextFieldDelegate
+    // MARK: - TextFieldDelegate
     
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-    //화면 터치시 keybord 내림
+    // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
@@ -230,8 +233,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         return true
     }
 }
-    //MARK: - Extension
-//textField padding 값 넣어주기
+    // MARK: - Extension
+// textField padding 값 넣어주기
 extension UITextField {
     func addLeftPadding() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))

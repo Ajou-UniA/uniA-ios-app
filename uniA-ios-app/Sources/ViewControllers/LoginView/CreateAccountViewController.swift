@@ -10,8 +10,8 @@ import Then
 import UIKit
 import Alamofire
 
-class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
-    //MARK: - Properties
+class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    // MARK: - Properties
     let pickerView = UIPickerView()
     let pick = pickerdata
     var selectCity = ""
@@ -110,7 +110,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.lineBreakMode = .byWordWrapping
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.41
-        $0.attributedText = NSMutableAttributedString(string: "By signing up, you agree to the User Agreement & Privace \nPolicy.", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        $0.attributedText = NSMutableAttributedString(string: "By signing up, you agree to the User Agreement & Privace \nPolicy.",
+                                                      attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         $0.numberOfLines = 2
         $0.font = UIFont.systemFont(ofSize: 13)
         }
@@ -120,7 +121,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonTapped))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        $0.setItems([cancelButton,space,doneButton], animated: true)
+        $0.setItems([cancelButton, space, doneButton], animated: true)
         $0.isUserInteractionEnabled = true
     }
     lazy var warningLabel = UILabel().then {
@@ -129,7 +130,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
     
-        //MARK: - Lifecycles
+        // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +148,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
         
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
 
         scrollTap()
         setUpView()
@@ -156,12 +157,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
     }
     
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
         self.view.addSubview(scrollView)
         self.view.addSubview(backBtn)
-        [titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,studentIdLabel,studentIdTextField,departmentLabel,departmentTextField,passwordLabel,passwordTextField,warningLabel,confirmPasswordLabel,confirmPasswordTextField,submitBtn,policyLabel].forEach {
+        [titleLabel, firstNameLabel, firstNameTextField, lastNameLabel, lastNameTextField, studentIdLabel, studentIdTextField, departmentLabel, departmentTextField, passwordLabel,
+         passwordTextField, warningLabel, confirmPasswordLabel, confirmPasswordTextField, submitBtn, policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
@@ -247,34 +249,34 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         }
         policyLabel.snp.makeConstraints {
             $0.top.equalTo(submitBtn.snp.bottom).offset(18)
-            $0.bottom.equalToSuperview() //마지막에 있는건 무조건..바텀값 주자..안그러면 작동안한다..
+            $0.bottom.equalToSuperview() // 마지막에 있는건 무조건..바텀값 주자..안그러면 작동안한다..
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    //MARK: -PickerView
-    //pickerView column 수
+    // MARK: - PickerView
+    // pickerView column 수
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
         }
-    //pickerView row 수
+    // pickerView row 수
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             return pickerdata.count
         }
-    //pickerView 보여지는 값
+    // pickerView 보여지는 값
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             return pickerdata[row]
         }
-    //pickerView 선택시 데이터 호출
+    // pickerView 선택시 데이터 호출
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
           selectCity = pickerdata[row]
       }
-    //pickerView text color
+    // pickerView text color
 //    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 //        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
 //    }
     @objc func onDoneButtonTapped() {
         departmentTextField.text = selectCity
-        departmentTextField.resignFirstResponder() //pickerView 내리기
+        departmentTextField.resignFirstResponder() // pickerView 내리기
         selectCity = ""
         }
     
@@ -283,19 +285,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         selectCity = ""
         }
     
-    //MARK: - scrollView tap시 keboard 내리기
-    func scrollTap(){
-            let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+    // MARK: - scrollView tap시 keboard 내리기
+    
+    func scrollTap() {
+            let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(myTapMethod))
             singleTapGestureRecognizer.numberOfTapsRequired = 1
             singleTapGestureRecognizer.isEnabled = true
             singleTapGestureRecognizer.cancelsTouchesInView = false
             scrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
     @objc
-    func MyTapMethod(sender: UITapGestureRecognizer) {
+    func myTapMethod(sender: UITapGestureRecognizer) {
             self.view.endEditing(true)
     }
-    //MARK: -Navigation
+    // MARK: - Navigation
     let createAccountAccess = CreateAccountApiModel()
     let memberEmail = UserDefaults.standard.string(forKey: "email")
     
@@ -315,12 +318,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
          let memberPassword = passwordTextField.text,
          let memberConfirmPassword = confirmPasswordTextField.text else {return}
         
-        UserDefaults.standard.set(firstNameTextField.text, forKey: "firstName")
-        UserDefaults.standard.set(lastNameTextField.text, forKey: "lastName")
-        UserDefaults.standard.set(studentIdTextField.text, forKey: "studentId")
-        UserDefaults.standard.set(departmentTextField.text, forKey: "department")
+//        UserDefaults.standard.set(firstNameTextField.text, forKey: "firstName")
+//        UserDefaults.standard.set(lastNameTextField.text, forKey: "lastName")
+//        UserDefaults.standard.set(studentIdTextField.text, forKey: "studentId")
+//        UserDefaults.standard.set(departmentTextField.text, forKey: "department")
 
-         let bodyData : Parameters = [
+         let bodyData: Parameters = [
             "firstName": firstName,
             "lastName": lastName,
             "memberConfirmPassword": memberConfirmPassword,
@@ -330,7 +333,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             "memberPassword": memberPassword
         ]
         
-        createAccountAccess.requestSignUpDataModel(bodyData: bodyData){ data in
+        createAccountAccess.requestSignUpDataModel(bodyData: bodyData) { data in
             print(data.body)
         }
         
@@ -341,9 +344,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - TextFieldDelegate
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // MARK: - TextFieldDelegate
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -363,15 +366,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                         let index = text.index(text.startIndex, offsetBy: 12)
                         let newString = text[text.startIndex..<index]
                         textField.text = String(newString)
-                    }
-                    
-                    else if text.count < 8 {
+                    } else if text.count < 8 {
                         warningLabel.text = "Your password must contain at least 8 characthers and 1 special characther."
                         warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                         passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
                         passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
-                    }
-                    else {
+                    } else {
                         warningLabel.text = ""
                         warningLabel.textColor = .green
                         passwordTextField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)

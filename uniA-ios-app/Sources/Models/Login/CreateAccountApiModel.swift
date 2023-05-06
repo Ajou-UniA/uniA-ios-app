@@ -10,17 +10,17 @@ import Alamofire
 
 class CreateAccountApiModel {
     
-    var urlString : String?
+    var urlString: String?
     
-    func requestSignUpDataModel(bodyData : Parameters, onCompleted : @escaping(CreateAccount) -> Void){
+    func requestSignUpDataModel(bodyData: Parameters, onCompleted: @escaping(CreateAccount) -> Void) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/create"
         
-        guard let urlString = urlString else{ return}
+        guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}
-        let header : HTTPHeaders = ["accept": "*/*", "Content-Type": "application/json"]
+        let header: HTTPHeaders = ["accept": "*/*", "Content-Type": "application/json"]
         
-        AF.request(url, method: .post, parameters: bodyData, encoding: JSONEncoding(), headers: header).validate().responseDecodable(of: CreateAccount.self){ response in
+        AF.request(url, method: .post, parameters: bodyData, encoding: JSONEncoding(), headers: header).validate().responseDecodable(of: CreateAccount.self) { response in
             switch response.result {
             case .success(let res):
                 print(response.debugDescription)

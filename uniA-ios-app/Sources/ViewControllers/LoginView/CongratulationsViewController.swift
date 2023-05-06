@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class CongratulationsViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var titleLabel = UILabel().then {
         $0.text = "Congratulations!"
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
@@ -30,9 +30,8 @@ class CongratulationsViewController: UIViewController {
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
     
-    
-    //MARK: - Lifecycles
-    //navigation Backbutton 지우기
+    // MARK: - Lifecycles
+    // navigation Backbutton 지우기
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
          self.navigationItem.hidesBackButton = true
@@ -45,10 +44,10 @@ class CongratulationsViewController: UIViewController {
         setUpConstraints()
     }
     
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [titleLabel,imageView,signInBtn].forEach {
+        [titleLabel, imageView, signInBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -70,10 +69,9 @@ class CongratulationsViewController: UIViewController {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    //MARK: -Navigation
+    // MARK: - Navigation
     @objc
     func signInBtnTapped() {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
-

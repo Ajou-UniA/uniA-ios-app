@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
-    //MARK: - Properties
+    // MARK: - Properties
     
     let firstName = UserDefaults.standard.string(forKey: "firstName")
     let lastName = UserDefaults.standard.string(forKey: "lastName")
@@ -83,11 +83,11 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
 
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
         
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
@@ -97,10 +97,11 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [borderView,backBtn,titleLabel,firstNameLabel,firstNameTextField,lastNameLabel,lastNameTextField,departmentLabel,departmentTextField,studentIdLabel,studentIdTextField,saveBtn].forEach {
+        [borderView, backBtn, titleLabel, firstNameLabel, firstNameTextField, lastNameLabel,
+         lastNameTextField, departmentLabel, departmentTextField, studentIdLabel, studentIdTextField, saveBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -113,7 +114,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
             $0.width.equalTo(Constant.width * 24)
             $0.height.equalTo(Constant.height * 24)
         }
-        titleLabel.snp.makeConstraints{
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
             $0.centerX.equalToSuperview()
         }
@@ -165,16 +166,16 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    //MARK: - TextFieldDelegate
+    // MARK: - TextFieldDelegate
     
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-    //화면 터치시 keybord 내림
+    // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
@@ -182,7 +183,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    //MARK: - Navigation
+    // MARK: - Navigation
     @objc func cancelBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }

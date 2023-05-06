@@ -10,9 +10,9 @@ import Then
 import UIKit
 
 class PopUpViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     
-    var imageName = ["card1","card2","card3"]
+    var imageName = ["card1", "card2", "card3"]
     var numImage = 0
     
     lazy var cancelBtn = UIButton().then {
@@ -20,12 +20,12 @@ class PopUpViewController: UIViewController {
         $0.setImage(UIImage(named: "close"), for: .normal)
         $0.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
     }
-    lazy var cardView = UIImageView().then{
+    lazy var cardView = UIImageView().then {
         $0.image = UIImage(named: imageName[numImage])
         $0.layer.cornerRadius = 20.0
     }
    
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
     
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
@@ -38,10 +38,10 @@ class PopUpViewController: UIViewController {
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
     
     func setUpView() {
-        [cardView,cancelBtn].forEach {
+        [cardView, cancelBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -63,7 +63,7 @@ class PopUpViewController: UIViewController {
         }
     }
     
-    func setUpGesture(){
+    func setUpGesture() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         swipeLeftGesture.direction = .left
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
@@ -73,7 +73,7 @@ class PopUpViewController: UIViewController {
         view.addGestureRecognizer(swipeRightGesture)
     }
     
-    //MARK: - objc
+    // MARK: - objc
     @objc func cancelBtnTapped() {
         self.navigationController?.popViewController(animated: false)
     }
@@ -81,22 +81,21 @@ class PopUpViewController: UIViewController {
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .left {
             numImage += 1
-            if numImage < imageName.count{
+            if numImage < imageName.count {
                 cardView.image = UIImage(named: imageName[numImage])
-            }else{
+            } else {
                 numImage = 0
                 cardView.image = UIImage(named: imageName[numImage])
             }
         
         } else if gesture.direction == .right {
             numImage -= 1
-            if numImage < 0{
+            if numImage < 0 {
                 numImage = imageName.count - 1
                 cardView.image = UIImage(named: imageName[numImage])
-            }else {
+            } else {
                 cardView.image = UIImage(named: imageName[numImage])
             }
         }
     }
 }
-//0,1,2

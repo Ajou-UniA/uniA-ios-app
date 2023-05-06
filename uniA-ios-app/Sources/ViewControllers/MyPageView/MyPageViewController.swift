@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class MyPageViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var midView = UIView().then {
         $0.backgroundColor = .white
     }
@@ -70,7 +70,7 @@ class MyPageViewController: UIViewController {
         $0.addTarget(self, action: #selector(logoutBtnTapped), for: .touchUpInside)
 
     }
-    lazy var profileView = UIImageView().then{
+    lazy var profileView = UIImageView().then {
         $0.image = UIImage(named: "profileLogo")
         
     }
@@ -78,7 +78,7 @@ class MyPageViewController: UIViewController {
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
-    lazy var circleView = UIView().then{
+    lazy var circleView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 42.0
         $0.layer.borderWidth = 1.0
@@ -86,7 +86,7 @@ class MyPageViewController: UIViewController {
 
     }
     
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,24 +95,24 @@ class MyPageViewController: UIViewController {
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [titleLabel,midView,subtitleLabel,resetBtn,deleteBtn,editBtn,logoutBtn,borderView].forEach {
+        [titleLabel, midView, subtitleLabel, resetBtn, deleteBtn, editBtn, logoutBtn, borderView].forEach {
             view.addSubview($0)
         }
-        [circleView,majorLabel,numberLabel,nameLabel,profileView].forEach {
+        [circleView, majorLabel, numberLabel, nameLabel, profileView].forEach {
             midView.addSubview($0)
         }
     }
 
     func setUpConstraints() {
-        titleLabel.snp.makeConstraints{
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
         }
 
-        midView.snp.makeConstraints{
+        midView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.height.equalTo(Constant.width * 143)
@@ -122,66 +122,66 @@ class MyPageViewController: UIViewController {
             $0.height.equalTo(Constant.height * 0.5)
             $0.leading.trailing.equalToSuperview()
         }
-        subtitleLabel.snp.makeConstraints{
+        subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom).offset(21)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
         }
-        resetBtn.snp.makeConstraints{
+        resetBtn.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.width.equalTo(Constant.width * 120)
             $0.height.equalTo(Constant.height * 25)
         }
-        deleteBtn.snp.makeConstraints{
+        deleteBtn.snp.makeConstraints {
             $0.top.equalTo(resetBtn.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.width.equalTo(Constant.width * 110)
             $0.height.equalTo(Constant.height * 25)
         }
-        editBtn.snp.makeConstraints{
+        editBtn.snp.makeConstraints {
             $0.top.equalTo(deleteBtn.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.width.equalTo(Constant.width * 110)
             $0.height.equalTo(Constant.height * 25)
         }
-        logoutBtn.snp.makeConstraints{
+        logoutBtn.snp.makeConstraints {
             $0.top.equalTo(editBtn.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.width.equalTo(Constant.width * 95)
             $0.height.equalTo(Constant.height * 25)
         }
-        circleView.snp.makeConstraints{
+        circleView.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(31)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
             $0.width.equalTo(Constant.width * 84)
             $0.height.equalTo(Constant.height * 84)
         }
         
-        profileView.snp.makeConstraints{
+        profileView.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(49)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(36)
             $0.width.equalTo(Constant.width * 45)
             $0.height.equalTo(Constant.height * 49)
             
         }
-        nameLabel.snp.makeConstraints{
+        nameLabel.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(37)
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
             
         }
-        majorLabel.snp.makeConstraints{
+        majorLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
             
         }
-        numberLabel.snp.makeConstraints{
+        numberLabel.snp.makeConstraints {
             $0.top.equalTo(majorLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
             
         }
         
     }
-    //MARK: - Navigation
+    // MARK: - Navigation
     @objc
     func resetBtnTapped() {
         let resetPasswordViewController = ResetPasswordViewController()
@@ -199,14 +199,14 @@ class MyPageViewController: UIViewController {
     }
     
     @objc
-    func logoutBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+    func logoutBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: . default){ (_) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
 //            let createAccountViewController = CreateAccountViewController()
 //            self.navigationController?.pushViewController(createAccountViewController, animated: true)
 //
         }
-        let yesAction = UIAlertAction(title: "Yes", style: . cancel){ (_) in
+        let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
 //            let createAccountViewController = CreateAccountViewController()
 //            self.navigationController?.pushViewController(createAccountViewController, animated: true)
 //

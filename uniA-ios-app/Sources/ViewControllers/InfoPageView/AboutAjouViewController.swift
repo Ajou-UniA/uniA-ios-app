@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class AboutAjouViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var topView = UIView().then {
         $0.backgroundColor = .systemGray6
     }
@@ -63,24 +63,24 @@ class AboutAjouViewController: UIViewController {
         $0.backgroundColor = .white
     }
     
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
 
         setUpView()
         setUpConstraints()
     }
     
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
         self.view.addSubview(topView)
         self.view.addSubview(titleLabel)
         self.view.addSubview(backBtn)
-        [firstNewsBtn,secondNewsBtn,thirdNewsBtn,fourthNewsBtn,firstLabel,secondLabel,thirdLabel,fourthLabel].forEach {
+        [firstNewsBtn, secondNewsBtn, thirdNewsBtn, fourthNewsBtn, firstLabel, secondLabel, thirdLabel, fourthLabel].forEach {
             topView.addSubview($0)
         }
     }
@@ -91,7 +91,7 @@ class AboutAjouViewController: UIViewController {
             $0.bottom.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(68)
         }
-        titleLabel.snp.makeConstraints{
+        titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(topView.snp.top).offset(-20)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Constant.width * 160)
@@ -162,7 +162,7 @@ class AboutAjouViewController: UIViewController {
                   
         }
     }
-    //MARK: - Navigation
+    // MARK: - Navigation
     @objc func firstNewsBtnTapped() {
         let popUpViewController = PopUpViewController()
         navigationController?.pushViewController(popUpViewController, animated: false)

@@ -10,7 +10,7 @@ import Then
 import UIKit
 
 class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -56,21 +56,21 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
     
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
         newPasswordTextField.delegate = self
         confirmPasswordTextField.delegate = self
         
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [borderView,backBtn,titleLabel,newPasswordLabel,newPasswordTextField,confirmPasswordLabel,confirmPasswordTextField,submitBtn].forEach {
+        [borderView, backBtn, titleLabel, newPasswordLabel, newPasswordTextField, confirmPasswordLabel, confirmPasswordTextField, submitBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -83,7 +83,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.width.equalTo(Constant.width * 24)
             $0.height.equalTo(Constant.height * 24)
         }
-        titleLabel.snp.makeConstraints{
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
             $0.centerX.equalToSuperview()
         }
@@ -119,16 +119,16 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    //MARK: - TextFieldDelegate
+    // MARK: - TextFieldDelegate
     
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-    //화면 터치시 keybord 내림
+    // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
@@ -137,19 +137,18 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //MARK: -Objc
+    // MARK: - Objc
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc
-    func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+    func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
+        let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
             self.navigationController?.popViewController(animated: true)
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
     }
 }
-

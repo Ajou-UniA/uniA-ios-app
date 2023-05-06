@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-    //MARK: - Properties
+    // MARK: - Properties
     
     lazy var titleLabel = UILabel().then {
         $0.text = "Confirm Your \nAjou University Email"
@@ -45,7 +45,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         $0.lineBreakMode = .byWordWrapping
             var paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineHeightMultiple = 1.41
-            $0.attributedText = NSMutableAttributedString(string: "When your Ajou University email verification is complete, \nwe will send you a verification code via your email.", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+            $0.attributedText = NSMutableAttributedString(string: "When your Ajou University email verification is complete, \nwe will send you a verification code via your email.",
+                                                          attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
             $0.numberOfLines = 2
             $0.font = UIFont.systemFont(ofSize: 13)
     }
@@ -56,20 +57,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
     }
     
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
         
         emailTextField.delegate = self
         setUpView()
         setUpConstraints()
     }
     
-    //MARK: - Helper
+    // MARK: - Helper
     func setUpView() {
-        [titleLabel,emailLabel,emailTextField,confirmBtn,explainLabel,backBtn].forEach {
+        [titleLabel, emailLabel, emailTextField, confirmBtn, explainLabel, backBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -108,7 +109,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: -Navigation
+    // MARK: - Navigation
     let checkEmailAccess = CheckEmailApiModel()
     let sendCodeAccess = SendCodeApiModel()
     
@@ -116,8 +117,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func confirmBtnTapped() {
        let verificationViewController = VerificationViewController()
 
-        checkEmailAccess.checkEmail(email: emailTextField.text!){  data in
-            if (data.statusCodeValue == 200){
+        checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
+            if data.statusCodeValue == 200 {
                 print("OK")
                 self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
                     print("Sent")
@@ -133,17 +134,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - TextFieldDelegate
     
-    //MARK: - TextFieldDelegate
-    
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-    //화면 터치시 keybord 내림
+    // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
@@ -152,4 +152,3 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 }
-
