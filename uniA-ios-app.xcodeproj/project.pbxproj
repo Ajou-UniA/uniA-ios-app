@@ -36,6 +36,7 @@
 		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
+		8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */; };
 		8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */; };
 		8A8081C729D077F300CE375D /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */; };
 		8A8081C829D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */; };
@@ -104,6 +105,7 @@
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouCampusMap.swift; sourceTree = "<group>"; };
 		8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				8AAF51062A06827900E5CC02 /* FavoriteView.swift */,
 				8AAF51072A06827900E5CC02 /* HomeViewController.swift */,
 				8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */,
+				8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
+				8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */,
 				8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */,
 				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
