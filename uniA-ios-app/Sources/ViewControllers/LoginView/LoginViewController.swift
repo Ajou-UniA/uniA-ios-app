@@ -184,15 +184,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print(data.body)
             
         }
-//        loginCheckAccess.checkSuccess(){ data in
-//            print(data.body)
-//        }
-//        loginCheckAccess.checkFail(){ data in
-//            print(data.body)
-//        }
 
-//        let homeViewController = HomeViewController()
-//        navigationController?.pushViewController(homeViewController, animated: true)
+        let homeViewController = TabBarController()
+        navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     @objc func forgotLabelTapped() {

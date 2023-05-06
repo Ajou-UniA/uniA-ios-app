@@ -182,6 +182,7 @@ class MyPageViewController: UIViewController {
         
     }
     // MARK: - Navigation
+    
     @objc
     func resetBtnTapped() {
         let resetPasswordViewController = ResetPasswordViewController()

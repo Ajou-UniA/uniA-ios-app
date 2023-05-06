@@ -14,7 +14,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Properties
     let pickerView = UIPickerView()
     let pick = pickerdata
-    var selectCity = ""
+    var selectMajor = ""
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
     }
@@ -268,21 +268,21 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         }
     // pickerView 선택시 데이터 호출
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          selectCity = pickerdata[row]
+          selectMajor = pickerdata[row]
       }
     // pickerView text color
 //    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 //        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
 //    }
     @objc func onDoneButtonTapped() {
-        departmentTextField.text = selectCity
+        departmentTextField.text = selectMajor
         departmentTextField.resignFirstResponder() // pickerView 내리기
-        selectCity = ""
+        selectMajor = ""
         }
     
     @objc func onCancelButtonTapped() {
         departmentTextField.resignFirstResponder()
-        selectCity = ""
+        selectMajor = ""
         }
     
     // MARK: - scrollView tap시 keboard 내리기
@@ -318,11 +318,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
          let memberPassword = passwordTextField.text,
          let memberConfirmPassword = confirmPasswordTextField.text else {return}
         
-//        UserDefaults.standard.set(firstNameTextField.text, forKey: "firstName")
-//        UserDefaults.standard.set(lastNameTextField.text, forKey: "lastName")
-//        UserDefaults.standard.set(studentIdTextField.text, forKey: "studentId")
-//        UserDefaults.standard.set(departmentTextField.text, forKey: "department")
-
          let bodyData: Parameters = [
             "firstName": firstName,
             "lastName": lastName,
@@ -372,10 +367,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                         passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
                         passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                     } else {
-                        warningLabel.text = ""
-                        warningLabel.textColor = .green
-                        passwordTextField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
-                        passwordLabel.textColor = .black
+                        warningLabel.text = "Your password is great."
+                        warningLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                        passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
+                        passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
                     }
                 }
             }

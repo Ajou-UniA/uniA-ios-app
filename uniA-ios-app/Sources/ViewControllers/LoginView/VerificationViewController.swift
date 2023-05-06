@@ -167,10 +167,16 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func resendBtnTapped() {
-        resetTimer()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        sendCodeAccess.sendCode(memberEmail: self.email) {  data in
-            print(data)
+        let msg = UIAlertController(title: "Resend Code Success", message: "New verification code has been sent to your Ajou University email.", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            self.resetTimer()
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+            self.sendCodeAccess.sendCode(memberEmail: self.email) {  data in
+                print(data)
+            }
         }
+        msg.addAction(okAction)
+        self.present(msg, animated: true)
+            
     }
 }
