@@ -26,11 +26,10 @@ class SignInApiModel {
                 print(response.debugDescription)
                 switch response.result {
                 case .success(let value):
-                    UserDefaults.standard.set(true, forKey: "loginSuccess")
                     print("Success: \(value)")
-                    
+                    let account = CreateAccount(body: Body(), statusCode: "200", statusCodeValue: 200)
+                    onCompleted(account)
                 case .failure(let error):
-                    UserDefaults.standard.set(false, forKey: "loginSuccess")
                     print("Error: \(error.localizedDescription)")
                 }
         }

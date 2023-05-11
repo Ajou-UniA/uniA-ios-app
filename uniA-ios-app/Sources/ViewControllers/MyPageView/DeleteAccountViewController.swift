@@ -60,7 +60,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true
         pwTextField.delegate = self
         confirmPwTextField.delegate = self
         
@@ -137,26 +137,43 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Objc
-    @objc func backBtnTapped() {
+    
+    let deleteAccess = DeleteAccountApiModel()
+    let editAccess = EditMyProfileApiModel()
+    let memberPassword = UserDefaults.standard.string(forKey: "password")
+    var id: Int = 0
+
+    @objc
+    func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-        let msg = UIAlertController(title: "Delete account", message: "Are you sure to leave UniA?", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
-
-        }
-        let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
-            let msg = UIAlertController(title: "Account deleted", message: "Your UniA account has been deleted successfully.", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
-                self.navigationController?.popViewController(animated: true)
+        print(memberPassword)
+        if memberPassword == pwTextField.text && pwTextField.text == confirmPwTextField.text {
+            let msg = UIAlertController(title: "Delete account", message: "Are you sure to leave UniA?", preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
+                
             }
-            msg.addAction(okAction)
+            let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
+                let msg = UIAlertController(title: "Account deleted", message: "Your UniA account has been deleted successfully.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                    self.editAccess.findByMemberId() { data in
+                        self.id = Int(data.memberId!)
+                        self.deleteAccess.deleteAccount(memberId: self.id) { data in
+                            print(data)
+                        }
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }
+                msg.addAction(okAction)
+                self.present(msg, animated: true)
+                
+            }
+            msg.addAction(cancelAction)
+            msg.addAction(yesAction)
             self.present(msg, animated: true)
         }
-        msg.addAction(cancelAction)
-        msg.addAction(yesAction)
-        self.present(msg, animated: true)
     }
 }

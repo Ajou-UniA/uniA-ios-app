@@ -11,7 +11,7 @@ import Alamofire
 class EditMyProfileApiModel {
     
     func findByMemberId(onCompleted: @escaping(Profile) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/201821054"
+        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/123123123"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
         

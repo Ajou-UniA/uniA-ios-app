@@ -157,6 +157,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Objc
+    let resetAccess = ResetPasswordApiModel()
+
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }

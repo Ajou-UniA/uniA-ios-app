@@ -174,15 +174,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
+        guard let loginId = emailTextField.text,
+         let password = passwordTextField.text else {return}
+        
         let bodyData: Parameters = [
             
-            "loginId": "gkxotjs12345@ajou.ac.kr",
-            "password": "12345678"
-       
+             "loginId": "qwerty@ajou.ac.kr",
+             "password": "12345678"
+           // "loginId": loginId,
+           // "password": password
         ]
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
-            print(data.body)
-            
+            UserDefaults.standard.set(password, forKey: "password")
         }
 
         let homeViewController = TabBarController()
