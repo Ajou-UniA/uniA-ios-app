@@ -125,6 +125,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     let verificationAccess = VerificationApiModel()
     let sendCodeAccess = SendCodeApiModel()
     var email: String = ""
+    let branch = UserDefaults.standard.integer(forKey: "branch")
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
@@ -135,10 +136,15 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             
             let bodyData: Parameters = ["email": self.email, "verificationCode": code ]
             self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
-            
-            let createAccountViewController = CreateAccountViewController()
-            self.navigationController?.pushViewController(createAccountViewController, animated: true)
+            print(self.branch)
+            if self.branch == 0 {
+                let createAccountViewController = CreateAccountViewController()
+                self.navigationController?.pushViewController(createAccountViewController, animated: true)
 
+            } else {
+                let forgotPasswordViewController = ForgotPasswordViewController()
+                self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+            }
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
@@ -154,7 +160,6 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         } else {
             timer?.invalidate()
         }
-        
     }
 
     @objc func backBtnTapped() {

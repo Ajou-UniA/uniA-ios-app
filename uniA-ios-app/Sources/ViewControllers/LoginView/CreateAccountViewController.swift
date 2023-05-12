@@ -348,31 +348,37 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     @objc private func textDidChange(_ notification: Notification) {
-            if let textField = notification.object as? UITextField {
-                if let text = textField.text {
-                    
-                    if text.count > 12 {
-                        // 8글자 넘어가면 자동으로 키보드 내려감
-                        textField.resignFirstResponder()
-                    }
-                    
-                    // 초과되는 텍스트 제거
-                    if text.count >= 12 {
-                        let index = text.index(text.startIndex, offsetBy: 12)
-                        let newString = text[text.startIndex..<index]
-                        textField.text = String(newString)
-                    } else if text.count < 8 {
-                        warningLabel.text = "Your password must contain at least 8 characthers and 1 special characther."
-                        warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
-                        passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
-                        passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
-                    } else {
-                        warningLabel.text = "Your password is great."
-                        warningLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
-                        passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
-                        passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
-                    }
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                
+                if text.count > 12 {
+                    // 8글자 넘어가면 자동으로 키보드 내려감
+                    textField.resignFirstResponder()
+                }
+                
+                // 초과되는 텍스트 제거
+                if text.count >= 12 {
+                    let index = text.index(text.startIndex, offsetBy: 12)
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                }
+                
+                // 특수문자 포함 여부 체크
+                let specialCharSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[{]};:'\",<.>/?")
+                let hasSpecialChar = text.rangeOfCharacter(from: specialCharSet) != nil
+                
+                if text.count < 8 || !hasSpecialChar {
+                    warningLabel.text = "Your password must contain at least 8 characters and 1 special character."
+                    warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                } else {
+                    warningLabel.text = "Your password is great."
+                    warningLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
                 }
             }
         }
+    }
 }

@@ -10,7 +10,7 @@ import Then
 import UIKit
 import Alamofire
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
     
     lazy var titleLabel = UILabel().then {
@@ -112,23 +112,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Navigation
     let checkEmailAccess = CheckEmailApiModel()
     let sendCodeAccess = SendCodeApiModel()
-    
+    let branch = UserDefaults.standard.integer(forKey: "branch")
+
     @objc
     func confirmBtnTapped() {
        let verificationViewController = VerificationViewController()
-
-        checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
-            if data.statusCodeValue == 200 {
-                print("OK")
-                self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
-                    print("Sent")
+        if branch == 0{ // signUp email 중복되면 안됨
+            checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
+                if data.statusCodeValue == 200 {
+                    print("OK")
+                    self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
+                        print("Sent")
+                    }
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
+                    verificationViewController.email = self.emailTextField.text ?? ""
+                    self.navigationController?.pushViewController(verificationViewController, animated: true)
+                    
                 }
-                UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
-                verificationViewController.email = self.emailTextField.text ?? ""
-                self.navigationController?.pushViewController(verificationViewController, animated: true)
-
-                }
-           }
+            }
+        } else { // forgot 이메일 중복되어야함.
+            
+        }
     }
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)

@@ -141,7 +141,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         remeberLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.leading.equalTo(checkBoxBtn.snp.trailing).offset(3)
-            
         }
 
         signInBtn.snp.makeConstraints {
@@ -157,16 +156,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         }
     }
-    // MARK: -BtnAction
+    // MARK: - BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
-    
+
     @objc func signUpBtnTapped() {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let signUpViewController = SignUpViewController()
+        let signUpViewController = ConfirmEmailViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
@@ -180,26 +179,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let bodyData: Parameters = [
             
              "loginId": "qwerty@ajou.ac.kr",
-             "password": "12345678"
+             "password": "1234567!"
            // "loginId": loginId,
            // "password": password
         ]
+        
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
             UserDefaults.standard.set(password, forKey: "password")
+            if data == 1 {
+                let homeViewController = TabBarController()
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            } // else {
+                // alert 추가!
+           // }
         }
-
-        let homeViewController = TabBarController()
-        navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     @objc func forgotLabelTapped() {
         UserDefaults.standard.set(1, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let forgotPasswordViewController = ForgotPasswordViewController()
-        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-        
+        let signUpViewController = ConfirmEmailViewController()
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
+    
     var flag = 1
     @objc func checkBoxBtnTapped() {
         if flag == 1 {

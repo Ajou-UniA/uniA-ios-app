@@ -14,7 +14,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Properties
     let pickerView = UIPickerView()
     let pick = pickerdata
-    var selectCity = ""
+    var selectMajor = ""
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -34,7 +34,6 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     lazy var firstNameTextField = UITextField().then {
-        //$0.text = firstName
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
@@ -64,18 +63,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.addLeftPadding()
     }
-    lazy var studentIdLabel = UILabel().then {
-        $0.text = "Student ID"
-        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
-    }
     
-    lazy var studentIdTextField = UITextField().then {
-        $0.layer.cornerRadius = 10.0
-        $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-        $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
-        $0.addLeftPadding()
-    }
     lazy var saveBtn = UIButton().then {
         $0.setTitle("Save", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -94,9 +82,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     }
 
     // MARK: - Lifecycles
-    let editAccess = EditMyProfileApiModel()
+    let memberInfoAccess = FindMemberApiModel()
     let check = LoginCheckApiModel()
     let login = SignInApiModel()
+    var memberId: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +94,6 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
-        studentIdTextField.delegate = self
         departmentTextField.delegate = self
         
         pickerView.delegate = self
@@ -114,12 +102,11 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
         
-        editAccess.findByMemberId() { data in
+        memberInfoAccess.findByMemberId() { data in
             self.firstNameTextField.text = data.firstName
             self.lastNameTextField.text = data.lastName
-            self.studentIdTextField.text = String(data.memberId!)
             self.departmentTextField.text = data.memberMajor
-            
+            self.memberId = data.memberId!
         }
         
         setUpView()
@@ -129,7 +116,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
 
     func setUpView() {
         [borderView, backBtn, titleLabel, firstNameLabel, firstNameTextField, lastNameLabel,
-         lastNameTextField, departmentLabel, departmentTextField, studentIdLabel, studentIdTextField, saveBtn].forEach {
+         lastNameTextField, departmentLabel, departmentTextField, saveBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -179,18 +166,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
             $0.bottom.equalTo(lastNameTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        studentIdLabel.snp.makeConstraints {
-            $0.top.equalTo(departmentTextField.snp.bottom).offset(22)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        studentIdTextField.snp.makeConstraints {
+
+        saveBtn.snp.makeConstraints {
             $0.top.equalTo(departmentTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(departmentTextField.snp.bottom).offset(96)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        saveBtn.snp.makeConstraints {
-            $0.top.equalTo(studentIdTextField.snp.bottom).offset(40)
-            $0.bottom.equalTo(studentIdTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
@@ -209,21 +188,21 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         }
     // pickerView 선택시 데이터 호출
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          selectCity = pickerdata[row]
+          selectMajor = pickerdata[row]
       }
     // pickerView text color
 //    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 //        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
 //    }
     @objc func onDoneButtonTapped() {
-        departmentTextField.text = selectCity
+        departmentTextField.text = selectMajor
         departmentTextField.resignFirstResponder() // pickerView 내리기
-        selectCity = ""
+        selectMajor = ""
         }
     
     @objc func onCancelButtonTapped() {
         departmentTextField.resignFirstResponder()
-        selectCity = ""
+        selectMajor = ""
         }
     
     // MARK: - TextFieldDelegate
@@ -247,12 +226,37 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         return true
     }
     // MARK: - Navigation
-    @objc func cancelBtnTapped() {
+    let editAccess = EditMyProfileApiModel()
+    
+    @objc
+    func cancelBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @objc
     func saveBtnTapped() {
-        self.navigationController?.popToRootViewController(animated: true)
+        guard let firstName = firstNameTextField.text,
+         let lastName = lastNameTextField.text,
+         let memberMajor = departmentTextField.text else {return}
+        
+         let bodyData: Parameters = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "memberMajor": memberMajor
+            ]
+        
+        let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
+
+        }
+        let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
+            self.editAccess.editProfile(memberId: self.memberId, bodyData: bodyData) { data in
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        msg.addAction(cancelAction)
+        msg.addAction(yesAction)
+        self.present(msg, animated: true)
     }
-    
 }
+

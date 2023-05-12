@@ -24,17 +24,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
-    lazy var emailLabel = UILabel().then {
-        $0.text = "Email"
-        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
-    }
-    
-    lazy var emailTextField = UITextField().then {
-        $0.layer.cornerRadius = 10.0
-        $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-        $0.addLeftPadding()
-    }
+
     lazy var passwordLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
@@ -65,23 +55,40 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
+    lazy var warningLabel1 = UILabel().then {
+        $0.text = ""
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
+    }
+    lazy var warningLabel2 = UILabel().then {
+        $0.text = ""
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
+    }
     
     // MARK: - Lifecycles
+
+    let memberInfoAccess = FindMemberApiModel()
+    var memberId: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmTextField.delegate = self
         
         setUpView()
         setUpConstraints()
+        memberInfoAccess.findByMemberId() { data in
+            self.memberId = data.memberId!
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
     }
     // MARK: - Helper
 
     func setUpView() {
-        [borderView, backBtn, titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, confirmLabel, confirmTextField, submitBtn].forEach {
+        [borderView, backBtn, titleLabel, passwordLabel, passwordTextField, confirmLabel, confirmTextField, submitBtn, warningLabel1, warningLabel2].forEach {
             view.addSubview($0)
         }
     }
@@ -103,22 +110,13 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.height.equalTo(Constant.height * 0.5)
             $0.leading.trailing.equalToSuperview()
         }
-        emailLabel.snp.makeConstraints {
+        passwordLabel.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom).offset(35)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        emailTextField.snp.makeConstraints {
+        passwordTextField.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom).offset(59)
             $0.bottom.equalTo(borderView.snp.bottom).offset(111)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        passwordLabel.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(22)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(44)
-            $0.bottom.equalTo(emailTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmLabel.snp.makeConstraints {
@@ -129,12 +127,19 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(passwordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-
         }
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(confirmTextField.snp.bottom).offset(40)
             $0.bottom.equalTo(confirmTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+        }
+        warningLabel1.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(1)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+        }
+        warningLabel2.snp.makeConstraints {
+            $0.top.equalTo(confirmTextField.snp.bottom).offset(1)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         
     }
@@ -143,9 +148,13 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
+        confirmLabel.textColor = .black
+        warningLabel2.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        warningLabel1.text = ""
+        passwordLabel.textColor = .black
     }
     // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -158,6 +167,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Objc
     let resetAccess = ResetPasswordApiModel()
+    let editAccess = EditMyProfileApiModel()
 
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
@@ -165,11 +175,54 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-        let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
-            self.navigationController?.popViewController(animated: true)
+        
+        if passwordTextField.text == confirmTextField.text {
+            let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                self.resetAccess.resetPassword(newPassword: self.passwordTextField.text!, memberId: self.memberId){  data in
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+        } else {
+            warningLabel2.text = "Please make sure your passwords match."
+            confirmLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+            confirmTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
         }
-        msg.addAction(okAction)
-        self.present(msg, animated: true)
+    }
+    
+    @objc
+    private func textDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                
+                if text.count > 12 {
+                // 8글자 넘어가면 자동으로 키보드 내려감
+                    textField.resignFirstResponder()
+                }
+                // 초과되는 텍스트 제거
+                if text.count >= 12 {
+                    let index = text.index(text.startIndex, offsetBy: 12)
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                }
+                // 특수문자 포함 여부 체크
+                let specialCharSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[{]};:'\",<.>/?")
+                let hasSpecialChar = text.rangeOfCharacter(from: specialCharSet) != nil
+                
+                if text.count < 8 || !hasSpecialChar {
+                    warningLabel1.text = "Your password must contain at least 8 characters and 1 special character."
+                    warningLabel1.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                } else {
+                    warningLabel1.text = "Your password is great."
+                    warningLabel1.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                }
+            }
+        }
     }
 }

@@ -183,6 +183,8 @@ class MyPageViewController: UIViewController {
     }
     // MARK: - Navigation
     
+    let logoutAccess = LogoutApiModel()
+    
     @objc
     func resetBtnTapped() {
         let resetPasswordViewController = ResetPasswordViewController()
@@ -203,14 +205,13 @@ class MyPageViewController: UIViewController {
     func logoutBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
-//            let createAccountViewController = CreateAccountViewController()
-//            self.navigationController?.pushViewController(createAccountViewController, animated: true)
-//
+
         }
         let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
-//            let createAccountViewController = CreateAccountViewController()
-//            self.navigationController?.pushViewController(createAccountViewController, animated: true)
-//
+            self.logoutAccess.logout() { data in
+                print(data.body)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
         msg.addAction(cancelAction)
         msg.addAction(yesAction)
