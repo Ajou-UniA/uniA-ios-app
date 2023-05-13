@@ -35,6 +35,7 @@
 		07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7124529D9275900E6899C /* EditMyProfileViewController.swift */; };
 		07FE709D2A0CD87100C4A87B /* LogoutApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE709C2A0CD87100C4A87B /* LogoutApiModel.swift */; };
 		07FE709F2A0E1BF000C4A87B /* CallMemberIdApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE709E2A0E1BF000C4A87B /* CallMemberIdApiModel.swift */; };
+		07FE70A32A0FBD7200C4A87B /* ForgotPasswordApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE70A22A0FBD7200C4A87B /* ForgotPasswordApiModel.swift */; };
 		8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211629BB6D890045C456 /* CombineMoya */; };
 		8A0D211929BB6D890045C456 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211829BB6D890045C456 /* Moya */; };
 		8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0D211A29BB6D890045C456 /* ReactiveMoya */; };
@@ -114,6 +115,7 @@
 		07E7124529D9275900E6899C /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		07FE709C2A0CD87100C4A87B /* LogoutApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutApiModel.swift; sourceTree = "<group>"; };
 		07FE709E2A0E1BF000C4A87B /* CallMemberIdApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMemberIdApiModel.swift; sourceTree = "<group>"; };
+		07FE70A22A0FBD7200C4A87B /* ForgotPasswordApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiModel.swift; sourceTree = "<group>"; };
 		8A0D212929BB72520045C456 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212B29BB72520045C456 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				076BA3D22A06714F006895D0 /* CreateAccount.swift */,
 				07CDF5512A06B458000B226E /* Profile.swift */,
 				07FE709E2A0E1BF000C4A87B /* CallMemberIdApiModel.swift */,
+				07FE70A22A0FBD7200C4A87B /* ForgotPasswordApiModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
+				07FE70A32A0FBD7200C4A87B /* ForgotPasswordApiModel.swift in Sources */,
 				8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */,
 				0788640729C0A8F600DA9E6A /* ConfirmEmailViewController.swift in Sources */,
 				0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */,

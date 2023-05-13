@@ -56,6 +56,11 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
     }
+    lazy var warningLabel = UILabel().then {
+        $0.text = ""
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
+    }
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -70,7 +75,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Helper
     func setUpView() {
-        [titleLabel, emailLabel, emailTextField, confirmBtn, explainLabel, backBtn].forEach {
+        [titleLabel, emailLabel, emailTextField, confirmBtn, explainLabel, backBtn, warningLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -107,6 +112,10 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(confirmBtn.snp.bottom).offset(15)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(1)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+        }
     }
     
     // MARK: - Navigation
@@ -117,21 +126,46 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     @objc
     func confirmBtnTapped() {
        let verificationViewController = VerificationViewController()
-        if branch == 0{ // signUp email 중복되면 안됨
+        if branch == 0 { // signUp email 중복되면 안됨
             checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
                 if data.statusCodeValue == 200 {
                     print("OK")
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
                     self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
                         print("Sent")
                     }
-                    UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
                     verificationViewController.email = self.emailTextField.text ?? ""
                     self.navigationController?.pushViewController(verificationViewController, animated: true)
                     
+                } else {
+                    let msg = UIAlertController(title: "Invaild email adress", message: "An account using this email address already exists.", preferredStyle: UIAlertController.Style.alert)
+                    let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                }
+                msg.addAction(okAction)
+                self.present(msg, animated: true)
                 }
             }
-        } else { // forgot 이메일 중복되어야함.
-            
+        } else if branch == 1 { // forgot 이메일 중복되어야함.
+            checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
+                if data.statusCodeValue == 400 {
+                    print("OK")
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
+                    self.sendCodeAccess.sendCode(memberEmail: self.emailTextField.text!) { data in
+                        print("Sent")
+                    }
+                    verificationViewController.email = self.emailTextField.text ?? ""
+                    self.navigationController?.pushViewController(verificationViewController, animated: true)
+                } else {
+                    // 텍스트필드 오류 알럿
+                    let msg = UIAlertController(title: "Invaild email adress", message: "Sorry, this email address in invaild. Please try again.", preferredStyle: UIAlertController.Style.alert)
+                    let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                }
+                msg.addAction(okAction)
+                self.present(msg, animated: true)
+                }
+            }
+        } else {
+            return
         }
     }
     @objc func backBtnTapped() {

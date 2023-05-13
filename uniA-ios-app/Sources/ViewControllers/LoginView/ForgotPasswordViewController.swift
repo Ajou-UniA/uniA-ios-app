@@ -43,6 +43,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     lazy var confirmPasswordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
+        $0.isEnabled = false
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
@@ -67,6 +68,9 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Lifecycles
+    let memberIdAccess = CallMemberApiModel()
+    let memberEmail = UserDefaults.standard.string(forKey: "email")
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -74,6 +78,10 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         newPasswordTextField.delegate = self
         confirmPasswordTextField.delegate = self
         
+        memberIdAccess.callMember(memberEmail: memberEmail!) { data in
+            print(data)
+        }
+        // 학번 불러왔으니 학번 넣고 patch 하면됨.
         setUpView()
         setUpConstraints()
         
@@ -157,6 +165,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Objc
+
     @objc
     func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
@@ -167,6 +176,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
             self.navigationController?.popToRootViewController(animated: true)
+            
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
@@ -196,11 +206,15 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
                     warningLabel1.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                     newPasswordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
                     newPasswordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    confirmPasswordTextField.isEnabled = false
+
                 } else {
                     warningLabel1.text = "Your password is great."
                     warningLabel1.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
                     newPasswordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
                     newPasswordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    confirmPasswordTextField.isEnabled = true
+
                 }
             }
         }

@@ -131,23 +131,34 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         guard let code = otpField.text else {return}
 
-        let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
-            
-            let bodyData: Parameters = ["email": self.email, "verificationCode": code ]
-            self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
-            print(self.branch)
-            if self.branch == 0 {
-                let createAccountViewController = CreateAccountViewController()
-                self.navigationController?.pushViewController(createAccountViewController, animated: true)
+        let bodyData: Parameters = ["email": self.email, "verificationCode": code]
+        self.verificationAccess.requestVerificationDataModel(bodyData: bodyData){ data in
+            if data.statusCodeValue == 200 {
+                let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                    if self.branch == 0 {
+                        let createAccountViewController = CreateAccountViewController()
+                        self.navigationController?.pushViewController(createAccountViewController, animated: true)
 
+                    } else if self.branch == 1 {
+                        let forgotPasswordViewController = ForgotPasswordViewController()
+                        self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+                    }
+                    else {
+                        return
+                    }
+                }
+                msg.addAction(okAction)
+                self.present(msg, animated: true)
             } else {
-                let forgotPasswordViewController = ForgotPasswordViewController()
-                self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+                let msg = UIAlertController(title: "Invaild verification code", message: "Sorry, this verification code is incorrect. Please verify your code.",
+                                            preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
             }
         }
-        msg.addAction(okAction)
-        self.present(msg, animated: true)
     }
     
     @objc func updateTimer() {
@@ -158,6 +169,11 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         if self.secondsLeft >= -1 {
             self.timerLabel.text = String(format: "Time remaining %02d:%02d", minutes, seconds)
         } else {
+            let msg = UIAlertController(title: "Verification code expired", message: "This verification code has expired. Please try again.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+        }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
             timer?.invalidate()
         }
     }

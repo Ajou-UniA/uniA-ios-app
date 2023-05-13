@@ -38,8 +38,6 @@ class SignInApiModel {
                             print("Failed to parse response data: \(error)")
                         }
                     }
-                    
-            
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

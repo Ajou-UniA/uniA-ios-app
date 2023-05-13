@@ -175,11 +175,10 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
                             print(data)
                         }
                     }
-                    self.navigationController?.popViewController(animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
                 msg.addAction(okAction)
                 self.present(msg, animated: true)
-                
             }
             msg.addAction(cancelAction)
             msg.addAction(yesAction)

@@ -178,20 +178,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let bodyData: Parameters = [
             
-             "loginId": "qwerty@ajou.ac.kr",
-             "password": "1234567!"
-           // "loginId": loginId,
-           // "password": password
+             "loginId": "gkxotjs12@ajou.ac.kr",
+             "password": "12345678!"
+            //"loginId": loginId,
+            //"password": password
         ]
         
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
-            UserDefaults.standard.set(password, forKey: "password")
             if data == 1 {
+                UserDefaults.standard.set(password, forKey: "password")
                 let homeViewController = TabBarController()
                 self.navigationController?.pushViewController(homeViewController, animated: true)
-            } // else {
-                // alert 추가!
-           // }
+            } else {
+                let msg = UIAlertController(title: "Login failed", message: "Sorry, incorrect email or password.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+            }
         }
     }
     
