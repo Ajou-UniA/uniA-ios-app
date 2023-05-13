@@ -159,6 +159,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
+    let memberIdAccess = CallMemberApiModel()
 
     @objc func signUpBtnTapped() {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
@@ -178,14 +179,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let bodyData: Parameters = [
             
-             "loginId": "gkxotjs12@ajou.ac.kr",
-             "password": "12345678!"
-            //"loginId": loginId,
-            //"password": password
+            //"loginId": "gkxotjs12@ajou.ac.kr",
+            //"password": "1234567!"
+            "loginId": loginId,
+            "password": password
         ]
         
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
             if data == 1 {
+                self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
+                    UserDefaults.standard.set(data, forKey: "memberId")
+                    print(UserDefaults.standard.integer(forKey: "memberId"))
+                }
                 UserDefaults.standard.set(password, forKey: "password")
                 let homeViewController = TabBarController()
                 self.navigationController?.pushViewController(homeViewController, animated: true)

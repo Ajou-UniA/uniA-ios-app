@@ -83,8 +83,8 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
 
     // MARK: - Lifecycles
     let memberInfoAccess = FindMemberApiModel()
-    let check = LoginCheckApiModel()
-    let login = SignInApiModel()
+    let memberIdAccess = CallMemberApiModel()
+    let memberEmail = UserDefaults.standard.string(forKey: "email")
     var memberId: Int = 0
     
     override func viewDidLoad() {
@@ -102,11 +102,14 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
         
-        memberInfoAccess.findByMemberId() { data in
-            self.firstNameTextField.text = data.firstName
-            self.lastNameTextField.text = data.lastName
-            self.departmentTextField.text = data.memberMajor
-            self.memberId = data.memberId!
+        memberIdAccess.callMember(memberEmail: memberEmail!) { data in
+            print(data)
+            self.memberInfoAccess.findByMemberId(memberId: data) { data in
+                self.firstNameTextField.text = data.firstName
+                self.lastNameTextField.text = data.lastName
+                self.departmentTextField.text = data.memberMajor
+                self.memberId = data.memberId!
+            }
         }
         
         setUpView()
@@ -259,4 +262,3 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         self.present(msg, animated: true)
     }
 }
-

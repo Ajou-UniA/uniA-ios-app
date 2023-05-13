@@ -82,7 +82,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Lifecycles
 
     let memberInfoAccess = FindMemberApiModel()
-    var memberId: Int = 0
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -92,9 +93,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         setUpView()
         setUpConstraints()
-        memberInfoAccess.findByMemberId() { data in
-            self.memberId = data.memberId!
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: newPasswordTextField)
     }
