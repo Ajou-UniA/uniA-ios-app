@@ -37,6 +37,14 @@
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
 		8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */; };
+		8A78C0E02A06AC2300DD2E68 /* TaskApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0DE2A06AC2300DD2E68 /* TaskApi.swift */; };
+		8A78C0E12A06AC2300DD2E68 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0DF2A06AC2300DD2E68 /* TaskService.swift */; };
+		8A78C0E62A06AC2800DD2E68 /* TaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0E42A06AC2800DD2E68 /* TaskRequest.swift */; };
+		8A78C0E72A06AC2800DD2E68 /* TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0E52A06AC2800DD2E68 /* TaskResponse.swift */; };
+		8A78C0EB2A06ACB700DD2E68 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0EA2A06ACB700DD2E68 /* TaskViewController.swift */; };
+		8A78C0ED2A06ACC300DD2E68 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0EC2A06ACC300DD2E68 /* CreateTaskViewController.swift */; };
+		8A78C0EF2A06B99F00DD2E68 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0EE2A06B99F00DD2E68 /* Task.swift */; };
+		8A78C0F22A0A428600DD2E68 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8A78C0F12A0A428600DD2E68 /* SwiftyJSON */; };
 		8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */; };
 		8A8081C729D077F300CE375D /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */; };
 		8A8081C829D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */; };
@@ -68,8 +76,6 @@
 		8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */; };
 		8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */; };
 		8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */; };
-		8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */; };
-		8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */; };
 		8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */; };
 		8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
@@ -106,6 +112,13 @@
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouCampusMap.swift; sourceTree = "<group>"; };
+		8A78C0DE2A06AC2300DD2E68 /* TaskApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskApi.swift; sourceTree = "<group>"; };
+		8A78C0DF2A06AC2300DD2E68 /* TaskService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		8A78C0E42A06AC2800DD2E68 /* TaskRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRequest.swift; sourceTree = "<group>"; };
+		8A78C0E52A06AC2800DD2E68 /* TaskResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResponse.swift; sourceTree = "<group>"; };
+		8A78C0EA2A06ACB700DD2E68 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		8A78C0EC2A06ACC300DD2E68 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		8A78C0EE2A06B99F00DD2E68 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8A8081B629D077F300CE375D /* Urbanist-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -137,8 +150,6 @@
 		8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
-		8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTaskViewController.swift; sourceTree = "<group>"; };
 		8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +169,7 @@
 			files = (
 				8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */,
 				8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */,
+				8A78C0F22A0A428600DD2E68 /* SwiftyJSON in Frameworks */,
 				8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */,
 				8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */,
 				8ADFDAE729BB452D006824B8 /* Then in Frameworks */,
@@ -215,6 +227,8 @@
 		8A0D212229BB71FF0045C456 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8A78C0E22A06AC2800DD2E68 /* NetworkModels */,
+				8A78C0DC2A06AC2300DD2E68 /* NetworkServices */,
 				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
 				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
 				8A0D212529BB72250045C456 /* Views */,
@@ -306,6 +320,43 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8A78C0DC2A06AC2300DD2E68 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				8A78C0DD2A06AC2300DD2E68 /* Task */,
+			);
+			name = NetworkServices;
+			path = "../../../예전/7/uniA-ios-app/Sources/NetworkServices";
+			sourceTree = "<group>";
+		};
+		8A78C0DD2A06AC2300DD2E68 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				8A78C0EE2A06B99F00DD2E68 /* Task.swift */,
+				8A78C0DE2A06AC2300DD2E68 /* TaskApi.swift */,
+				8A78C0DF2A06AC2300DD2E68 /* TaskService.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		8A78C0E22A06AC2800DD2E68 /* NetworkModels */ = {
+			isa = PBXGroup;
+			children = (
+				8A78C0E32A06AC2800DD2E68 /* Task */,
+			);
+			name = NetworkModels;
+			path = "../../../예전/7/uniA-ios-app/Sources/NetworkModels";
+			sourceTree = "<group>";
+		};
+		8A78C0E32A06AC2800DD2E68 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				8A78C0E42A06AC2800DD2E68 /* TaskRequest.swift */,
+				8A78C0E52A06AC2800DD2E68 /* TaskResponse.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		8A8081B329D077DF00CE375D /* Urbanist */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,8 +409,8 @@
 		8AAF512B2A06A15C00E5CC02 /* TaskView */ = {
 			isa = PBXGroup;
 			children = (
-				8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */,
-				8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */,
+				8A78C0EA2A06ACB700DD2E68 /* TaskViewController.swift */,
+				8A78C0EC2A06ACC300DD2E68 /* CreateTaskViewController.swift */,
 				8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */,
 				8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */,
 			);
@@ -420,6 +471,7 @@
 				8A0D211C29BB6D890045C456 /* RxMoya */,
 				8A0D211F29BB6DBB0045C456 /* SnapKit */,
 				0788641029C1719500DA9E6A /* CHIOTPField */,
+				8A78C0F12A0A428600DD2E68 /* SwiftyJSON */,
 			);
 			productName = "uniA-ios-app";
 			productReference = 8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */;
@@ -454,6 +506,7 @@
 				8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */,
 				8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0788640F29C1719500DA9E6A /* XCRemoteSwiftPackageReference "CHIOTPField" */,
+				8A78C0F02A0A428500DD2E68 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 8ADFDACD29BB421E006824B8 /* Products */;
 			projectDirPath = "";
@@ -526,11 +579,13 @@
 				8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */,
 				07E298C029FCECBF000C137E /* ForgotPasswordViewController.swift in Sources */,
 				07E7124429D9273F00E6899C /* ResetPasswordViewController.swift in Sources */,
-				8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */,
+				8A78C0EB2A06ACB700DD2E68 /* TaskViewController.swift in Sources */,
 				8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */,
 				8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */,
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
+				8A78C0E02A06AC2300DD2E68 /* TaskApi.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
+				8A78C0ED2A06ACC300DD2E68 /* CreateTaskViewController.swift in Sources */,
 				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
 				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
@@ -540,13 +595,13 @@
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */,
+				8A78C0E12A06AC2300DD2E68 /* TaskService.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
 				8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */,
 				0788640729C0A8F600DA9E6A /* SignUpViewController.swift in Sources */,
 				0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */,
 				8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */,
-				8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
@@ -559,8 +614,11 @@
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
+				8A78C0EF2A06B99F00DD2E68 /* Task.swift in Sources */,
+				8A78C0E62A06AC2800DD2E68 /* TaskRequest.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
 				8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */,
+				8A78C0E72A06AC2800DD2E68 /* TaskResponse.swift in Sources */,
 				8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */,
 				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
@@ -795,6 +853,14 @@
 				kind = branch;
 			};
 		};
+		8A78C0F02A0A428500DD2E68 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -835,6 +901,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		8A78C0F12A0A428600DD2E68 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A78C0F02A0A428500DD2E68 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 		8ADFDAE629BB452D006824B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
