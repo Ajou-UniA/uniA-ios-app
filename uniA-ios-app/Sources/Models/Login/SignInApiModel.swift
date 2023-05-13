@@ -10,15 +10,15 @@ import Alamofire
 
 class SignInApiModel {
     
-    var urlString : String?
+    var urlString: String?
     
-    func requestSignInDataModel(bodyData : Parameters, onCompleted : @escaping(CreateAccount) -> Void){
+    func requestSignInDataModel(bodyData: Parameters, onCompleted: @escaping(Int) -> Void) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/login"
         
-        guard let urlString = urlString else{ return }
+        guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}
-        let header : HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
         AF.request(url, method: .post, parameters: bodyData, encoding: URLEncoding.default, headers: header)
             .validate()
@@ -27,7 +27,17 @@ class SignInApiModel {
                 switch response.result {
                 case .success(let value):
                     print("Success: \(value)")
-                    
+                    if let data = response.data {
+                        do {
+                            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                            if let result = json?["result"] as? Int {
+                                print("Result: \(result)")
+                                onCompleted(result)
+                            }
+                        } catch {
+                            print("Failed to parse response data: \(error)")
+                        }
+                    }
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

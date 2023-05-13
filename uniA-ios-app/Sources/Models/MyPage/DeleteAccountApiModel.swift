@@ -10,15 +10,15 @@ import Alamofire
 
 class DeleteAccountApiModel {
     
-    func deleteAccount(memberId: Int, onCompleted : @escaping(CreateAccount)-> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/delete/\(memberId)"
+    func deleteAccount(memberId: Int, onCompleted: @escaping(CreateAccount) -> Void) {
+        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/\(memberId)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
-        let header: HTTPHeaders = ["accept" : "*/*"]
+        let header: HTTPHeaders = ["accept": "*/*"]
        
-        AF.request(url, method: .delete, encoding: URLEncoding.default, headers: header)
+        AF.request(url, method: .delete, encoding: JSONEncoding.default, headers: header)
             .validate()
-            .responseJSON{ response in
+            .responseJSON { response in
             switch response.result {
             case .success(let value):
                 print("Success: \(value)")

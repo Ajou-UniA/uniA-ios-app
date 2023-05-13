@@ -10,20 +10,25 @@ import Alamofire
 
 class EditMyProfileApiModel {
     
-    func findByMemberId(onCompleted : @escaping(CreateAccount)-> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member"
-        let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedStr)!
+    func editProfile(memberId: Int, bodyData: Parameters, onCompleted: @escaping(Profile) -> Void) {
         
-        AF.request(url, method: .get, headers: ["accept": "*/*"])
+        let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/update/\(memberId)"
+        
+        let headers: HTTPHeaders = ["accept": "*/*","Content-Type": "application/json"]
+          
+        AF.request(url, method: .patch, parameters: bodyData, encoding: JSONEncoding.default, headers: headers)
             .validate()
-            .responseJSON { response in
+            .responseDecodable(of: Profile.self) { response in
                 switch response.result {
-                case .success(let value):
-                    print("Success: \(value)")
+                case .success(let profile):
+                    print("PATCH request succeeded")
+                    onCompleted(profile)
+                
                 case .failure(let error):
-                    print("Error: \(error)")
+                    print("PATCH request failed with error: \(error)")
                 }
             }
-        }
+    }
+
 }
+

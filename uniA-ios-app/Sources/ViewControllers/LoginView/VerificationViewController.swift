@@ -12,7 +12,7 @@ import CHIOTPField
 import Alamofire
 
 class VerificationViewController: UIViewController, UITextFieldDelegate {
-    //MARK: - Properties
+    // MARK: - Properties
 
     lazy var titleLabel = UILabel().then {
         $0.text = "Verification Code"
@@ -31,11 +31,12 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.lineBreakMode = .byWordWrapping
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.39
-        $0.attributedText = NSMutableAttributedString(string: "Enter code that we have sent to your Ajou University \nemail.", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        $0.attributedText = NSMutableAttributedString(string: "Enter code that we have sent to your Ajou University \nemail.",
+                                                      attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         $0.numberOfLines = 2
         $0.font = UIFont.systemFont(ofSize: 15)
     }
-    lazy var otpField = CHIOTPFieldOne().then{
+    lazy var otpField = CHIOTPFieldOne().then {
         $0.numberOfDigits = 4
         $0.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
         $0.cornerRadius = 8
@@ -62,8 +63,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     var timer: Timer?
     var secondsLeft: Int = 5
     
-
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +74,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [titleLabel,subtitleLabel,otpField,timerLabel,submitBtn,resendBtn,backBtn].forEach {
+        [titleLabel, subtitleLabel, otpField, timerLabel, submitBtn, resendBtn, backBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -121,27 +121,44 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.centerX.equalToSuperview()
         }
     }
-    //MARK: -Navigation
+    // MARK: - Navigation
     let verificationAccess = VerificationApiModel()
     let sendCodeAccess = SendCodeApiModel()
-    var email : String = ""
+    var email: String = ""
+    let branch = UserDefaults.standard.integer(forKey: "branch")
     
     @objc
-    func submitBtnTapped() { //alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+    func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         guard let code = otpField.text else {return}
 
-        let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: . cancel){ (_) in
-            
-            let bodyData : Parameters = ["email" : self.email , "verificationCode" : code ]
-            self.verificationAccess.requestVerificationDataModel(bodyData: bodyData)
-            
-            let createAccountViewController = CreateAccountViewController()
-            self.navigationController?.pushViewController(createAccountViewController, animated: true)
+        let bodyData: Parameters = ["email": self.email, "verificationCode": code]
+        self.verificationAccess.requestVerificationDataModel(bodyData: bodyData){ data in
+            if data.statusCodeValue == 200 {
+                let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+                    if self.branch == 0 {
+                        let createAccountViewController = CreateAccountViewController()
+                        self.navigationController?.pushViewController(createAccountViewController, animated: true)
 
+                    } else if self.branch == 1 {
+                        let forgotPasswordViewController = ForgotPasswordViewController()
+                        self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+                    }
+                    else {
+                        return
+                    }
+                }
+                msg.addAction(okAction)
+                self.present(msg, animated: true)
+            } else {
+                let msg = UIAlertController(title: "Invaild verification code", message: "Sorry, this verification code is incorrect. Please verify your code.",
+                                            preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+            }
         }
-        msg.addAction(okAction)
-        self.present(msg, animated: true)
     }
     
     @objc func updateTimer() {
@@ -151,10 +168,14 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
 
         if self.secondsLeft >= -1 {
             self.timerLabel.text = String(format: "Time remaining %02d:%02d", minutes, seconds)
-        }else{
+        } else {
+            let msg = UIAlertController(title: "Verification code expired", message: "This verification code has expired. Please try again.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+        }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
             timer?.invalidate()
         }
-        
     }
 
     @objc func backBtnTapped() {
@@ -167,11 +188,16 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func resendBtnTapped() {
-        resetTimer()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        sendCodeAccess.sendCode(memberEmail: self.email){  data in
-            print(data)
+        let msg = UIAlertController(title: "Resend Code Success", message: "New verification code has been sent to your Ajou University email.", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            self.resetTimer()
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+            self.sendCodeAccess.sendCode(memberEmail: self.email) {  data in
+                print(data)
+            }
         }
+        msg.addAction(okAction)
+        self.present(msg, animated: true)
+            
     }
 }
-

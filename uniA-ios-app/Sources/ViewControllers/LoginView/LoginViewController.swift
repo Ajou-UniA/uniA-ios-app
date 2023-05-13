@@ -10,8 +10,8 @@ import Then
 import UIKit
 import Alamofire
 
-class LoginViewController: UIViewController, UITextFieldDelegate{
-    //MARK: - Properties
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    // MARK: - Properties
 
     lazy var titleLabel = UILabel().then {
         $0.text = "Welcome!"
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         $0.addTarget(self, action: #selector(signUpBtnTapped), for: .touchUpInside)
 
     }
-    //MARK: - Lifecycles
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +88,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         setUpView()
         setUpConstraints()
     }
-    //MARK: - Helper
+    // MARK: - Helper
 
     func setUpView() {
-        [titleLabel,emailLabel,emailTextField,passwordLabel,passwordTextField,remeberLabel,forgotLabel,signInBtn,signUpBtn,checkBoxBtn].forEach {
+        [titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, remeberLabel, forgotLabel, signInBtn, signUpBtn, checkBoxBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -141,7 +141,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         remeberLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.leading.equalTo(checkBoxBtn.snp.trailing).offset(3)
-            
         }
 
         signInBtn.snp.makeConstraints {
@@ -157,71 +156,82 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 
         }
     }
-    //MARK: -BtnAction
+    // MARK: - BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
-    
+    let memberIdAccess = CallMemberApiModel()
+
     @objc func signUpBtnTapped() {
-        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let signUpViewController = SignUpViewController()
+        let signUpViewController = ConfirmEmailViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
     @objc func signInBtnTapped() {
-        //SignUpBtn 누르면 남아있는 textfield 값 지워주기
+        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
-        let bodyData : Parameters = [
+        guard let loginId = emailTextField.text,
+         let password = passwordTextField.text else {return}
+        
+        let bodyData: Parameters = [
             
-            "loginId": "gkxotjs12345@ajou.ac.kr",
-            "password": "12345678"
-       
+            //"loginId": "gkxotjs12@ajou.ac.kr",
+            //"password": "1234567!"
+            "loginId": loginId,
+            "password": password
         ]
-        signInAccess.requestSignInDataModel(bodyData: bodyData){ data in
-            print(data.body)
-            
+        
+        signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
+            if data == 1 {
+                self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
+                    UserDefaults.standard.set(data, forKey: "memberId")
+                    print(UserDefaults.standard.integer(forKey: "memberId"))
+                }
+                UserDefaults.standard.set(password, forKey: "password")
+                let homeViewController = TabBarController()
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            } else {
+                let msg = UIAlertController(title: "Login failed", message: "Sorry, incorrect email or password.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+            }
         }
-//        loginCheckAccess.checkSuccess(){ data in
-//            print(data.body)
-//        }
-//        loginCheckAccess.checkFail(){ data in
-//            print(data.body)
-//        }
-        let homeViewController = HomeViewController()
-        navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     @objc func forgotLabelTapped() {
         UserDefaults.standard.set(1, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let forgotPasswordViewController = ForgotPasswordViewController()
-        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-        
+        let signUpViewController = ConfirmEmailViewController()
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
+    
     var flag = 1
     @objc func checkBoxBtnTapped() {
-        if flag == 1{
+        if flag == 1 {
             checkBoxBtn.setImage(UIImage(named: "checkboxSelected"), for: .normal)
             flag = 0
-        }else {
+        } else {
             checkBoxBtn.setImage(UIImage(named: "checkbox"), for: .normal)
             flag = 1
         }
     }
-    //MARK: - TextFieldDelegate
+    // MARK: - TextFieldDelegate
     
-    //textfield 입력 시 borderColor 색깔변경
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    // textfield 입력 시 borderColor 색깔변경
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
-    //화면 터치시 keybord 내림
+    // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
@@ -230,8 +240,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         return true
     }
 }
-    //MARK: - Extension
-//textField padding 값 넣어주기
+    // MARK: - Extension
+// textField padding 값 넣어주기
 extension UITextField {
     func addLeftPadding() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))

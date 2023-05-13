@@ -16,7 +16,18 @@ extension UIViewController {
         backButton.tintColor = .black
         backButton.width = 30
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        addHeight()
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "", size: 16)!]
+    }
+
+    func addHeight() {
+        let width = UIView(frame: self.navigationController!.navigationBar.frame)
+        width.backgroundColor = UIColor.blue
+        width.layer.masksToBounds = false
+        width.layer.shadowOpacity = 0.4 // your opacity
+        width.layer.shadowOffset = CGSize(width: 0, height: 2) // your offset
+        width.layer.shadowRadius =  4 //your radius
+        self.view.addSubview(width)
     }
 
     // collectionView의 Cell에서 다른 viewController로 이동할 때 주로 사용
