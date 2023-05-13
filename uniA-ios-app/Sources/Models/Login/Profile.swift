@@ -12,5 +12,4 @@ struct Profile: Codable {
     let firstName, lastName, memberEmail: String?
     let memberId: Int?
     let memberMajor: String?
-
 }
