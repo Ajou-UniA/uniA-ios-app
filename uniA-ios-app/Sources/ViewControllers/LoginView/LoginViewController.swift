@@ -175,10 +175,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
         let bodyData: Parameters = [
-            
-            "loginId": "gkxotjs12345@ajou.ac.kr",
-            "password": "12345678"
-       
+            "loginId": "vvtkfkddl11@ajou.ac.kr", // "gkxotjs12345@ajou.ac.kr"
+            "password": "1234567899" // "12345678"
         ]
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
             print(data.body)
@@ -191,8 +189,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //            print(data.body)
 //        }
 
-//        let homeViewController = HomeViewController()
-//        navigationController?.pushViewController(homeViewController, animated: true)
+        let tabBarController = TabBarController()
+        let homeViewController = HomeViewController()
+
+        homeViewController.getMyTaskSortedByDeadline { [weak self] tasks in
+            // 정렬된 할 일 목록(tasks)을 사용하여 필요한 작업을 수행
+            let currentDate = Date()
+            let threeDaysAhead = Calendar.current.date(byAdding: .day, value: 3, to: currentDate)!
+            let filteredTasks = tasks.filter { $0.deadline <= threeDaysAhead }
+            homeViewController.tasks = filteredTasks 
+            DispatchQueue.main.async {
+                self?.navigationController?.pushViewController(tabBarController, animated: true)
+            }
+        }
     }
     
     @objc func forgotLabelTapped() {
@@ -201,8 +210,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.text = nil
         let forgotPasswordViewController = ForgotPasswordViewController()
         navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-        
     }
+    
     var flag = 1
     @objc func checkBoxBtnTapped() {
         if flag == 1 {

@@ -25,4 +25,3 @@ struct GenericResponse<T: Codable>: Codable {
         data = (try? values.decode(T.self, forKey: .data)) ?? nil
     }
 }
-
