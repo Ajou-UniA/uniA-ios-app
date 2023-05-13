@@ -25,7 +25,6 @@ class SendCodeApiModel {
               case .failure(let error):
                   print(response.debugDescription)
                   print("Error: \(error)")
-
               }
           }
     }

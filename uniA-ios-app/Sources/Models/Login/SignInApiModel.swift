@@ -12,7 +12,7 @@ class SignInApiModel {
     
     var urlString: String?
     
-    func requestSignInDataModel(bodyData: Parameters, onCompleted: @escaping(CreateAccount) -> Void) {
+    func requestSignInDataModel(bodyData: Parameters, onCompleted: @escaping(Int) -> Void) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/login"
         
@@ -26,11 +26,19 @@ class SignInApiModel {
                 print(response.debugDescription)
                 switch response.result {
                 case .success(let value):
-                    UserDefaults.standard.set(true, forKey: "loginSuccess")
                     print("Success: \(value)")
-                    
+                    if let data = response.data {
+                        do {
+                            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                            if let result = json?["result"] as? Int {
+                                print("Result: \(result)")
+                                onCompleted(result)
+                            }
+                        } catch {
+                            print("Failed to parse response data: \(error)")
+                        }
+                    }
                 case .failure(let error):
-                    UserDefaults.standard.set(false, forKey: "loginSuccess")
                     print("Error: \(error.localizedDescription)")
                 }
         }

@@ -141,7 +141,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         remeberLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
             $0.leading.equalTo(checkBoxBtn.snp.trailing).offset(3)
-            
         }
 
         signInBtn.snp.makeConstraints {
@@ -157,16 +156,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         }
     }
-    // MARK: -BtnAction
+    // MARK: - BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
-    
+    let memberIdAccess = CallMemberApiModel()
+
     @objc func signUpBtnTapped() {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let signUpViewController = SignUpViewController()
+        let signUpViewController = ConfirmEmailViewController()
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
@@ -174,35 +174,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
 //        emailTextField.text = nil
 //        passwordTextField.text = nil
+        guard let loginId = emailTextField.text,
+         let password = passwordTextField.text else {return}
+        
         let bodyData: Parameters = [
             
-            "loginId": "gkxotjs12345@ajou.ac.kr",
-            "password": "12345678"
-       
+            //"loginId": "gkxotjs12@ajou.ac.kr",
+            //"password": "1234567!"
+            "loginId": loginId,
+            "password": password
         ]
+        
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
-            print(data.body)
-            
+            if data == 1 {
+                self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
+                    UserDefaults.standard.set(data, forKey: "memberId")
+                    print(UserDefaults.standard.integer(forKey: "memberId"))
+                }
+                UserDefaults.standard.set(password, forKey: "password")
+                let homeViewController = TabBarController()
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            } else {
+                let msg = UIAlertController(title: "Login failed", message: "Sorry, incorrect email or password.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+            }
         }
-//        loginCheckAccess.checkSuccess(){ data in
-//            print(data.body)
-//        }
-//        loginCheckAccess.checkFail(){ data in
-//            print(data.body)
-//        }
-
-//        let homeViewController = HomeViewController()
-//        navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     @objc func forgotLabelTapped() {
         UserDefaults.standard.set(1, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let forgotPasswordViewController = ForgotPasswordViewController()
-        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-        
+        let signUpViewController = ConfirmEmailViewController()
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
+    
     var flag = 1
     @objc func checkBoxBtnTapped() {
         if flag == 1 {

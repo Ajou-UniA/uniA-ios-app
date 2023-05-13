@@ -12,7 +12,7 @@ class VerificationApiModel {
     
     var urlString: String?
     
-    func requestVerificationDataModel(bodyData: Parameters) {
+    func requestVerificationDataModel(bodyData: Parameters, onCompleted: @escaping(CreateAccount) -> Void) {
 
         urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/verify"
         
@@ -26,16 +26,18 @@ class VerificationApiModel {
                 print(response.debugDescription)
                 switch response.result {
                 case .success(let value):
-                    // 서버 응답이 성공적으로 수신된 경우 처리할 코드 작성
                     print("Success: \(value)")
-                    
+                    if let statusCode = response.response?.statusCode {
+                        let account = CreateAccount(body: Body(), statusCode: String(statusCode), statusCodeValue: statusCode)
+                        onCompleted(account)
+                    }
                 case .failure(let error):
-                    // 서버 응답이 실패한 경우 처리할 코드 작성
+                    if let statusCode = response.response?.statusCode {
+                        let account = CreateAccount(body: Body(), statusCode: String(statusCode), statusCodeValue: statusCode)
+                        onCompleted(account)
+                    }
                     print("Error: \(error.localizedDescription)")
-                }
-        
+            }
         }
-
     }
-    
 }

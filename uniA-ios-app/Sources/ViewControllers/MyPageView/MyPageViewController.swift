@@ -46,52 +46,59 @@ class MyPageViewController: UIViewController {
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(resetBtnTapped), for: .touchUpInside)
 
-}
+    }
     lazy var deleteBtn = UIButton().then {
         $0.setTitle("Delete Account", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(deleteBtnTapped), for: .touchUpInside)
-}
+    }
+    
     lazy var editBtn = UIButton().then {
         $0.setTitle("Edit my Profile", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(editBtnTapped), for: .touchUpInside)
-
-}
+    }
+    
     lazy var logoutBtn = UIButton().then {
         $0.setTitle("Log Out", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(logoutBtnTapped), for: .touchUpInside)
-
     }
+    
     lazy var profileView = UIImageView().then {
         $0.image = UIImage(named: "profileLogo")
-        
     }
     
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
+    
     lazy var circleView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 42.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor.systemGray5.cgColor
-
     }
     
     // MARK: - Lifecycles
+    let memberInfoAccess = FindMemberApiModel()
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        memberInfoAccess.findByMemberId(memberId: memberId){ data in
+            self.nameLabel.text = "\(data.lastName)"+"\(data.firstName)"
+            self.majorLabel.text = data.memberMajor
+            self.nameLabel.text = String(data.memberId!)
+        }
         setUpView()
         setUpConstraints()
     }
@@ -182,6 +189,9 @@ class MyPageViewController: UIViewController {
         
     }
     // MARK: - Navigation
+    
+    let logoutAccess = LogoutApiModel()
+    
     @objc
     func resetBtnTapped() {
         let resetPasswordViewController = ResetPasswordViewController()
@@ -202,14 +212,13 @@ class MyPageViewController: UIViewController {
     func logoutBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
-//            let createAccountViewController = CreateAccountViewController()
-//            self.navigationController?.pushViewController(createAccountViewController, animated: true)
-//
+
         }
         let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
-//            let createAccountViewController = CreateAccountViewController()
-//            self.navigationController?.pushViewController(createAccountViewController, animated: true)
-//
+            self.logoutAccess.logout() { data in
+                print(data.body)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
         msg.addAction(cancelAction)
         msg.addAction(yesAction)

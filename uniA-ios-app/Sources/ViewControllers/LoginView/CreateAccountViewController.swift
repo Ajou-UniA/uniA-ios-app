@@ -14,7 +14,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Properties
     let pickerView = UIPickerView()
     let pick = pickerdata
-    var selectCity = ""
+    var selectMajor = ""
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
     }
@@ -93,6 +93,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var confirmPasswordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
+        $0.isEnabled = false
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
@@ -100,7 +101,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+        $0.backgroundColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
@@ -178,7 +179,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         scrollView.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.bottom).offset(39)
             $0.bottom.trailing.leading.equalToSuperview()
-            //$0.edges.equalToSuperview()
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -268,21 +268,21 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         }
     // pickerView 선택시 데이터 호출
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          selectCity = pickerdata[row]
+          selectMajor = pickerdata[row]
       }
     // pickerView text color
 //    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 //        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
 //    }
     @objc func onDoneButtonTapped() {
-        departmentTextField.text = selectCity
+        departmentTextField.text = selectMajor
         departmentTextField.resignFirstResponder() // pickerView 내리기
-        selectCity = ""
+        selectMajor = ""
         }
     
     @objc func onCancelButtonTapped() {
         departmentTextField.resignFirstResponder()
-        selectCity = ""
+        selectMajor = ""
         }
     
     // MARK: - scrollView tap시 keboard 내리기
@@ -294,6 +294,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             singleTapGestureRecognizer.cancelsTouchesInView = false
             scrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
+    
     @objc
     func myTapMethod(sender: UITapGestureRecognizer) {
             self.view.endEditing(true)
@@ -301,9 +302,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Navigation
     let createAccountAccess = CreateAccountApiModel()
     let memberEmail = UserDefaults.standard.string(forKey: "email")
-    
+
     @objc
-    func submitBtnTapped() {
+    func submitBtnTapped() { // textfield 빈공간 하나라도 x // password, confirmpassword 맞아야함.
 //        firstNameTextField.text = nil
 //        lastNameTextField.text = nil
 //        studentIdTextField.text = nil
@@ -318,10 +319,36 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
          let memberPassword = passwordTextField.text,
          let memberConfirmPassword = confirmPasswordTextField.text else {return}
         
-//        UserDefaults.standard.set(firstNameTextField.text, forKey: "firstName")
-//        UserDefaults.standard.set(lastNameTextField.text, forKey: "lastName")
-//        UserDefaults.standard.set(studentIdTextField.text, forKey: "studentId")
-//        UserDefaults.standard.set(departmentTextField.text, forKey: "department")
+        let isEmptyField = firstName.isEmpty || lastName.isEmpty || memberId.isEmpty || memberMajor.isEmpty || memberPassword.isEmpty || memberConfirmPassword.isEmpty
+            if isEmptyField {
+                // 공백이 있는 경우, 여기서 원하는 처리를 수행할 수 있습니다.
+                // 예를 들면, 경고창을 표시하거나 액션을 취하지 않고 함수를 종료할 수 있습니다.
+                // 원하는 동작에 맞게 아래 코드를 수정해주세요.
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+                    feedbackGenerator.prepare()
+                    feedbackGenerator.impactOccurred()
+                print("공백하나라도 있다.")
+                return
+            }
+
+            // password와 confirmPassword 일치 여부 체크
+            if memberPassword != memberConfirmPassword {
+                // password와 confirmPassword가 일치하지 않는 경우, 여기서 원하는 처리를 수행할 수 있습니다.
+                // 예를 들면, 경고창을 표시하거나 액션을 취하지 않고 함수를 종료할 수 있습니다.
+                // 원하는 동작에 맞게 아래 코드를 수정해주세요.
+//                UIView.animate(withDuration: 0.1, animations: {
+//                       self.submitBtn.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//                   }) { _ in
+//                       UIView.animate(withDuration: 0.1, animations: {
+//                           self.submitBtn.transform = CGAffineTransform.identity
+//                       })
+//                   }
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+                    feedbackGenerator.prepare()
+                    feedbackGenerator.impactOccurred()
+                print("비밀번호 다시입력해")
+                return
+            }
 
          let bodyData: Parameters = [
             "firstName": firstName,
@@ -351,33 +378,45 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        passwordLabel.textColor = .black
+        warningLabel.text = ""
     }
     @objc private func textDidChange(_ notification: Notification) {
-            if let textField = notification.object as? UITextField {
-                if let text = textField.text {
-                    
-                    if text.count > 12 {
-                        // 8글자 넘어가면 자동으로 키보드 내려감
-                        textField.resignFirstResponder()
-                    }
-                    
-                    // 초과되는 텍스트 제거
-                    if text.count >= 12 {
-                        let index = text.index(text.startIndex, offsetBy: 12)
-                        let newString = text[text.startIndex..<index]
-                        textField.text = String(newString)
-                    } else if text.count < 8 {
-                        warningLabel.text = "Your password must contain at least 8 characthers and 1 special characther."
-                        warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
-                        passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
-                        passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
-                    } else {
-                        warningLabel.text = ""
-                        warningLabel.textColor = .green
-                        passwordTextField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
-                        passwordLabel.textColor = .black
-                    }
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                
+                if text.count > 12 {
+                    // 8글자 넘어가면 자동으로 키보드 내려감
+                    textField.resignFirstResponder()
+                }
+                
+                // 초과되는 텍스트 제거
+                if text.count >= 12 {
+                    let index = text.index(text.startIndex, offsetBy: 12)
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                }
+                
+                // 특수문자 포함 여부 체크
+                let specialCharSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[{]};:'\",<.>/?")
+                let hasSpecialChar = text.rangeOfCharacter(from: specialCharSet) != nil
+                
+                if text.count < 8 || !hasSpecialChar {
+                    warningLabel.text = "Your password must contain at least 8 characters and 1 special character."
+                    warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    confirmPasswordTextField.isEnabled = false
+
+                } else {
+                    warningLabel.text = "Your password is great."
+                    warningLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
+                    passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    confirmPasswordTextField.isEnabled = true
                 }
             }
+
         }
+    }
 }

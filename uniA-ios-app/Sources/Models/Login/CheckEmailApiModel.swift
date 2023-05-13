@@ -21,12 +21,17 @@ class CheckEmailApiModel {
               case .success(let value):
                   print(response.debugDescription)
                   print("Response: \(value)")
-                  let account = CreateAccount(body: Body(), statusCode: "200", statusCodeValue: 200)
-                  onCompleted(account)
+                  if let statusCode = response.response?.statusCode {
+                      let account = CreateAccount(body: Body(), statusCode: String(statusCode), statusCodeValue: statusCode)
+                      onCompleted(account)
+                }
               case .failure(let error):
                   print(response.debugDescription)
                   print("Error: \(error)")
-
+                  if let statusCode = response.response?.statusCode {
+                      let account = CreateAccount(body: Body(), statusCode: String(statusCode), statusCodeValue: statusCode)
+                      onCompleted(account)
+                  }
               }
           }
         }

@@ -8,15 +8,13 @@
 import SnapKit
 import Then
 import UIKit
+import Alamofire
 
-class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
+class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK: - Properties
-    
-    let firstName = UserDefaults.standard.string(forKey: "firstName")
-    let lastName = UserDefaults.standard.string(forKey: "lastName")
-    let studentId = UserDefaults.standard.string(forKey: "studentId")
-    let department = UserDefaults.standard.string(forKey: "department")
-    
+    let pickerView = UIPickerView()
+    let pick = pickerdata
+    var selectMajor = ""
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -36,10 +34,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     lazy var firstNameTextField = UITextField().then {
-        $0.text = firstName
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.addLeftPadding()
     }
     lazy var lastNameLabel = UILabel().then {
@@ -50,6 +48,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.addLeftPadding()
     }
     lazy var departmentLabel = UILabel().then {
@@ -61,19 +60,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.addLeftPadding()
-    }
-    lazy var studentIdLabel = UILabel().then {
-        $0.text = "Student ID"
-        $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
     
-    lazy var studentIdTextField = UITextField().then {
-        $0.layer.cornerRadius = 10.0
-        $0.layer.borderWidth = 1.0
-        $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-        $0.addLeftPadding()
-    }
     lazy var saveBtn = UIButton().then {
         $0.setTitle("Save", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -82,8 +72,21 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(saveBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
+    lazy var toolbar = UIToolbar().then {
+        $0.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonTapped))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        $0.setItems([cancelButton, space, doneButton], animated: true)
+        $0.isUserInteractionEnabled = true
+    }
 
     // MARK: - Lifecycles
+    let memberInfoAccess = FindMemberApiModel()
+    let memberIdAccess = CallMemberApiModel()
+    let memberEmail = UserDefaults.standard.string(forKey: "email")
+    var memberId: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -91,9 +94,24 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
-        studentIdTextField.delegate = self
         departmentTextField.delegate = self
-
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = .white
+        departmentTextField.inputView = pickerView
+        departmentTextField.inputAccessoryView = toolbar
+        
+        memberIdAccess.callMember(memberEmail: memberEmail!) { data in
+            print(data)
+            self.memberInfoAccess.findByMemberId(memberId: data) { data in
+                self.firstNameTextField.text = data.firstName
+                self.lastNameTextField.text = data.lastName
+                self.departmentTextField.text = data.memberMajor
+                self.memberId = data.memberId!
+            }
+        }
+        
         setUpView()
         setUpConstraints()
     }
@@ -101,7 +119,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
 
     func setUpView() {
         [borderView, backBtn, titleLabel, firstNameLabel, firstNameTextField, lastNameLabel,
-         lastNameTextField, departmentLabel, departmentTextField, studentIdLabel, studentIdTextField, saveBtn].forEach {
+         lastNameTextField, departmentLabel, departmentTextField, saveBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -151,29 +169,56 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
             $0.bottom.equalTo(lastNameTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        studentIdLabel.snp.makeConstraints {
-            $0.top.equalTo(departmentTextField.snp.bottom).offset(22)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
-        studentIdTextField.snp.makeConstraints {
+
+        saveBtn.snp.makeConstraints {
             $0.top.equalTo(departmentTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(departmentTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        saveBtn.snp.makeConstraints {
-            $0.top.equalTo(studentIdTextField.snp.bottom).offset(40)
-            $0.bottom.equalTo(studentIdTextField.snp.bottom).offset(96)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-        }
     }
+    // MARK: - PickerView
+    // pickerView column 수
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+    // pickerView row 수
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return pickerdata.count
+        }
+    // pickerView 보여지는 값
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return pickerdata[row]
+        }
+    // pickerView 선택시 데이터 호출
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+          selectMajor = pickerdata[row]
+      }
+    // pickerView text color
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
+//    }
+    @objc func onDoneButtonTapped() {
+        departmentTextField.text = selectMajor
+        departmentTextField.resignFirstResponder() // pickerView 내리기
+        selectMajor = ""
+        }
+    
+    @objc func onCancelButtonTapped() {
+        departmentTextField.resignFirstResponder()
+        selectMajor = ""
+        }
+    
     // MARK: - TextFieldDelegate
     
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
+        textField.textColor = .black
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        textField.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
+
     }
     // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -184,12 +229,36 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     // MARK: - Navigation
-    @objc func cancelBtnTapped() {
+    let editAccess = EditMyProfileApiModel()
+    
+    @objc
+    func cancelBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @objc
     func saveBtnTapped() {
-        self.navigationController?.popToRootViewController(animated: true)
+        guard let firstName = firstNameTextField.text,
+         let lastName = lastNameTextField.text,
+         let memberMajor = departmentTextField.text else {return}
+        
+         let bodyData: Parameters = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "memberMajor": memberMajor
+            ]
+        
+        let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
+
+        }
+        let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
+            self.editAccess.editProfile(memberId: self.memberId, bodyData: bodyData) { data in
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        msg.addAction(cancelAction)
+        msg.addAction(yesAction)
+        self.present(msg, animated: true)
     }
-    
 }

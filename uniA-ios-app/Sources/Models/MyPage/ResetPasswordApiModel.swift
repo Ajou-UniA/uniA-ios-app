@@ -4,32 +4,29 @@
 //
 //  Created by HA on 2023/04/28.
 //
-//import Foundation
-//import Alamofire
-//
-//class ResetPasswordApiModel {
-//
-//    var urlString : String?
-//
-//    func requestChangeDataModel(header : HTTPHeaders, bodyData : Parameters, onCompleted : @escaping(changePw) -> Void){
-//
-//        urlString = "http://api.lghtsg.site:8090/users/changeInfo/pw"
-//
-//        guard let urlString = urlString else{ return }
-//        guard let url = URL(string: urlString) else {return print("erorr")}
-//
-//        AF.request(url, method: .patch, parameters: bodyData, encoding: JSONEncoding(), headers: header).validate().responseDecodable(of: changePw.self){ response in
-//            switch response.result {
-//            case .success(let response):
-//                print("====비밀번호 바꿨음====")
-//                onCompleted(response)
-//            case .failure(let error):
-//                print("====비밀번호 못바꿈====")
-//                print(response.debugDescription)
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//    }
-//
-//}
+
+import Foundation
+import Alamofire
+
+class ResetPasswordApiModel {
+
+    func resetPassword(newPassword: String, memberId: Int, onCompleted: @escaping(Profile) -> Void) {
+        
+        let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/\(memberId)"
+        let parameters: [String: Any] = ["newPassword": newPassword]
+        
+        AF.request(url, method: .patch, parameters: parameters)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    print("PATCH request succeeded")
+                    let profile = Profile(firstName: nil, lastName: nil, memberEmail: nil, memberId: nil, memberMajor: nil)
+                    onCompleted(profile)
+                case .failure(let error):
+                    print("PATCH request failed with error: \(error)")
+                }
+            }
+    }
+
+}
