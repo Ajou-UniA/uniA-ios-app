@@ -95,9 +95,9 @@ class MyPageViewController: UIViewController {
         self.view.backgroundColor = .white
         
         memberInfoAccess.findByMemberId(memberId: memberId){ data in
-            self.nameLabel.text = "\(data.lastName)"+"\(data.firstName)"
+            self.nameLabel.text = "\(data.lastName!)\(data.firstName!)"
             self.majorLabel.text = data.memberMajor
-            self.nameLabel.text = String(data.memberId!)
+            self.numberLabel.text = String(data.memberId!)
         }
         setUpView()
         setUpConstraints()
