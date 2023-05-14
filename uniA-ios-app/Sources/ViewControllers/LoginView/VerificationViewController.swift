@@ -61,7 +61,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
 
     var timer: Timer?
-    var secondsLeft: Int = 5
+    var secondsLeft: Int = 180
     
     // MARK: - Lifecycles
 

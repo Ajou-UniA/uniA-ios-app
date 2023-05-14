@@ -34,6 +34,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
     
@@ -46,6 +47,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
     lazy var confirmPasswordLabel = UILabel().then {
@@ -58,6 +60,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1.0
         $0.isEnabled = false
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
     lazy var submitBtn = UIButton().then {
@@ -197,8 +200,10 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-        
-        if newPasswordTextField.text == confirmPasswordTextField.text && passwordTextField.text == password {
+        if passwordTextField.text == password {
+            
+        }
+        if newPasswordTextField.text == confirmPasswordTextField.text {
             let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
                 self.resetAccess.resetPassword(newPassword: self.newPasswordTextField.text!, memberId: self.memberId){ data in

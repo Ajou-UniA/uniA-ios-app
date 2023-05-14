@@ -83,6 +83,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
     lazy var confirmPasswordLabel = UILabel().then {
@@ -94,6 +95,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.isEnabled = false
+        $0.isSecureTextEntry = true
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
@@ -125,7 +127,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.setItems([cancelButton, space, doneButton], animated: true)
         $0.isUserInteractionEnabled = true
     }
-    lazy var warningLabel = UILabel().then {
+    lazy var warningLabel1 = UILabel().then {
+        $0.text = ""
+        $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
+    }
+    lazy var warningLabel2 = UILabel().then {
         $0.text = ""
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
@@ -163,8 +170,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     func setUpView() {
         self.view.addSubview(scrollView)
         self.view.addSubview(backBtn)
-        [titleLabel, firstNameLabel, firstNameTextField, lastNameLabel, lastNameTextField, studentIdLabel, studentIdTextField, departmentLabel, departmentTextField, passwordLabel,
-         passwordTextField, warningLabel, confirmPasswordLabel, confirmPasswordTextField, submitBtn, policyLabel].forEach {
+        [titleLabel, firstNameLabel, firstNameTextField, lastNameLabel, lastNameTextField, studentIdLabel, studentIdTextField, departmentLabel, departmentTextField,
+         passwordLabel, passwordTextField, warningLabel1, warningLabel2, confirmPasswordLabel, confirmPasswordTextField, submitBtn, policyLabel].forEach {
             scrollView.addSubview($0)
         }
     }
@@ -229,8 +236,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             $0.bottom.equalTo(departmentTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        warningLabel.snp.makeConstraints {
+        warningLabel1.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(1)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+        }
+        warningLabel2.snp.makeConstraints {
+            $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(1)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordLabel.snp.makeConstraints {
@@ -333,20 +344,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
 
             // password와 confirmPassword 일치 여부 체크
             if memberPassword != memberConfirmPassword {
-                // password와 confirmPassword가 일치하지 않는 경우, 여기서 원하는 처리를 수행할 수 있습니다.
-                // 예를 들면, 경고창을 표시하거나 액션을 취하지 않고 함수를 종료할 수 있습니다.
-                // 원하는 동작에 맞게 아래 코드를 수정해주세요.
-//                UIView.animate(withDuration: 0.1, animations: {
-//                       self.submitBtn.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-//                   }) { _ in
-//                       UIView.animate(withDuration: 0.1, animations: {
-//                           self.submitBtn.transform = CGAffineTransform.identity
-//                       })
-//                   }
-                let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-                    feedbackGenerator.prepare()
-                    feedbackGenerator.impactOccurred()
-                print("비밀번호 다시입력해")
+                
+                warningLabel2.text = "Please make sure your passwords match."
+                confirmPasswordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                confirmPasswordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
+                
                 return
             }
 
@@ -375,11 +377,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+        warningLabel2.text = ""
+        confirmPasswordLabel.textColor = .black
+        confirmPasswordTextField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         passwordLabel.textColor = .black
-        warningLabel.text = ""
+        warningLabel1.text = ""
     }
     @objc private func textDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
@@ -402,15 +407,15 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let hasSpecialChar = text.rangeOfCharacter(from: specialCharSet) != nil
                 
                 if text.count < 8 || !hasSpecialChar {
-                    warningLabel.text = "Your password must contain at least 8 characters and 1 special character."
-                    warningLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+                    warningLabel1.text = "Your password must contain at least 8 characters and 1 special character."
+                    warningLabel1.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                     passwordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
                     passwordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                     confirmPasswordTextField.isEnabled = false
 
                 } else {
-                    warningLabel.text = "Your password is great."
-                    warningLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
+                    warningLabel1.text = "Your password is great."
+                    warningLabel1.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
                     passwordTextField.layer.borderColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1).cgColor
                     passwordLabel.textColor = UIColor(red: 0.13, green: 0.842, blue: 0.286, alpha: 1)
                     confirmPasswordTextField.isEnabled = true

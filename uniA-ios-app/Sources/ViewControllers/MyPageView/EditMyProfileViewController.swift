@@ -248,7 +248,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
             "memberMajor": memberMajor
             ]
         
-        let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)
+        let msg = UIAlertController(title: "Profile updated", message: "Your changes have been saved.", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
 
         }
