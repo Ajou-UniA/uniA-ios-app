@@ -39,12 +39,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
     
     lazy var checkBoxBtn = UIButton().then {
         $0.setImage(UIImage(named: "checkbox"), for: .normal)
         $0.addTarget(self, action: #selector(checkBoxBtnTapped), for: .touchUpInside)
+    }
+    lazy var toggleBtn = UIButton().then {
+        $0.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        $0.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        $0.tintColor = .systemGray3
+        $0.addTarget(self, action: #selector(toggleBtnTapped), for: .touchUpInside)
     }
     
     lazy var remeberLabel = UILabel().then {
@@ -91,7 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Helper
 
     func setUpView() {
-        [titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, remeberLabel, forgotLabel, signInBtn, signUpBtn, checkBoxBtn].forEach {
+        [titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, remeberLabel, forgotLabel, signInBtn, signUpBtn, checkBoxBtn, toggleBtn].forEach {
             view.addSubview($0)
         }
     }
@@ -100,7 +107,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(119)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            
         }
         
         emailLabel.snp.makeConstraints {
@@ -155,12 +161,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
 
         }
+        toggleBtn.snp.makeConstraints {
+            $0.leading.equalTo(passwordTextField.snp.trailing).offset(-40)
+            $0.centerY.equalTo(passwordTextField)
+            $0.width.height.equalTo(30)
+        }
     }
     // MARK: - BtnAction
     let signInAccess = SignInApiModel()
     let loginCheckAccess = LoginCheckApiModel()
     let memberIdAccess = CallMemberApiModel()
-
+    
+    @objc
+    func toggleBtnTapped() {
+            passwordTextField.isSecureTextEntry.toggle()
+            toggleBtn.isSelected = !passwordTextField.isSecureTextEntry
+    }
+    
     @objc func signUpBtnTapped() {
         // SignUpBtn 누르면 남아있는 textfield 값 지워주기
         UserDefaults.standard.set(0, forKey: "branch")

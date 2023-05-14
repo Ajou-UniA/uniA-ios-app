@@ -90,15 +90,18 @@ class MyPageViewController: UIViewController {
     let memberInfoAccess = FindMemberApiModel()
     let memberId = UserDefaults.standard.integer(forKey: "memberId")
 
+    override func viewWillAppear(_ animated: Bool) {
+        memberInfoAccess.findByMemberId(memberId: memberId){ data in
+            self.nameLabel.text = "\(data.lastName!)\(data.firstName!)"
+            self.majorLabel.text = data.memberMajor
+            self.numberLabel.text = String(data.memberId!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        memberInfoAccess.findByMemberId(memberId: memberId){ data in
-            self.nameLabel.text = "\(data.lastName)"+"\(data.firstName)"
-            self.majorLabel.text = data.memberMajor
-            self.nameLabel.text = String(data.memberId!)
-        }
         setUpView()
         setUpConstraints()
     }
