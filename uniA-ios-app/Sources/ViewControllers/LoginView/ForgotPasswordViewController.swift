@@ -34,6 +34,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
+        $0.isSecureTextEntry = true
     }
     lazy var confirmPasswordLabel = UILabel().then {
         $0.text = "Confirm Password"
@@ -46,6 +47,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.isEnabled = false
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
+        $0.isSecureTextEntry = true
     }
     
     lazy var submitBtn = UIButton().then {
@@ -70,7 +72,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Lifecycles
     let memberIdAccess = CallMemberApiModel()
     let memberEmail = UserDefaults.standard.string(forKey: "email")
-
+    let forgotPasswordAccess = ForgotPasswordApiModel()
+    var memberId: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -80,8 +83,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         
         memberIdAccess.callMember(memberEmail: memberEmail!) { data in
             print(data)
+            self.memberId = data
         }
-        // 학번 불러왔으니 학번 넣고 patch 하면됨.
         setUpView()
         setUpConstraints()
         
@@ -146,14 +149,19 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
+    
     // MARK: - TextFieldDelegate
     
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)
+        confirmPasswordLabel.textColor = .black
+        warningLabel2.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        warningLabel1.text = ""
+        newPasswordLabel.textColor = .black
     }
     // 화면 터치시 keybord 내림
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,13 +181,23 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
+        
+        
+        if newPasswordTextField.text == confirmPasswordTextField.text {
+
         let msg = UIAlertController(title: "Password changed", message: "Your password has been changed successfully.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
-            self.navigationController?.popToRootViewController(animated: true)
-            
+            self.forgotPasswordAccess.forgotPassword(newPassword: self.newPasswordTextField.text!, memberId: self.memberId){ data in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+           }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
+        } else {
+            warningLabel2.text = "Please make sure your passwords match."
+            confirmPasswordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
+            confirmPasswordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
         }
-        msg.addAction(okAction)
-        self.present(msg, animated: true)
     }
     
     @objc

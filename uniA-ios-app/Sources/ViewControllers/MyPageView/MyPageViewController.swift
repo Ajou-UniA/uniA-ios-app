@@ -33,6 +33,7 @@ class MyPageViewController: UIViewController {
         $0.text = "Software and Computer Engineering"
         $0.textAlignment = .left
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 15)
+        $0.numberOfLines = 0
     }
     lazy var numberLabel = UILabel().then {
         $0.text = "202021766"
@@ -182,7 +183,8 @@ class MyPageViewController: UIViewController {
         majorLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
-            
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(20)
+
         }
         numberLabel.snp.makeConstraints {
             $0.top.equalTo(majorLabel.snp.bottom).offset(10)

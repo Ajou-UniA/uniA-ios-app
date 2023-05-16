@@ -84,7 +84,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Lifecycles
     let memberInfoAccess = FindMemberApiModel()
     let memberIdAccess = CallMemberApiModel()
-    let memberEmail = UserDefaults.standard.string(forKey: "email")
+    let memberEmail = UserDefaults.standard.string(forKey: "loginemail")
     var memberId: Int = 0
     
     override func viewDidLoad() {
