@@ -41,6 +41,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
         $0.cornerRadius = 8
         $0.spacing = 18
+        $0.layer.speed = 0
         $0.font = UIFont.systemFont(ofSize: 20)
         $0.keyboardType = .numberPad
     }
@@ -151,7 +152,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
                 msg.addAction(okAction)
                 self.present(msg, animated: true)
             } else {
-                let msg = UIAlertController(title: "Invaild verification code", message: "Sorry, this verification code is incorrect. Please verify your code.",
+                let msg = UIAlertController(title: "Invalid verification code", message: "Sorry, this verification code is incorrect. Please verify your code.",
                                             preferredStyle: UIAlertController.Style.alert)
                 let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
             }

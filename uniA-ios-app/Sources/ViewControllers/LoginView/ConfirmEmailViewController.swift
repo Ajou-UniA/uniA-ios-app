@@ -138,7 +138,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(verificationViewController, animated: true)
                     
                 } else {
-                    let msg = UIAlertController(title: "Invaild email adress", message: "An account using this email address already exists.", preferredStyle: UIAlertController.Style.alert)
+                    let msg = UIAlertController(title: "Invalid email adress", message: "An account using this email address already exists.", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
                 }
                 msg.addAction(okAction)
@@ -157,7 +157,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(verificationViewController, animated: true)
                 } else {
                     // 텍스트필드 오류 알럿
-                    let msg = UIAlertController(title: "Invaild email adress", message: "Sorry, this email address in invaild. Please try again.", preferredStyle: UIAlertController.Style.alert)
+                    let msg = UIAlertController(title: "Invalid email adress", message: "Sorry, this email address in invalid. Please try again.", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
                 }
                 msg.addAction(okAction)

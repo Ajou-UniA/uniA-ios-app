@@ -12,6 +12,7 @@
 		073F24742A10054200CF68C7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24732A10054200CF68C7 /* Profile.swift */; };
 		073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */; };
 		076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BA3D22A06714F006895D0 /* CreateAccount.swift */; };
+		0780040F2A13EBAD0079D447 /* ForgotPasswordApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */; };
 		0788640729C0A8F600DA9E6A /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640629C0A8F600DA9E6A /* ConfirmEmailViewController.swift */; };
 		0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640829C0AFA100DA9E6A /* VerificationViewController.swift */; };
 		0788641129C1719500DA9E6A /* CHIOTPField in Frameworks */ = {isa = PBXBuildFile; productRef = 0788641029C1719500DA9E6A /* CHIOTPField */; };
@@ -94,6 +95,7 @@
 		073F24732A10054200CF68C7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMemberIdApiModel.swift; sourceTree = "<group>"; };
 		076BA3D22A06714F006895D0 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiModel.swift; sourceTree = "<group>"; };
 		0788640629C0A8F600DA9E6A /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		0788640829C0AFA100DA9E6A /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		0788641229C179C500DA9E6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				076BA3D22A06714F006895D0 /* CreateAccount.swift */,
 				073F24732A10054200CF68C7 /* Profile.swift */,
 				073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */,
+				0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
 				8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */,
 				07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */,
+				0780040F2A13EBAD0079D447 /* ForgotPasswordApiModel.swift in Sources */,
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
@@ -748,6 +752,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2V279GTPCN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -774,6 +779,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2V279GTPCN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

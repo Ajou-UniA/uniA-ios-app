@@ -10,7 +10,7 @@ import Then
 import UIKit
 import Alamofire
 
-class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
     let pickerView = UIPickerView()
     let pick = pickerdata
@@ -74,6 +74,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
+    
     lazy var passwordLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
@@ -86,6 +87,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
+    
     lazy var confirmPasswordLabel = UILabel().then {
         $0.text = "Confirm Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
@@ -127,6 +129,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.setItems([cancelButton, space, doneButton], animated: true)
         $0.isUserInteractionEnabled = true
     }
+    
     lazy var warningLabel1 = UILabel().then {
         $0.text = ""
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
@@ -163,8 +166,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         setUpConstraints()
         
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
+        
     }
-    
+  
     // MARK: - Helper
 
     func setUpView() {
@@ -264,37 +268,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    // MARK: - PickerView
-    // pickerView column 수
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
-    // pickerView row 수
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return pickerdata.count
-        }
-    // pickerView 보여지는 값
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return pickerdata[row]
-        }
-    // pickerView 선택시 데이터 호출
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          selectMajor = pickerdata[row]
-      }
-    // pickerView text color
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
-//    }
-    @objc func onDoneButtonTapped() {
-        departmentTextField.text = selectMajor
-        departmentTextField.resignFirstResponder() // pickerView 내리기
-        selectMajor = ""
-        }
-    
-    @objc func onCancelButtonTapped() {
-        departmentTextField.resignFirstResponder()
-        selectMajor = ""
-        }
     
     // MARK: - scrollView tap시 keboard 내리기
     
@@ -425,3 +398,40 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         }
     }
 }
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+
+extension CreateAccountViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    // pickerView column 수
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+    // pickerView row 수
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return pickerdata.count
+        }
+    // pickerView 보여지는 값
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return pickerdata[row]
+        }
+    // pickerView 선택시 데이터 호출
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+          selectMajor = pickerdata[row]
+      }
+    // pickerView text color
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
+//    }
+    @objc func onDoneButtonTapped() {
+        departmentTextField.text = selectMajor
+        departmentTextField.resignFirstResponder() // pickerView 내리기
+        selectMajor = ""
+        }
+    
+    @objc func onCancelButtonTapped() {
+        departmentTextField.resignFirstResponder()
+        selectMajor = ""
+        }
+
+}
+

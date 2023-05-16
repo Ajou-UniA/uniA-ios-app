@@ -205,6 +205,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
             if data == 1 {
                 self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
                     print(UserDefaults.standard.integer(forKey: "memberId"))
                 }
