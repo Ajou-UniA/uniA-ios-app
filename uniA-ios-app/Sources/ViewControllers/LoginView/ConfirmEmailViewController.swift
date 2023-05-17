@@ -30,6 +30,8 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
+        $0.autocapitalizationType = .none // 입력한 텍스트 대문자로 자동 변환 방지
+        $0.keyboardType = .emailAddress
     }
     
     lazy var confirmBtn = UIButton().then {
@@ -126,6 +128,17 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     @objc
     func confirmBtnTapped() {
        let verificationViewController = VerificationViewController()
+        if let email = emailTextField.text, !email.isEmpty {
+            if !email.hasSuffix("@ajou.ac.kr") {
+                // 입력한 이메일 주소가 "@ajou.ac.kr"으로 끝나지 않으면 경고 메시지 출력
+                let alertController = UIAlertController(title: "Invalid email adress", message: "Please use a valid email domain in the format of @ajou.ac.kr.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alertController, animated: true, completion: nil)
+               // emailTextField.text = nil // 텍스트 필드 내용 초기화
+            }
+        } else {
+            return
+        }
         if branch == 0 { // signUp email 중복되면 안됨
             checkEmailAccess.checkEmail(email: emailTextField.text!) { data in
                 if data.statusCodeValue == 200 {
@@ -171,7 +184,8 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
+
     // MARK: - TextFieldDelegate
     
     // textfield 입력 시 borderColor 색깔변경
