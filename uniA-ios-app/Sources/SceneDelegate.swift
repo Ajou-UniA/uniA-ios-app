@@ -12,10 +12,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                window?.makeKeyAndVisible()
+        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+        window?.makeKeyAndVisible()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
 
         //        // MARK: 자동로그인을 위한 코드
         //        var loginSuccess: Bool = UserDefaults.standard.bool(forKey: "loginSuccess") ?? false
