@@ -65,6 +65,10 @@
 		8A8081D729D077F300CE375D /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */; };
 		8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8081D829D1B77D00CE375D /* SceneDelegate.swift */; };
 		8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2644229BDD31100AA890D /* TabBarController.swift */; };
+		8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */; };
+		8AA9BCE22A14DCE40074652D /* TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE12A14DCE40074652D /* TaskResponse.swift */; };
+		8AA9BCE42A14DCF90074652D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE32A14DCF90074652D /* Task.swift */; };
+		8AA9BCE72A14DD3E0074652D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA9BCE62A14DD3E0074652D /* SwiftyJSON */; };
 		8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */; };
 		8AAF51002A067DA600E5CC02 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FC2A067DA600E5CC02 /* Header.swift */; };
 		8AAF51012A067DA600E5CC02 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FD2A067DA600E5CC02 /* URL.swift */; };
@@ -139,6 +143,9 @@
 		8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
 		8A8081D829D1B77D00CE375D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8AA2644229BDD31100AA890D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRequest.swift; sourceTree = "<group>"; };
+		8AA9BCE12A14DCE40074652D /* TaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskResponse.swift; sourceTree = "<group>"; };
+		8AA9BCE32A14DCF90074652D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		8AAF50FC2A067DA600E5CC02 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		8AAF50FD2A067DA600E5CC02 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -171,6 +178,7 @@
 			files = (
 				8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */,
 				8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */,
+				8AA9BCE72A14DD3E0074652D /* SwiftyJSON in Frameworks */,
 				8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */,
 				8A0D212029BB6DBB0045C456 /* SnapKit in Frameworks */,
 				8ADFDAE729BB452D006824B8 /* Then in Frameworks */,
@@ -182,28 +190,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07CDF54A2A069FBF000B226E /* NetworkModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkModels;
-			sourceTree = "<group>";
-		};
-		07CDF54B2A069FCC000B226E /* NetworkServices */ = {
-			isa = PBXGroup;
-			children = (
-				07CDF54C2A06A008000B226E /* MyPage */,
-			);
-			path = NetworkServices;
-			sourceTree = "<group>";
-		};
-		07CDF54C2A06A008000B226E /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MyPage;
-			sourceTree = "<group>";
-		};
 		07E298B829FB9E37000C137E /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,8 +241,6 @@
 		8A0D212229BB71FF0045C456 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				07CDF54B2A069FCC000B226E /* NetworkServices */,
-				07CDF54A2A069FBF000B226E /* NetworkModels */,
 				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
 				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
 				8A0D212529BB72250045C456 /* Views */,
@@ -282,6 +266,7 @@
 		8A0D212429BB72200045C456 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8AA9BCDE2A14DCB50074652D /* Task */,
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
 				8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */,
@@ -374,6 +359,16 @@
 			path = "uniA-ios-app/Resources/Fonts/Urbanist";
 			sourceTree = "<group>";
 		};
+		8AA9BCDE2A14DCB50074652D /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */,
+				8AA9BCE12A14DCE40074652D /* TaskResponse.swift */,
+				8AA9BCE32A14DCF90074652D /* Task.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		8AAF50FA2A067DA600E5CC02 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +457,7 @@
 				8A0D211C29BB6D890045C456 /* RxMoya */,
 				8A0D211F29BB6DBB0045C456 /* SnapKit */,
 				0788641029C1719500DA9E6A /* CHIOTPField */,
+				8AA9BCE62A14DD3E0074652D /* SwiftyJSON */,
 			);
 			productName = "uniA-ios-app";
 			productReference = 8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */;
@@ -496,6 +492,7 @@
 				8A0D211529BB6D890045C456 /* XCRemoteSwiftPackageReference "Moya" */,
 				8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0788640F29C1719500DA9E6A /* XCRemoteSwiftPackageReference "CHIOTPField" */,
+				8AA9BCE52A14DD3E0074652D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 8ADFDACD29BB421E006824B8 /* Products */;
 			projectDirPath = "";
@@ -599,6 +596,7 @@
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
 				8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
+				8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
 				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
@@ -608,11 +606,13 @@
 				07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */,
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
+				8AA9BCE22A14DCE40074652D /* TaskResponse.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
 				8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */,
 				8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */,
 				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
+				8AA9BCE42A14DCF90074652D /* Task.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,6 +847,14 @@
 				kind = branch;
 			};
 		};
+		8AA9BCE52A14DD3E0074652D /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -887,6 +895,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		8AA9BCE62A14DD3E0074652D /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AA9BCE52A14DD3E0074652D /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 		8ADFDAE629BB452D006824B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
