@@ -51,8 +51,15 @@ class FavoriteView: UIView {
         $0.layer.cornerRadius = 15
     }
 
+    let noticeBtnLabel = UILabel().then {
+        $0.text = "AN"
+        $0.textColor = UIColor(red: 0.429, green: 0.657, blue: 1, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 37)
+    }
+
+
     let noticeLabel = UILabel().then {
-        $0.text = "Ajou notice"
+        $0.text = "Ajou Notice"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 12)
     }
@@ -64,8 +71,14 @@ class FavoriteView: UIView {
         $0.layer.cornerRadius = 15
     }
 
+    let portalBtnLabel = UILabel().then {
+        $0.text = "AP"
+        $0.textColor = UIColor(red: 0.565, green: 0.863, blue: 1, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 37)
+    }
+
     let portalLabel = UILabel().then {
-        $0.text = "portal"
+        $0.text = "Ajou Portal"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 12)
     }
@@ -75,6 +88,12 @@ class FavoriteView: UIView {
         $0.tag = ButtonType.link3.rawValue
         $0.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
         $0.layer.cornerRadius = 15
+    }
+
+    let OIABtnLabel = UILabel().then {
+        $0.text = "OIA"
+        $0.textColor = UIColor(red: 0.765, green: 0.78, blue: 1, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 37)
     }
 
     let OIALabel = UILabel().then {
@@ -88,6 +107,12 @@ class FavoriteView: UIView {
         $0.tag = ButtonType.link4.rawValue
         $0.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
         $0.layer.cornerRadius = 15
+    }
+
+    let libraryBtnLabel = UILabel().then {
+        $0.text = "CL"
+        $0.textColor = UIColor(red: 0.863, green: 0.776, blue: 1, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-SemiBold", size: 37)
     }
 
     let libraryLabel = UILabel().then {
@@ -115,6 +140,10 @@ class FavoriteView: UIView {
         [noticeBtn, noticeLabel, portalBtn, portalLabel, OIABtn, OIALabel, libraryBtn, libraryLabel].forEach {
             contentView.addSubview($0)
         }
+        self.noticeBtn.addSubview(noticeBtnLabel)
+        self.portalBtn.addSubview(portalBtnLabel)
+        self.OIABtn.addSubview(OIABtnLabel)
+        self.libraryBtn.addSubview(libraryBtnLabel)
     }
 
     func setUpConstraints() {
@@ -129,11 +158,14 @@ class FavoriteView: UIView {
             $0.edges.equalToSuperview()
             $0.height.equalTo(scrollView.snp.height) // 스크롤 안됨 현상 해결
         }
+        noticeBtn.heightAnchor.constraint(equalTo: noticeBtn.widthAnchor, multiplier: 1.0/1.0).isActive = true
         noticeBtn.snp.makeConstraints {
             $0.top.equalTo(favoriteTitleLabel.snp.bottom).offset(20)
             $0.leading.equalToSuperview()
-            $0.height.equalTo(Constant.height * 70)
             $0.width.equalTo(Constant.width * 70)
+        }
+        noticeBtnLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         noticeLabel.snp.makeConstraints {
             $0.centerX.equalTo(noticeBtn)
@@ -145,6 +177,9 @@ class FavoriteView: UIView {
             $0.leading.equalTo(noticeBtn.snp.trailing).offset(25)
             $0.height.width.equalTo(noticeBtn)
         }
+        portalBtnLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         portalLabel.snp.makeConstraints {
             $0.centerX.equalTo(portalBtn)
             $0.top.equalTo(portalBtn.snp.bottom).offset(15)
@@ -154,6 +189,9 @@ class FavoriteView: UIView {
             $0.top.equalTo(favoriteTitleLabel.snp.bottom).offset(20)
             $0.leading.equalTo(portalBtn.snp.trailing).offset(25)
             $0.height.width.equalTo(noticeBtn)
+        }
+        OIABtnLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         OIALabel.snp.makeConstraints {
             $0.centerX.equalTo(OIABtn)
@@ -165,6 +203,9 @@ class FavoriteView: UIView {
             $0.leading.equalTo(OIABtn.snp.trailing).offset(25)
             $0.trailing.equalToSuperview()
             $0.height.width.equalTo(noticeBtn)
+        }
+        libraryBtnLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         libraryLabel.snp.makeConstraints {
             $0.centerX.equalTo(libraryBtn)
