@@ -14,4 +14,3 @@ enum NetworkResult<T> {
     case serverError // 서버 내부적 에러
     case networkFail // 네트워크 연결 실패
 }
-

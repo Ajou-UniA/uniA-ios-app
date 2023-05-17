@@ -76,16 +76,13 @@
 		8AAF51042A067DF900E5CC02 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51032A067DF900E5CC02 /* Body.swift */; };
 		8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51062A06827900E5CC02 /* FavoriteView.swift */; };
 		8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51072A06827900E5CC02 /* HomeViewController.swift */; };
-		8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */; };
 		8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */; };
 		8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */; };
-		8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */; };
 		8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */; };
 		8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */; };
 		8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */; };
 		8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
-		8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD329BB421E006824B8 /* ViewController.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
 		8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */; };
 		8ADFDAE429BB448E006824B8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAE329BB448E006824B8 /* .gitignore */; };
@@ -153,17 +150,14 @@
 		8AAF51032A067DF900E5CC02 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		8AAF51062A06827900E5CC02 /* FavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		8AAF51072A06827900E5CC02 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUniAMembersView.swift; sourceTree = "<group>"; };
 		8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
-		8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		8AAF512C2A06A15C00E5CC02 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTaskViewController.swift; sourceTree = "<group>"; };
 		8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8ADFDAD329BB421E006824B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ADFDAD829BB421F006824B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADFDADB29BB421F006824B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ADFDADD29BB421F006824B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -257,7 +251,6 @@
 				8AAF51052A06827900E5CC02 /* HomeView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
 				8A0D212A29BB72520045C456 /* MyPageView */,
-				8ADFDAD329BB421E006824B8 /* ViewController.swift */,
 				8AA2644229BDD31100AA890D /* TabBarController.swift */,
 			);
 			path = ViewControllers;
@@ -269,7 +262,6 @@
 				8AA9BCDE2A14DCB50074652D /* Task */,
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
-				8AAF510E2A06833C00E5CC02 /* UserDefaultManager.swift */,
 				07E298BA29FB9E67000C137E /* Data */,
 				07E298B929FB9E4B000C137E /* Login */,
 				07E298B829FB9E37000C137E /* MyPage */,
@@ -386,7 +378,6 @@
 			children = (
 				8AAF51062A06827900E5CC02 /* FavoriteView.swift */,
 				8AAF51072A06827900E5CC02 /* HomeViewController.swift */,
-				8AAF51082A06827900E5CC02 /* AboutUniAMembersView.swift */,
 				8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */,
 			);
 			path = HomeView;
@@ -574,7 +565,6 @@
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
-				8ADFDAD429BB421E006824B8 /* ViewController.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
 				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
 				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
@@ -582,7 +572,6 @@
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
 				073F24722A10052C00CF68C7 /* LogoutApiModel.swift in Sources */,
-				8AAF51112A06833C00E5CC02 /* UserDefaultManager.swift in Sources */,
 				8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */,
 				07E7124629D9275900E6899C /* EditMyProfileViewController.swift in Sources */,
 				07FE70A32A0FBD7200C4A87B /* (null) in Sources */,
@@ -594,7 +583,6 @@
 				073F24702A1004C100CF68C7 /* FindMemberApiModel.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
-				8AAF510B2A06827900E5CC02 /* AboutUniAMembersView.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
 				8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
