@@ -397,14 +397,27 @@ class SaveTaskPopUpView: UIView, UITextFieldDelegate {
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.498, green: 0.867, blue: 1, alpha: 1).cgColor
         textField.attributedPlaceholder = NSAttributedString(
-            string: "",
+            string: textField.placeholder ?? "",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)]
         )
     }
 
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+//        if textField.text?.isEmpty ?? true {
+//            textField.text = textField.placeholder
+//        }
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+
+            if updatedText?.isEmpty == true {
+                textField.text = textField.placeholder
+            }
+
+            return true
+        }
 }
 
 // MARK: 텍스트필드 왼쪽 간격 주기 -> 패딩에서 텍스트 입력 시작

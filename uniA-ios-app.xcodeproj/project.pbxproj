@@ -69,6 +69,7 @@
 		8AA9BCE22A14DCE40074652D /* TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE12A14DCE40074652D /* TaskResponse.swift */; };
 		8AA9BCE42A14DCF90074652D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE32A14DCF90074652D /* Task.swift */; };
 		8AA9BCE72A14DD3E0074652D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA9BCE62A14DD3E0074652D /* SwiftyJSON */; };
+		8AA9BCEA2A14F8E10074652D /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA9BCE92A14F8E10074652D /* RxKeyboard */; };
 		8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */; };
 		8AAF51002A067DA600E5CC02 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FC2A067DA600E5CC02 /* Header.swift */; };
 		8AAF51012A067DA600E5CC02 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FD2A067DA600E5CC02 /* URL.swift */; };
@@ -171,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0D211D29BB6D890045C456 /* RxMoya in Frameworks */,
+				8AA9BCEA2A14F8E10074652D /* RxKeyboard in Frameworks */,
 				8A0D211729BB6D890045C456 /* CombineMoya in Frameworks */,
 				8AA9BCE72A14DD3E0074652D /* SwiftyJSON in Frameworks */,
 				8A0D211B29BB6D890045C456 /* ReactiveMoya in Frameworks */,
@@ -259,9 +261,9 @@
 		8A0D212429BB72200045C456 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8AA9BCDE2A14DCB50074652D /* Task */,
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
+				8AA9BCDE2A14DCB50074652D /* Task */,
 				07E298BA29FB9E67000C137E /* Data */,
 				07E298B929FB9E4B000C137E /* Login */,
 				07E298B829FB9E37000C137E /* MyPage */,
@@ -449,6 +451,7 @@
 				8A0D211F29BB6DBB0045C456 /* SnapKit */,
 				0788641029C1719500DA9E6A /* CHIOTPField */,
 				8AA9BCE62A14DD3E0074652D /* SwiftyJSON */,
+				8AA9BCE92A14F8E10074652D /* RxKeyboard */,
 			);
 			productName = "uniA-ios-app";
 			productReference = 8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */;
@@ -484,6 +487,7 @@
 				8A0D211E29BB6DBB0045C456 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0788640F29C1719500DA9E6A /* XCRemoteSwiftPackageReference "CHIOTPField" */,
 				8AA9BCE52A14DD3E0074652D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				8AA9BCE82A14F8E10074652D /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 8ADFDACD29BB421E006824B8 /* Products */;
 			projectDirPath = "";
@@ -740,7 +744,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2V279GTPCN;
+				DEVELOPMENT_TEAM = VT34K852T5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -767,7 +771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2V279GTPCN;
+				DEVELOPMENT_TEAM = VT34K852T5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -843,6 +847,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8AA9BCE82A14F8E10074652D /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8ADFDAE529BB452D006824B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -888,6 +900,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8AA9BCE52A14DD3E0074652D /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		8AA9BCE92A14F8E10074652D /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AA9BCE82A14F8E10074652D /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 		8ADFDAE629BB452D006824B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
