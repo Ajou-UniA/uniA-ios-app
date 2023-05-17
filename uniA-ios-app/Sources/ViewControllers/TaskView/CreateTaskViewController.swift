@@ -8,22 +8,32 @@
 import SnapKit
 import Then
 import UIKit
-import Moya
+import Alamofire
 
-class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
+protocol CreateTaskDelegate: AnyObject {
+    func didCreateTask()
+}
+
+class CreateTaskViewController: UIViewController, UITextFieldDelegate {
+
+    weak var createTaskDelegate: CreateTaskDelegate?
+
+    let getTask = Task()
+    var tasks: [TaskResponse] = []
+
     let popUpView = CreateTaskPopUpView()
     let taskViewController = TaskViewController()
     let taskTableView = TaskViewController().taskTableView
+
+    let saveTaskPopUpView = SaveTaskPopUpView()
+
+    var datePickerView = UIDatePicker()
+    var timePickerView = UIDatePicker()
 
     var selectedAssignmentID = 0
     var selectedDeadline = ""
     var selectedLectureName = ""
     var selectedName = ""
-
-    var pickerView = UIPickerView()
-    var data1 = ["Option 1", "Option 2", "Option 3"]
-    var data2 = ["Choice 1", "Choice 2", "Choice 3"]
 
     lazy var toolbar = UIToolbar().then {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
@@ -38,17 +48,32 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
         popUpView.layer.cornerRadius = 20
+
         popUpView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
         popUpView.createBtn.addTarget(self, action: #selector(createTaskBtnTapped), for: .touchUpInside)
+        datePickerView.addTarget(self, action: #selector(changed), for: .valueChanged)
+        timePickerView.addTarget(self, action: #selector(changed1), for: .valueChanged)
 
-        // pickerView 설정
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        pickerView.backgroundColor = .white
-        popUpView.dueDateTextField.inputView = pickerView
+        datePickerView.backgroundColor = .white
+        timePickerView.backgroundColor = .white
+
+        popUpView.dueDateTextField.inputView = datePickerView
         popUpView.dueDateTextField.inputAccessoryView = toolbar
-        popUpView.dueTimeTextField.inputView = pickerView
+
+        popUpView.dueTimeTextField.inputView = timePickerView
         popUpView.dueTimeTextField.inputAccessoryView = toolbar
+
+        datePickerView.translatesAutoresizingMaskIntoConstraints = false
+        datePickerView.preferredDatePickerStyle = .wheels
+        datePickerView.datePickerMode = .date
+
+        timePickerView.translatesAutoresizingMaskIntoConstraints = false
+        timePickerView.preferredDatePickerStyle = .wheels
+        timePickerView.datePickerMode = .time
+
+        // 언어 설정
+        self.datePickerView.locale = Locale(identifier: "English")
+        self.timePickerView.locale = Locale(identifier: "English")
 
         setUpView()
         setUpConstraints()
@@ -72,75 +97,126 @@ class CreateTaskViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
 
     @objc
+    func changed() {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .none
+        dateformatter.locale = Locale(identifier: "English")
+        dateformatter.dateFormat = "d MMMM, yyyy"
+        let date = dateformatter.string(from: datePickerView.date)
+        popUpView.dueDateTextField.text = date
+        print(date)
+    }
+
+    @objc
+    func changed1() {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .none
+        dateformatter.timeStyle = .medium
+        dateformatter.locale = Locale(identifier: "English")
+        dateformatter.dateFormat = "h:mm a"
+        let time = dateformatter.string(from: timePickerView.date).lowercased()
+        popUpView.dueTimeTextField.text = time
+    }
+
+    @objc
     func cancelBtnTapped() {
         self.dismiss(animated: true, completion: nil)
     }
 
     @objc
     func createTaskBtnTapped() {
-        taskViewController.courseNameArr.append("Course Name")
-        taskViewController.taskNameArr.append("Task Name")
-        taskViewController.timeArr.append("by 12:00 am")
-        taskViewController.dayArr.append("1")
-        taskViewController.monthArr.append("January")
-        taskTableView.reloadData()
+
+        guard let courseName = popUpView.courseNameTextField.text,
+              let taskName = popUpView.taskNameTextField.text,
+              let dueDate = popUpView.dueDateTextField.text,
+              let dueTime = popUpView.dueTimeTextField.text else {return}
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "English")
+        dateFormatter.dateFormat = "d MMMM, yyyy"
+        guard let date = dateFormatter.date(from: dueDate)
+        else {
+            return print("Unexpected dateString format")
+        }
+
+        let timeFormatter = DateFormatter()
+        timeFormatter.locale = Locale(identifier: "English")
+        timeFormatter.dateFormat = "h:mm a"
+        guard let time = timeFormatter.date(from: dueTime)
+        else {
+            return print("Unexpected timeString format")
+        }
+
+        let combinedDate = Calendar.current.date(bySettingHour: Calendar.current.component(.hour, from: time), minute: Calendar.current.component(.minute, from: time), second: 0, of: date)!
+
+        let combinedFormatter = DateFormatter()
+        combinedFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let combinedString = combinedFormatter.string(from: combinedDate)
+
+        print(combinedString)
+
+        getTask.getLastAssignmentId { [weak self] lastAssignmentId in
+            self?.selectedAssignmentID = lastAssignmentId ?? 0
+            print("Last assignment ID: \(lastAssignmentId)")
+        }
+
+        let bodyData: Parameters = [
+            "assignmentId": selectedAssignmentID+1,
+            "deadline": "\(combinedString)",
+            "lectureName": courseName,
+            "name": taskName ]
+
+        getTask.createTask(bodyData: bodyData)
+
+        getTask.getMyTask(memberId: 202021758) { tasks in
+            self.tasks = tasks
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                self.tasks = tasks
+                self.createTaskDelegate?.didCreateTask()
+                // Task 생성 후에 NotificationCenter로 TaskViewController로 데이터 업데이트 요청
+                NotificationCenter.default.post(name: Notification.Name("TaskUpdateNotification"), object: nil)
+            }
+        }
+
         self.dismiss(animated: true, completion: nil)
 
+//        getTask.getMyTask(memberId: 202021758) { tasks in
+//            print(tasks.count)
+//            self.tasks = tasks
+//            DispatchQueue.main.async {
+//                // Task 생성 후에 TaskViewController를 업데이트
+//                if let taskViewController = self.presentingViewController as? TaskViewController {
+//                taskViewController.refreshTasks()
+//            }
+//                self.taskViewController.taskTableView.reloadData()
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
+    }
+
+    @objc
+    func refresh() {
+        self.getTask.getLastAssignmentId { lastAssignmentId in
+            self.selectedAssignmentID = lastAssignmentId!
+            let indexPath = IndexPath(row: lastAssignmentId!+1, section: 0)
+            self.taskTableView.insertRows(at: [indexPath], with: .automatic)
+            self.getTask.getMyTask(memberId: 202021758) { tasks in
+                print(tasks.count)
+                self.tasks = tasks
+                self.taskTableView.reloadData()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     // 현재 선택된 항목 출력
     @objc func onDoneButtonTapped() {
         view.endEditing(true)
-        if popUpView.dueDateTextField.isFirstResponder {
-            let selectedIndex = pickerView.selectedRow(inComponent: 0)
-            let selectedOption = data1[selectedIndex]
-            print("Selected option: \(selectedOption)")
-        } else if popUpView.dueTimeTextField.isFirstResponder {
-            let selectedIndex = pickerView.selectedRow(inComponent: 0)
-            let selectedChoice = data2[selectedIndex]
-            print("Selected choice: \(selectedChoice)")
-        }
     }
 
     @objc func onCancelButtonTapped() {
         view.endEditing(true)
-    }
-
-    // MARK: - PickerView
-    // pickerView column 수
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    // pickerView row 수
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if popUpView.dueDateTextField.isFirstResponder {
-            return data1.count
-        } else if popUpView.dueTimeTextField.isFirstResponder {
-            return data2.count
-        } else {
-            return 0
-        }
-    }
-
-    // pickerView 보여지는 값
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if popUpView.dueDateTextField.isFirstResponder {
-            return data1[row]
-        } else if popUpView.dueTimeTextField.isFirstResponder {
-            return data2[row]
-        } else {
-            return nil
-        }
-    }
-
-    // pickerView 선택시 데이터 호출
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if popUpView.dueDateTextField.isFirstResponder {
-            popUpView.dueDateTextField.text = data1[row]
-        } else if popUpView.dueTimeTextField.isFirstResponder {
-            popUpView.dueTimeTextField.text = data2[row]
-        }
     }
 }
 
@@ -223,14 +299,16 @@ class CreateTaskPopUpView: UIView, UITextFieldDelegate {
         super.init(frame: frame)
         backgroundColor = .white
         [courseNameTextField, taskNameTextField, dueDateTextField, dueTimeTextField].forEach {
+            $0.addLeftPadding2()
+            $0.delegate = self
+        }
+        [courseNameTextField, taskNameTextField, dueDateTextField, dueTimeTextField].forEach {
             $0.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+            $0.textColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1)
+            $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
             $0.layer.cornerRadius = 10
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-            $0.textColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1)
-            $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
-            $0.addLeftPadding2()
-            $0.delegate = self
         }
         textFieldDidBeginEditing(courseNameTextField)
         textFieldDidEndEditing(courseNameTextField)
@@ -364,10 +442,8 @@ class CustomUITextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-//        return enableLongPressActions
-//    }
-   override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.paste(_:)) {
             return false
         }

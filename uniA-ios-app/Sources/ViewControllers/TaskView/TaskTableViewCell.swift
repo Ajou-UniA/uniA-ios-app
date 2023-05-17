@@ -15,23 +15,19 @@ class TaskTableViewCell: UITableViewCell {
 
     let baseView = UIView().then {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
     }
 
     let courseNameLabel = UILabel().then {
-        $0.text = "Data Structure"
         $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 12)
     }
 
     let taskNameLabel = UILabel().then {
-        $0.text = "Programming Assignment 1"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-Bold", size: 16)
     }
 
     let timeLabel = UILabel().then {
-        $0.text = "by 11:00 am"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 14)
     }
@@ -42,13 +38,11 @@ class TaskTableViewCell: UITableViewCell {
     }
 
     let dayLabel = UILabel().then {
-        $0.text = "18"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 23)
     }
 
     let monthLabel = UILabel().then {
-        $0.text = "April"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13) // 10
     }
@@ -57,7 +51,6 @@ class TaskTableViewCell: UITableViewCell {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillProportionally
-//        $0.spacing = 24
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .clear
     }
@@ -93,7 +86,6 @@ class TaskTableViewCell: UITableViewCell {
         [courseNameLabel, taskNameLabel, timeLabel, dayLabel, monthLabel].forEach {
             $0.sizeToFit()
             $0.adjustsFontForContentSizeCategory = true
-//            $0.adjustsFontSizeToFitWidth = true
         }
     }
 
@@ -142,6 +134,5 @@ class TaskTableViewCell: UITableViewCell {
             $0.height.equalTo(Constant.height * 21)
             $0.width.equalTo(Constant.width * 21)
         }
-
     }
 }
