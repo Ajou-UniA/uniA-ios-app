@@ -188,9 +188,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func signInBtnTapped() {
-        // SignUpBtn 누르면 남아있는 textfield 값 지워주기
-//        emailTextField.text = nil
-//        passwordTextField.text = nil
+  
         guard let loginId = emailTextField.text,
          let password = passwordTextField.text else {return}
         
@@ -207,7 +205,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
-                    print(UserDefaults.standard.integer(forKey: "memberId"))
                 }
                 UserDefaults.standard.set(password, forKey: "password")
                 let homeViewController = TabBarController()
@@ -234,9 +231,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func checkBoxBtnTapped() {
         if flag == 1 {
             checkBoxBtn.setImage(UIImage(named: "checkboxSelected"), for: .normal)
+            
             flag = 0
         } else {
             checkBoxBtn.setImage(UIImage(named: "checkbox"), for: .normal)
+            
             flag = 1
         }
     }

@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        self.window?.rootViewController = UINavigationController(rootViewController: VerificationViewController())
+        self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                 window?.makeKeyAndVisible()
 
         //        // MARK: 자동로그인을 위한 코드
