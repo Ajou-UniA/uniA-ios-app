@@ -21,8 +21,6 @@ class AjouCampusMapView: UIView {
         $0.image = UIImage(named: "map")
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
-//        $0.layer.cornerRadius = 20
-//        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -50,7 +48,7 @@ class AjouCampusMapView: UIView {
         imageView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.bottom.equalToSuperview().inset(20)
-            $0.leading.trailing.equalToSuperview().inset(19)
+            $0.leading.trailing.equalToSuperview()
         }
     }
 }
