@@ -259,9 +259,9 @@
 		8A0D212429BB72200045C456 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8AA9BCDE2A14DCB50074652D /* Task */,
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
+				8AA9BCDE2A14DCB50074652D /* Task */,
 				07E298BA29FB9E67000C137E /* Data */,
 				07E298B929FB9E4B000C137E /* Login */,
 				07E298B829FB9E37000C137E /* MyPage */,

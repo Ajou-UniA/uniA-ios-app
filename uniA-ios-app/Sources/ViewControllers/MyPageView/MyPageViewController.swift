@@ -14,10 +14,18 @@ class MyPageViewController: UIViewController {
     lazy var midView = UIView().then {
         $0.backgroundColor = .white
     }
-    lazy var titleLabel = UILabel().then {
+    private let titleView = UIView().then {
+        $0.backgroundColor = .white
+    }
+    let logoImageView = UIImageView().then {
+        $0.image = UIImage(named: "logo-small")
+        $0.contentMode = .scaleAspectFit
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let titleLabel = UILabel().then {
         $0.text = "My Page"
-        $0.textAlignment = .left
-        $0.font = UIFont(name: "Urbanist-Bold", size: 30)
+        $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-Bold", size: 20)
     }
     lazy var subtitleLabel = UILabel().then {
         $0.text = "Account"
@@ -109,8 +117,11 @@ class MyPageViewController: UIViewController {
     // MARK: - Helper
 
     func setUpView() {
-        [titleLabel, midView, subtitleLabel, resetBtn, deleteBtn, editBtn, logoutBtn, borderView].forEach {
+        [titleView, midView, subtitleLabel, resetBtn, deleteBtn, editBtn, logoutBtn, borderView].forEach {
             view.addSubview($0)
+        }
+        [titleLabel, logoImageView].forEach {
+            titleView.addSubview($0)
         }
         [circleView, majorLabel, numberLabel, nameLabel, profileView].forEach {
             midView.addSubview($0)
@@ -118,14 +129,21 @@ class MyPageViewController: UIViewController {
     }
 
     func setUpConstraints() {
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
+        titleView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Constant.height * 115)
         }
-
+        logoImageView.snp.makeConstraints {
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.bottom.lessThanOrEqualToSuperview().inset(10) // 20
+        }
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(logoImageView.snp.trailing).offset(20)
+            $0.centerY.equalTo(logoImageView)
+        }
         midView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.top.equalTo(titleView.snp.bottom) // .offset(20)
             $0.height.equalTo(Constant.width * 143)
         }
         borderView.snp.makeConstraints {
