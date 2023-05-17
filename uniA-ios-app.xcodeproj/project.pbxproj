@@ -182,28 +182,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07CDF54A2A069FBF000B226E /* NetworkModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkModels;
-			sourceTree = "<group>";
-		};
-		07CDF54B2A069FCC000B226E /* NetworkServices */ = {
-			isa = PBXGroup;
-			children = (
-				07CDF54C2A06A008000B226E /* MyPage */,
-			);
-			path = NetworkServices;
-			sourceTree = "<group>";
-		};
-		07CDF54C2A06A008000B226E /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MyPage;
-			sourceTree = "<group>";
-		};
 		07E298B829FB9E37000C137E /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,8 +233,6 @@
 		8A0D212229BB71FF0045C456 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				07CDF54B2A069FCC000B226E /* NetworkServices */,
-				07CDF54A2A069FBF000B226E /* NetworkModels */,
 				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
 				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
 				8A0D212529BB72250045C456 /* Views */,
