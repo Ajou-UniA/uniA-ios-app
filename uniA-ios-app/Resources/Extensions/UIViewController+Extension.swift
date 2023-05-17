@@ -17,7 +17,6 @@ extension UIViewController {
         backButton.width = 30
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         addHeight()
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "", size: 16)!]
     }
 
     func addHeight() {
