@@ -25,8 +25,6 @@ class HomeViewController: UIViewController {
     let getTask = Task()
     var tasks: [TaskResponse] = []
 
-    let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
     let dateFormatter = DateFormatter()
 
     private let titleView = UIView().then {
@@ -104,11 +102,22 @@ class HomeViewController: UIViewController {
             self.helloLabel.text = "Hello \(data.firstName!)!"
         }
 
-        getMyTaskSortedByDeadline { [weak self] tasks in
-            // 정렬된 할 일 목록(tasks)을 사용하여 필요한 작업을 수행
+        getTask.getMyTaskSorted(memberId: memberId) { [weak self] tasks in
             let currentDate = Date()
-            let threeDaysAhead = Calendar.current.date(byAdding: .day, value: 3, to: currentDate)!
-            let filteredTasks = tasks.filter { $0.deadline <= threeDaysAhead }
+            let calendar = Calendar.current
+            let filteredTasks = tasks.filter { task in
+                let components = calendar.dateComponents([.year, .month, .day], from: currentDate, to: task.deadline)
+                if let years = components.year, years > 0 {
+                    return true
+                } else if let months = components.month, months > 0 {
+                    return true
+                } else if let days = components.day, days > 0 {
+                    return true
+                } else if let days = components.day, days == 0 {
+                    return true
+                }
+                return false
+            }
             self?.tasks = filteredTasks
             self?.taskCollectionView.reloadData()
         }
@@ -236,17 +245,37 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         let task = tasks[indexPath.row]
         let currentDate = Date()
+        let deadline = task.deadline // 과제의 마감 날짜
 
-        let daysRemaining = Calendar.current.dateComponents([.day], from: currentDate, to: task.deadline).day
-        var dayLeftText: String
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: currentDate, to: deadline)
 
-        if daysRemaining! < 1 {
-            dayLeftText = "1 day left"
-        } else if daysRemaining! < 3 {
-            dayLeftText = "2 days left"
+        var dayLeftText = ""
+        if let years = components.year, years > 0 {
+            dayLeftText = "\(years) year\(years > 1 ? "s" : "") left"
+        } else if let months = components.month, months > 0 {
+            dayLeftText = "\(months) month\(months > 1 ? "s" : "") left"
+        } else if let days = components.day, days > 0 {
+            dayLeftText = "\(days) day\(days > 1 ? "s" : "") left"
+        } else if let days = components.day, days == 0 {
+            dayLeftText = "Today"
         } else {
-            dayLeftText = "" // 3일 이상 남은 경우는 표시하지 않음
+            dayLeftText = ""
         }
+
+//        let task = tasks[indexPath.row]
+//        let currentDate = Date()
+//
+//        let daysRemaining = Calendar.current.dateComponents([.day], from: currentDate, to: task.deadline).day
+//        var dayLeftText: String
+//
+//        if (daysRemaining! < 1) && (daysRemaining! >= 0) {
+//            dayLeftText = "1 day left"
+//        } else if daysRemaining! < 3 {
+//            dayLeftText = "2 days left"
+//        } else {
+//            dayLeftText = "" // 3일 이상 남은 경우는 표시하지 않음
+//        }
 
         cell.baseView.backgroundColor = self.colors[indexPath.row % self.colors.count]
         cell.courseNameLabel.text = task.lectureName
@@ -261,6 +290,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController {
     func getMyTaskSortedByDeadline(onCompleted: @escaping ([TaskResponse]) -> Void) {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
         getTask.getMyTask(memberId: memberId) { tasks in
             let currentDate = Date()
             let sortedTasks = tasks.sorted { task1, task2 in

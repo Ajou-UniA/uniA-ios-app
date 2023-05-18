@@ -27,8 +27,6 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
 
     let saveTaskPopUpView = SaveTaskPopUpView()
 
-    let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
     var datePickerView = UIDatePicker()
     var timePickerView = UIDatePicker()
 
@@ -129,6 +127,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
     @objc
     func createTaskBtnTapped() {
 
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
         guard let courseName = popUpView.courseNameTextField.text,
               let taskName = popUpView.taskNameTextField.text,
               let dueDate = popUpView.dueDateTextField.text,
@@ -199,11 +199,12 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
 
     @objc
     func refresh() {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
         self.getTask.getLastAssignmentId { lastAssignmentId in
             self.selectedAssignmentID = lastAssignmentId!
             let indexPath = IndexPath(row: lastAssignmentId!+1, section: 0)
             self.taskTableView.insertRows(at: [indexPath], with: .automatic)
-            self.getTask.getMyTask(memberId: self.memberId) { tasks in
+            self.getTask.getMyTask(memberId: memberId) { tasks in
                 print(tasks.count)
                 self.tasks = tasks
                 self.taskTableView.reloadData()
