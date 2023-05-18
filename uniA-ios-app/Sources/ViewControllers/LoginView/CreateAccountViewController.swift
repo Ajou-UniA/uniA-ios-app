@@ -9,6 +9,9 @@ import SnapKit
 import Then
 import UIKit
 import Alamofire
+import RxKeyboard
+import RxSwift
+import RxCocoa
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
@@ -140,9 +143,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
-    
+        
         // MARK: - Lifecycles
-    
+    let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -167,10 +171,22 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
         
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                guard let strongSelf = self else { return }
+
+                if strongSelf.confirmPasswordTextField.isFirstResponder || strongSelf.passwordTextField.isFirstResponder
+                    || strongSelf.pickerView.isFirstResponder {
+                    strongSelf.adjustButtonPositionForKeyboard(height: keyboardVisibleHeight)
+                }
+            })
+            .disposed(by: disposeBag)
     }
+    
+    
   
     // MARK: - Helper
-
+    
     func setUpView() {
         self.view.addSubview(scrollView)
         self.view.addSubview(backBtn)
@@ -181,6 +197,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
 
     func setUpConstraints() {
+
         backBtn.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
@@ -261,7 +278,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(40)
             $0.bottom.equalTo(confirmPasswordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            
         }
+        
         policyLabel.snp.makeConstraints {
             $0.top.equalTo(submitBtn.snp.bottom).offset(18)
             $0.bottom.equalToSuperview() // 마지막에 있는건 무조건..바텀값 주자..안그러면 작동안한다..
@@ -269,6 +288,16 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - adjustButtonPosition
+    
+    private func adjustButtonPositionForKeyboard(height: CGFloat) {
+        let bottomInset = max(height - scrollView.safeAreaInsets.bottom, 0)
+        scrollView.contentInset.bottom = bottomInset
+        
+        let scrollViewBottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom)
+        scrollView.setContentOffset(scrollViewBottomOffset, animated: true)
+    }
+
     // MARK: - scrollView tap시 keboard 내리기
     
     func scrollTap() {
@@ -288,13 +317,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     let memberEmail = UserDefaults.standard.string(forKey: "email")
 
     @objc
-    func submitBtnTapped() { // textfield 빈공간 하나라도 x // password, confirmpassword 맞아야함.
-//        firstNameTextField.text = nil
-//        lastNameTextField.text = nil
-//        studentIdTextField.text = nil
-//        departmentTextField.text = nil
-//        passwordTextField.text = nil
-//        confirmPasswordTextField.text = nil
+    func submitBtnTapped() {
         
         guard let firstName = firstNameTextField.text,
          let lastName = lastNameTextField.text,
@@ -305,23 +328,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         let isEmptyField = firstName.isEmpty || lastName.isEmpty || memberId.isEmpty || memberMajor.isEmpty || memberPassword.isEmpty || memberConfirmPassword.isEmpty
             if isEmptyField {
-                // 공백이 있는 경우, 여기서 원하는 처리를 수행할 수 있습니다.
-                // 예를 들면, 경고창을 표시하거나 액션을 취하지 않고 함수를 종료할 수 있습니다.
-                // 원하는 동작에 맞게 아래 코드를 수정해주세요.
-                let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-                    feedbackGenerator.prepare()
-                    feedbackGenerator.impactOccurred()
+                let msg = UIAlertController(title: "Empty field", message: "It looks like you forgot to fill in this field. Please enter a value.", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
+            }
+            msg.addAction(okAction)
+            self.present(msg, animated: true)
                 print("공백하나라도 있다.")
                 return
             }
-
             // password와 confirmPassword 일치 여부 체크
             if memberPassword != memberConfirmPassword {
-                
                 warningLabel2.text = "Please make sure your passwords match."
                 confirmPasswordLabel.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
                 confirmPasswordTextField.layer.borderColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1).cgColor
-                
                 return
             }
 
@@ -345,7 +364,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+   
     // MARK: - TextFieldDelegate
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -353,12 +372,17 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         warningLabel2.text = ""
         confirmPasswordLabel.textColor = .black
         confirmPasswordTextField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+       
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         passwordLabel.textColor = .black
         warningLabel1.text = ""
+        
     }
+    
+    
+
     @objc private func textDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
             if let text = textField.text {
