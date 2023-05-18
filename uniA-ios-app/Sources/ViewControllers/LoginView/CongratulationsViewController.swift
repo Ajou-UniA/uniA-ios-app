@@ -72,6 +72,8 @@ class CongratulationsViewController: UIViewController {
     // MARK: - Navigation
     @objc
     func signInBtnTapped() {
+        UserDefaults.standard.removeObject(forKey: "email")
+
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

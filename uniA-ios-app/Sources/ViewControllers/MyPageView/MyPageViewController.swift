@@ -101,7 +101,7 @@ class MyPageViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         memberInfoAccess.findByMemberId(memberId: memberId){ data in
-            self.nameLabel.text = "\(data.lastName!)\(data.firstName!)"
+            self.nameLabel.text = "\(data.firstName!) \(data.lastName!)"
             self.majorLabel.text = data.memberMajor
             self.numberLabel.text = String(data.memberId!)
             print("viewWillApeear!\(String(describing: data.memberId))")
@@ -202,7 +202,7 @@ class MyPageViewController: UIViewController {
         majorLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileView.snp.trailing).offset(37)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(20)
 
         }
         numberLabel.snp.makeConstraints {
@@ -241,6 +241,8 @@ class MyPageViewController: UIViewController {
         let yesAction = UIAlertAction(title: "Yes", style: . cancel) { (_) in
             self.logoutAccess.logout() { data in
                 print(data.body)
+                UserDefaults.standard.removeObject(forKey: "memberId")
+                UserDefaults.standard.removeObject(forKey: "password")
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }

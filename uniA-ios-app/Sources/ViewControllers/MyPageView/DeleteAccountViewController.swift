@@ -173,6 +173,9 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
                     self.deleteAccess.deleteAccount(memberId: self.memberId) { data in
                             print(data)
                         }
+                    UserDefaults.standard.removeObject(forKey: "memberId")
+                    UserDefaults.standard.removeObject(forKey: "password")
+
                     self.navigationController?.popToRootViewController(animated: true)
                 }
                 msg.addAction(okAction)
