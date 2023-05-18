@@ -211,6 +211,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
+                    print(UserDefaults.standard.string(forKey: "memberId"))
                 }
                 UserDefaults.standard.set(password, forKey: "password")
                 if self.flag == 1 { // remember me check

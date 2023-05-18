@@ -62,7 +62,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
 
     var timer: Timer?
-    var secondsLeft: Int = 30
+    var secondsLeft: Int = 180
     
     // MARK: - Lifecycles
 
@@ -185,7 +185,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     func resetTimer() {
-        self.secondsLeft = 20
+        self.secondsLeft = 180
         timer?.invalidate()
         timer = nil
     }

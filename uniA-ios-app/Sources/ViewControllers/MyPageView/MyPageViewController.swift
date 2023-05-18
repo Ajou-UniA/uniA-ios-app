@@ -97,15 +97,17 @@ class MyPageViewController: UIViewController {
     
     // MARK: - Lifecycles
     let memberInfoAccess = FindMemberApiModel()
-    let memberId = UserDefaults.standard.integer(forKey: "memberId")
 
     override func viewWillAppear(_ animated: Bool) {
-        memberInfoAccess.findByMemberId(memberId: memberId){ data in
-            self.nameLabel.text = "\(data.firstName!) \(data.lastName!)"
-            self.majorLabel.text = data.memberMajor
-            self.numberLabel.text = String(data.memberId!)
-            print("viewWillApeear!\(String(describing: data.memberId))")
-        }
+        let memberId = UserDefaults.standard.integer(forKey: "memberId") // 로그아웃 후 다른 사용자의 ID를 가져옴
+
+            print("\(memberId)hello")
+            memberInfoAccess.findByMemberId(memberId: memberId){ data in
+                self.nameLabel.text = "\(data.firstName!) \(data.lastName!)"
+                self.majorLabel.text = data.memberMajor
+                self.numberLabel.text = String(data.memberId!)
+                print("viewWillAppear! \(String(describing: data.memberId))")
+            }
     }
     
     override func viewDidLoad() {
