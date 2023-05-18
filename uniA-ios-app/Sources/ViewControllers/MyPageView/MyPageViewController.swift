@@ -96,6 +96,7 @@ class MyPageViewController: UIViewController {
             self.nameLabel.text = "\(data.lastName!)\(data.firstName!)"
             self.majorLabel.text = data.memberMajor
             self.numberLabel.text = String(data.memberId!)
+            print("viewWillApeear!\(String(describing: data.memberId))")
         }
     }
     

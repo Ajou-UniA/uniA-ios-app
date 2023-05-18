@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
+        $0.autocapitalizationType = .none 
     }
     
     lazy var passwordLabel = UILabel().then {
@@ -91,6 +92,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = .white
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        if flag == 0 {
+            emailTextField.text = UserDefaults.standard.string(forKey: "rememberemail")
+            passwordTextField.text = UserDefaults.standard.string(forKey: "rememberpassword")
+        }
         
         setUpView()
         setUpConstraints()
@@ -207,6 +213,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     UserDefaults.standard.set(data, forKey: "memberId")
                 }
                 UserDefaults.standard.set(password, forKey: "password")
+                if self.flag == 1 { // remember me check
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "rememberemail")
+                    UserDefaults.standard.set(password, forKey: "rememberpassword")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "rememberemail")
+                    UserDefaults.standard.removeObject(forKey: "rememberpassword")
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                }
                 let homeViewController = TabBarController()
                 self.navigationController?.pushViewController(homeViewController, animated: true)
             } else {
@@ -227,16 +242,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
-    var flag = 1
+    var flag = 0
     @objc func checkBoxBtnTapped() {
-        if flag == 1 {
+        if flag == 0 {
             checkBoxBtn.setImage(UIImage(named: "checkboxSelected"), for: .normal)
-            
-            flag = 0
+            flag = 1
         } else {
             checkBoxBtn.setImage(UIImage(named: "checkbox"), for: .normal)
-            
-            flag = 1
+            flag = 0
         }
     }
     // MARK: - TextFieldDelegate

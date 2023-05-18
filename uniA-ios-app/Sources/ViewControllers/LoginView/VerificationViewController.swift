@@ -188,8 +188,8 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         self.secondsLeft = 20
         timer?.invalidate()
         timer = nil
-        
     }
+    
     @objc func resendBtnTapped() {
         let msg = UIAlertController(title: "Resend Code Success", message: "New verification code has been sent to your Ajou University email.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
