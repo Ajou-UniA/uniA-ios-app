@@ -101,22 +101,11 @@ class HomeViewController: UIViewController {
         memberInfoAccess.findByMemberId(memberId: memberId) { data in
             self.helloLabel.text = "Hello \(data.firstName!)!"
         }
-
         getTask.getMyTaskSorted(memberId: memberId) { [weak self] tasks in
             let currentDate = Date()
-            let calendar = Calendar.current
             let filteredTasks = tasks.filter { task in
-                let components = calendar.dateComponents([.year, .month, .day], from: currentDate, to: task.deadline)
-                if let years = components.year, years > 0 {
-                    return true
-                } else if let months = components.month, months > 0 {
-                    return true
-                } else if let days = components.day, days > 0 {
-                    return true
-                } else if let days = components.day, days == 0 {
-                    return true
-                }
-                return false
+                let daysRemaining = Calendar.current.dateComponents([.day], from: currentDate, to: task.deadline).day ?? 0
+                return daysRemaining <= 3
             }
             self?.tasks = filteredTasks
             self?.taskCollectionView.reloadData()
