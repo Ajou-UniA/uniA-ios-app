@@ -46,6 +46,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
+        $0.isSecureTextEntry = true
     }
 
     lazy var submitBtn = UIButton().then {

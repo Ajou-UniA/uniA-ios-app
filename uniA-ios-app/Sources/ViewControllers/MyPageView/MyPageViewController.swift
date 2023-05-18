@@ -81,7 +81,7 @@ class MyPageViewController: UIViewController {
     }
     
     lazy var profileView = UIImageView().then {
-        $0.image = UIImage(named: "profileLogo")
+        $0.image = UIImage(named: "bear")
     }
     
     let borderView = UIView().then {
@@ -90,8 +90,7 @@ class MyPageViewController: UIViewController {
     
     lazy var circleView = UIView().then {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 42.0
-        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 50.0
         $0.layer.borderColor = UIColor.systemGray5.cgColor
     }
     
@@ -126,9 +125,10 @@ class MyPageViewController: UIViewController {
         [titleLabel, logoImageView].forEach {
             titleView.addSubview($0)
         }
-        [circleView, majorLabel, numberLabel, nameLabel, profileView].forEach {
+        [circleView, majorLabel, numberLabel, nameLabel].forEach {
             midView.addSubview($0)
         }
+        circleView.addSubview(profileView)
     }
 
     func setUpConstraints() {
@@ -185,31 +185,27 @@ class MyPageViewController: UIViewController {
         circleView.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(31)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
-            $0.width.equalTo(Constant.width * 84)
-            $0.height.equalTo(Constant.height * 84)
+            $0.width.equalTo(Constant.width * 100)
+            $0.height.equalTo(Constant.height * 100)
         }
         
         profileView.snp.makeConstraints {
-            $0.top.equalTo(midView.snp.top).offset(49)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(36)
-            $0.width.equalTo(Constant.width * 45)
-            $0.height.equalTo(Constant.height * 49)
-            
+            $0.edges.equalToSuperview()
         }
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(37)
-            $0.leading.equalTo(profileView.snp.trailing).offset(37)
+            $0.leading.equalTo(profileView.snp.trailing).offset(16)
             
         }
         majorLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
-            $0.leading.equalTo(profileView.snp.trailing).offset(37)
+            $0.leading.equalTo(profileView.snp.trailing).offset(16)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(20)
 
         }
         numberLabel.snp.makeConstraints {
             $0.top.equalTo(majorLabel.snp.bottom).offset(10)
-            $0.leading.equalTo(profileView.snp.trailing).offset(37)
+            $0.leading.equalTo(profileView.snp.trailing).offset(16)
             
         }
         

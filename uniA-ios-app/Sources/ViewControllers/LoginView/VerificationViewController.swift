@@ -29,9 +29,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
     lazy var subtitleLabel = UILabel().then {
         $0.lineBreakMode = .byWordWrapping
+        $0.numberOfLines = 0
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.39
-        $0.attributedText = NSMutableAttributedString(string: "Enter code that we have sent to your Ajou University \nemail.",
+        $0.attributedText = NSMutableAttributedString(string: "Enter code that we have sent to your Ajou University email.",
                                                       attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         $0.numberOfLines = 2
         $0.font = UIFont.systemFont(ofSize: 15)
@@ -93,12 +94,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.top).offset(89)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-           
         }
-        
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(25)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         otpField.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(25)

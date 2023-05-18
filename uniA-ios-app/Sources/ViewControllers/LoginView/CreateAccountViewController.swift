@@ -176,7 +176,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                 guard let strongSelf = self else { return }
 
                 if strongSelf.confirmPasswordTextField.isFirstResponder || strongSelf.passwordTextField.isFirstResponder
-                    || strongSelf.pickerView.isFirstResponder {
+                    || strongSelf.departmentTextField.isFirstResponder {
                     strongSelf.adjustButtonPositionForKeyboard(height: keyboardVisibleHeight)
                 }
             })
