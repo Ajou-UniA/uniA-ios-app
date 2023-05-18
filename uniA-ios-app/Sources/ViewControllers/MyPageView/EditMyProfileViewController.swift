@@ -109,6 +109,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
                 self.lastNameTextField.text = data.lastName
                 self.departmentTextField.text = data.memberMajor
                 self.memberId = data.memberId!
+                print("editmytprofile\(data.memberId!)")
             }
         }
         

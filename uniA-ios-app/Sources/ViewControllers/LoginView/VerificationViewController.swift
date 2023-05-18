@@ -62,7 +62,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     }
 
     var timer: Timer?
-    var secondsLeft: Int = 180
+    var secondsLeft: Int = 30
     
     // MARK: - Lifecycles
 
@@ -133,19 +133,21 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         guard let code = otpField.text else {return}
 
         let bodyData: Parameters = ["email": self.email, "verificationCode": code]
-        self.verificationAccess.requestVerificationDataModel(bodyData: bodyData){ data in
+        self.verificationAccess.requestVerificationDataModel(bodyData: bodyData) { data in
             if data.statusCodeValue == 200 {
                 let msg = UIAlertController(title: "Verification Success", message: "Your verification code has been verified successfully.", preferredStyle: UIAlertController.Style.alert)
                 let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
                     if self.branch == 0 {
+                        self.timer?.invalidate()
+                        self.timer = nil
                         let createAccountViewController = CreateAccountViewController()
                         self.navigationController?.pushViewController(createAccountViewController, animated: true)
-
                     } else if self.branch == 1 {
+                        self.timer?.invalidate()
+                        self.timer = nil
                         let forgotPasswordViewController = ForgotPasswordViewController()
                         self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-                    }
-                    else {
+                } else {
                         return
                     }
                 }
@@ -183,11 +185,11 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     func resetTimer() {
-        self.secondsLeft = 10
+        self.secondsLeft = 20
         timer?.invalidate()
         timer = nil
-        
     }
+    
     @objc func resendBtnTapped() {
         let msg = UIAlertController(title: "Resend Code Success", message: "New verification code has been sent to your Ajou University email.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
