@@ -31,6 +31,8 @@ class TaskViewController: UIViewController {
     let saveTaskPopUpView = SaveTaskPopUpView()
     let createTaskPopUpView = CreateTaskPopUpView()
 
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
     let refreshControl = UIRefreshControl()
 
     var customTabBarController: UITabBarController?
@@ -81,7 +83,7 @@ class TaskViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getTask.getMyTask(memberId: 202021758) { tasks in
+        getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
                 self.taskTableView.reloadData()
@@ -143,7 +145,8 @@ class TaskViewController: UIViewController {
     }
 
     @objc func handleTaskUpdate() {
-    getTask.getMyTask(memberId: 202021758) { tasks in
+
+    getTask.getMyTask(memberId: memberId) { tasks in
         self.tasks = tasks
         DispatchQueue.main.async {
             self.taskTableView.reloadData()
@@ -260,7 +263,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource, UITabB
 
 extension TaskViewController {
     func refreshTasks() {
-        getTask.getMyTask(memberId: 202021758) { tasks in
+        getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
                 self.taskTableView.reloadData()

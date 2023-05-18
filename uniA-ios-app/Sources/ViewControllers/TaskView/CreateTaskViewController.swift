@@ -27,6 +27,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
 
     let saveTaskPopUpView = SaveTaskPopUpView()
 
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
     var datePickerView = UIDatePicker()
     var timePickerView = UIDatePicker()
 
@@ -169,7 +171,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
 
         getTask.createTask(bodyData: bodyData)
 
-        getTask.getMyTask(memberId: 202021758) { tasks in
+        getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.tasks = tasks
@@ -201,7 +203,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
             self.selectedAssignmentID = lastAssignmentId!
             let indexPath = IndexPath(row: lastAssignmentId!+1, section: 0)
             self.taskTableView.insertRows(at: [indexPath], with: .automatic)
-            self.getTask.getMyTask(memberId: 202021758) { tasks in
+            self.getTask.getMyTask(memberId: self.memberId) { tasks in
                 print(tasks.count)
                 self.tasks = tasks
                 self.taskTableView.reloadData()
