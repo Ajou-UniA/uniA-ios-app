@@ -31,8 +31,6 @@ class TaskViewController: UIViewController {
     let saveTaskPopUpView = SaveTaskPopUpView()
     let createTaskPopUpView = CreateTaskPopUpView()
 
-    let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
     let refreshControl = UIRefreshControl()
 
     var customTabBarController: UITabBarController?
@@ -83,6 +81,8 @@ class TaskViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
         getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
@@ -145,11 +145,11 @@ class TaskViewController: UIViewController {
     }
 
     @objc func handleTaskUpdate() {
-
-    getTask.getMyTask(memberId: memberId) { tasks in
-        self.tasks = tasks
-        DispatchQueue.main.async {
-            self.taskTableView.reloadData()
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
+        getTask.getMyTask(memberId: memberId) { tasks in
+            self.tasks = tasks
+            DispatchQueue.main.async {
+                self.taskTableView.reloadData()
             }
         }
     }
@@ -162,6 +162,15 @@ class TaskViewController: UIViewController {
     @objc func handleRefreshControl() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.refreshControl.endRefreshing()
+        }
+    }
+
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: taskTableView)
+            if let indexPath = taskTableView.indexPathForRow(at: touchPoint) {
+                // your code here, get the row for the indexPath or do whatever you want
+            }
         }
     }
 }
@@ -209,6 +218,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource, UITabB
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.cellIdentifier) as? TaskTableViewCell else {
             return UITableViewCell()
         }
+
         let task = tasks[indexPath.row]
 
         cell.deadlineView.backgroundColor = self.colors[indexPath.row % self.colors.count]
@@ -259,10 +269,21 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource, UITabB
         saveTaskViewController.modalTransitionStyle = .crossDissolve
         self.present(saveTaskViewController, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedTask = tasks.remove(at: sourceIndexPath.row)
+        tasks.insert(movedTask, at: destinationIndexPath.row)
+        taskTableView.reloadData()
+    }
 }
 
 extension TaskViewController {
     func refreshTasks() {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
         getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {

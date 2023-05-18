@@ -27,8 +27,6 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
     let taskViewController = TaskViewController()
     let taskTableView = TaskViewController().taskTableView
 
-    let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
     var datePickerView = UIDatePicker()
     var timePickerView = UIDatePicker()
 
@@ -135,6 +133,8 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
 
     @objc
     func saveTaskBtnTapped() {
+
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
 
         guard let courseName = popUpView.courseNameTextField.text,
               let taskName = popUpView.taskNameTextField.text,
