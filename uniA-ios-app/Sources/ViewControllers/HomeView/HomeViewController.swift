@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
     let getTask = Task()
     var tasks: [TaskResponse] = []
 
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
     let dateFormatter = DateFormatter()
 
     private let titleView = UIView().then {
@@ -72,11 +74,11 @@ class HomeViewController: UIViewController {
     let ajouCampusMapView = AjouCampusMapView()
     let cell = TaskCollectionViewCell()
 
+    let memberInfoAccess = FindMemberApiModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        let hello: String = "Hello \(nickname)!"
-        helloLabel.text = hello
         taskCollectionView.delegate = self
         taskCollectionView.dataSource = self
         scrollView.insetsLayoutMarginsFromSafeArea = (0 != 0)
@@ -85,6 +87,7 @@ class HomeViewController: UIViewController {
         favoriteView.OIABtn.addTarget(self, action: #selector(linkTapped), for: .touchUpInside)
         favoriteView.libraryBtn.addTarget(self, action: #selector(linkTapped), for: .touchUpInside)
 //        self.view.layoutIfNeeded()
+        setUpGesture()
         taskCollectionView.reloadData()
         setUpView()
         setUpConstraints()
@@ -94,6 +97,12 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
 
         self.taskCollectionView.reloadData()
+
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
+        memberInfoAccess.findByMemberId(memberId: memberId) { data in
+            self.helloLabel.text = "Hello \(data.firstName!)!"
+        }
 
         getMyTaskSortedByDeadline { [weak self] tasks in
             // 정렬된 할 일 목록(tasks)을 사용하여 필요한 작업을 수행
@@ -155,15 +164,6 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func loca() {
-        favoriteView.snp.makeConstraints {
-            $0.top.equalTo(helloLabel.snp.bottom).offset(20)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(Constant.height * 210)
-        }
-    }
-
     @objc
     func linkTapped(_ button: UIButton) {
         if let type = ButtonType(rawValue: button.tag) {
@@ -186,6 +186,20 @@ class HomeViewController: UIViewController {
                 self.present(librarySafariView, animated: true, completion: nil)
             }
         }
+    }
+
+    func setUpGesture() {
+        let imageViewTappedRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(recognizer:)))
+        ajouCampusMapView.imageView.isUserInteractionEnabled = true
+        ajouCampusMapView.imageView.addGestureRecognizer(imageViewTappedRecognizer)
+    }
+
+    @objc
+    func imageViewTapped(recognizer: UITapGestureRecognizer) {
+        let detailMapViewController = DetailMapViewController()
+        detailMapViewController.modalPresentationStyle = .overFullScreen
+        detailMapViewController.modalTransitionStyle = .crossDissolve
+        self.present(detailMapViewController, animated: true)
     }
 }
 
@@ -247,7 +261,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController {
     func getMyTaskSortedByDeadline(onCompleted: @escaping ([TaskResponse]) -> Void) {
-        getTask.getMyTask(memberId: 202021758) { tasks in
+        getTask.getMyTask(memberId: memberId) { tasks in
             let currentDate = Date()
             let sortedTasks = tasks.sorted { task1, task2 in
                 let daysRemaining1 = Calendar.current.dateComponents([.day], from: currentDate, to: task1.deadline).day ?? 0

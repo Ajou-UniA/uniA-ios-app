@@ -12,6 +12,8 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
 
     let height: CGFloat = 85
 
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
     let taskTab = TaskViewController()
     let homeTab = HomeViewController()
     let myPageTab = MyPageViewController()
@@ -77,7 +79,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     // CreateTaskDelegate 메서드 구현
     func didCreateTask() {
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: 202021758) { tasks in
+            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()
@@ -88,7 +90,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
 
     @objc func handleTaskUpdate() {
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: 202021758) { tasks in
+            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()

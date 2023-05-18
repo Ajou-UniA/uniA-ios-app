@@ -70,6 +70,7 @@
 		8AA9BCE42A14DCF90074652D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE32A14DCF90074652D /* Task.swift */; };
 		8AA9BCE72A14DD3E0074652D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA9BCE62A14DD3E0074652D /* SwiftyJSON */; };
 		8AA9BCEA2A14F8E10074652D /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA9BCE92A14F8E10074652D /* RxKeyboard */; };
+		8AA9BCEC2A1619CD0074652D /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCEB2A1619CD0074652D /* DetailMapViewController.swift */; };
 		8AAF50FF2A067DA600E5CC02 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */; };
 		8AAF51002A067DA600E5CC02 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FC2A067DA600E5CC02 /* Header.swift */; };
 		8AAF51012A067DA600E5CC02 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF50FD2A067DA600E5CC02 /* URL.swift */; };
@@ -144,6 +145,7 @@
 		8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRequest.swift; sourceTree = "<group>"; };
 		8AA9BCE12A14DCE40074652D /* TaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskResponse.swift; sourceTree = "<group>"; };
 		8AA9BCE32A14DCF90074652D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		8AA9BCEB2A1619CD0074652D /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		8AAF50FB2A067DA600E5CC02 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		8AAF50FC2A067DA600E5CC02 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		8AAF50FD2A067DA600E5CC02 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			children = (
 				8AAF51062A06827900E5CC02 /* FavoriteView.swift */,
 				8AAF51072A06827900E5CC02 /* HomeViewController.swift */,
+				8AA9BCEB2A1619CD0074652D /* DetailMapViewController.swift */,
 				8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */,
 			);
 			path = HomeView;
@@ -571,6 +574,7 @@
 				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
 				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
+				8AA9BCEC2A1619CD0074652D /* DetailMapViewController.swift in Sources */,
 				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
 				8AAF51012A067DA600E5CC02 /* URL.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
@@ -747,6 +751,7 @@
 				DEVELOPMENT_TEAM = VT34K852T5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = UniA;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -756,7 +761,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ajou.uniA-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UniA-ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -774,6 +779,7 @@
 				DEVELOPMENT_TEAM = VT34K852T5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uniA-ios-app/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = UniA;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -783,7 +789,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ajou.uniA-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UniA-ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

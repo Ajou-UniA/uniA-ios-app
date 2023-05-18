@@ -27,6 +27,8 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
     let taskViewController = TaskViewController()
     let taskTableView = TaskViewController().taskTableView
 
+    let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
     var datePickerView = UIDatePicker()
     var timePickerView = UIDatePicker()
 
@@ -77,10 +79,10 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
         self.datePickerView.locale = Locale(identifier: "English")
         self.timePickerView.locale = Locale(identifier: "English")
 
-        popUpView.courseNameTextField.placeholder = courseNamePlaceholder
-        popUpView.taskNameTextField.placeholder = taskNamePlaceholder
-        popUpView.dueDateTextField.placeholder = dueDatePlaceholder
-        popUpView.dueTimeTextField.placeholder = dueTimePlaceholder
+        popUpView.courseNameTextField.text = courseNamePlaceholder
+        popUpView.taskNameTextField.text = taskNamePlaceholder
+        popUpView.dueDateTextField.text = dueDatePlaceholder
+        popUpView.dueTimeTextField.text = dueTimePlaceholder
 
         setUpView()
         setUpConstraints()
@@ -178,7 +180,7 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-        getTask.getMyTask(memberId: 202021758) { tasks in
+        getTask.getMyTask(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.tasks = tasks
@@ -404,9 +406,6 @@ class SaveTaskPopUpView: UIView, UITextFieldDelegate {
 
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-//        if textField.text?.isEmpty ?? true {
-//            textField.text = textField.placeholder
-//        }
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
