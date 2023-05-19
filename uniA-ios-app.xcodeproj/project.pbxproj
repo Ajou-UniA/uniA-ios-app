@@ -25,6 +25,8 @@
 		07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD0A982A03F06600FC6EC6 /* SignInApiModel.swift */; };
 		07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD0A9A2A03F43C00FC6EC6 /* LoginCheckApiModel.swift */; };
 		07D950002A174CFF007FD282 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D94FFF2A174CFF007FD282 /* PolicyViewController.swift */; };
+		07D950022A179732007FD282 /* Privacy_policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 07D950012A179732007FD282 /* Privacy_policy.pdf */; };
+		07D950052A179B32007FD282 /* Terms&conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 07D950042A179B32007FD282 /* Terms&conditions.pdf */; };
 		07DBD46629CF376000608A93 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBD46529CF376000608A93 /* Department.swift */; };
 		07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E298B429FB9DCB000C137E /* DeleteAccountApiModel.swift */; };
 		07E298B729FB9E2C000C137E /* ResetPasswordApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E298B629FB9E2C000C137E /* ResetPasswordApiModel.swift */; };
@@ -111,6 +113,8 @@
 		07BD0A982A03F06600FC6EC6 /* SignInApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApiModel.swift; sourceTree = "<group>"; };
 		07BD0A9A2A03F43C00FC6EC6 /* LoginCheckApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckApiModel.swift; sourceTree = "<group>"; };
 		07D94FFF2A174CFF007FD282 /* PolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
+		07D950012A179732007FD282 /* Privacy_policy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Privacy_policy.pdf; sourceTree = "<group>"; };
+		07D950042A179B32007FD282 /* Terms&conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&conditions.pdf"; sourceTree = "<group>"; };
 		07DBD46529CF376000608A93 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		07E298B429FB9DCB000C137E /* DeleteAccountApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountApiModel.swift; sourceTree = "<group>"; };
 		07E298B629FB9E2C000C137E /* ResetPasswordApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordApiModel.swift; sourceTree = "<group>"; };
@@ -190,6 +194,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07D950032A179B20007FD282 /* Pdf */ = {
+			isa = PBXGroup;
+			children = (
+				07D950042A179B32007FD282 /* Terms&conditions.pdf */,
+				07D950012A179732007FD282 /* Privacy_policy.pdf */,
+			);
+			path = Pdf;
+			sourceTree = "<group>";
+		};
 		07E298B829FB9E37000C137E /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +243,7 @@
 		8A0D212129BB71E90045C456 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				07D950032A179B20007FD282 /* Pdf */,
 				8AAF50FA2A067DA600E5CC02 /* Constants */,
 				8A0D213B29BB72B00045C456 /* Extensions */,
 				8A0D213A29BB72860045C456 /* Assets */,
@@ -531,6 +545,8 @@
 				8A8081CC29D077F300CE375D /* Urbanist-Black.ttf in Resources */,
 				8A8081D029D077F300CE375D /* Urbanist-ThinItalic.ttf in Resources */,
 				8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */,
+				07D950022A179732007FD282 /* Privacy_policy.pdf in Resources */,
+				07D950052A179B32007FD282 /* Terms&conditions.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

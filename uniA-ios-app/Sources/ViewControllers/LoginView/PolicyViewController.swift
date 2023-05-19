@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import PDFKit
+
 
 class PolicyViewController: UIViewController{
     // MARK: - Properties
@@ -157,14 +159,58 @@ class PolicyViewController: UIViewController{
             return
         }
     }
-    
-    @objc
-    func termViewTapped() {
+    var pdfView: PDFView?
+    var backButton: UIButton?
+
+    @objc func termViewTapped() {
+        pdfView = PDFView(frame: view.bounds)
+        pdfView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(pdfView!)
         
+        if let pdfURL = Bundle.main.url(forResource: "Terms&conditions", withExtension: "pdf") {
+            if let pdfDocument = PDFDocument(url: pdfURL) {
+                pdfView?.document = pdfDocument
+                pdfView?.autoScales = true
+                backButton = UIButton(type: .system)
+                backButton?.setTitle("Back", for: .normal)
+                backButton?.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+                view.addSubview(backButton!)
+                backButton?.snp.makeConstraints { make in
+                    make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+                    make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+                }
+            }
+        }
     }
+
+    @objc func backButtonTapped() {
+        backButton?.isHidden = true
+        backButton?.removeFromSuperview()
+        backButton = nil
+        pdfView?.removeFromSuperview()
+        pdfView = nil
+    }
+
     @objc
     func policyViewTapped() {
+        pdfView = PDFView(frame: view.bounds)
+        pdfView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(pdfView!)
         
+        if let pdfURL = Bundle.main.url(forResource: "Privacy_policy", withExtension: "pdf") {
+            if let pdfDocument = PDFDocument(url: pdfURL) {
+                pdfView?.document = pdfDocument
+                pdfView?.autoScales = true
+                backButton = UIButton(type: .system)
+                backButton?.setTitle("Back", for: .normal)
+                backButton?.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+                view.addSubview(backButton!)
+                backButton?.snp.makeConstraints { make in
+                    make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+                    make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+                }
+            }
+        }
     }
     var flag1 = 0
     var flag2 = 0
