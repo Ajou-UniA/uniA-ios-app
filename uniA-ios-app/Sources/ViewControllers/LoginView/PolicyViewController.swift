@@ -8,9 +8,9 @@
 import UIKit
 import PDFKit
 
-
-class PolicyViewController: UIViewController{
+class PolicyViewController: UIViewController {
     // MARK: - Properties
+    
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -66,9 +66,9 @@ class PolicyViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
         self.navigationController?.navigationBar.isHidden = true
-
+        
+        changeLabelColor()
         setUpView()
         setUpConstraints()
     }
@@ -80,7 +80,6 @@ class PolicyViewController: UIViewController{
         }
         [chevronRightView1, termLabel].forEach { termView.addSubview($0) }
         [chevronRightView2, policyLabel].forEach { policyView.addSubview($0) }
-
     }
     
     func setUpConstraints() {
@@ -144,6 +143,19 @@ class PolicyViewController: UIViewController{
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
+    
+    func changeLabelColor() {
+        let termAttributedText = NSMutableAttributedString(string: termLabel.text ?? "")
+        let termRange = (termLabel.text as NSString?)?.range(of: "Terms of Use")
+        termAttributedText.addAttribute(.foregroundColor, value: UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1), range: termRange!)
+        termLabel.attributedText = termAttributedText
+
+        let policyAttributedText = NSMutableAttributedString(string: policyLabel.text ?? "")
+        let policyRange = (policyLabel.text as NSString?)?.range(of: "Privacy Policy")
+        policyAttributedText.addAttribute(.foregroundColor, value: UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1), range: policyRange!)
+        policyLabel.attributedText = policyAttributedText
+    }
+    
     // MARK: - Objc
 
     @objc
