@@ -189,8 +189,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         UserDefaults.standard.set(0, forKey: "branch")
         emailTextField.text = nil
         passwordTextField.text = nil
-        let signUpViewController = ConfirmEmailViewController()
-        navigationController?.pushViewController(signUpViewController, animated: true)
+        let policyViewController = PolicyViewController()
+        navigationController?.pushViewController(policyViewController, animated: true)
     }
     
     @objc func signInBtnTapped() {
