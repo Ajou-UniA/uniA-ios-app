@@ -84,7 +84,6 @@ class HomeViewController: UIViewController {
         favoriteView.portalBtn.addTarget(self, action: #selector(linkTapped), for: .touchUpInside)
         favoriteView.OIABtn.addTarget(self, action: #selector(linkTapped), for: .touchUpInside)
         favoriteView.libraryBtn.addTarget(self, action: #selector(linkTapped), for: .touchUpInside)
-//        self.view.layoutIfNeeded()
         setUpGesture()
         taskCollectionView.reloadData()
         setUpView()
@@ -101,14 +100,10 @@ class HomeViewController: UIViewController {
         memberInfoAccess.findByMemberId(memberId: memberId) { data in
             self.helloLabel.text = "Hello \(data.firstName!)!"
         }
-        getTask.getMyTaskSorted(memberId: memberId) { [weak self] tasks in
-            let currentDate = Date()
-            let filteredTasks = tasks.filter { task in
-                let daysRemaining = Calendar.current.dateComponents([.day], from: currentDate, to: task.deadline).day ?? 0
-                return daysRemaining <= 3
-            }
-            self?.tasks = filteredTasks
-            self?.taskCollectionView.reloadData()
+
+        getMyTaskSortedByDeadline { tasks in
+            self.tasks = tasks
+            self.taskCollectionView.reloadData()
         }
     }
 
@@ -199,6 +194,20 @@ class HomeViewController: UIViewController {
         detailMapViewController.modalTransitionStyle = .crossDissolve
         self.present(detailMapViewController, animated: true)
     }
+
+    func getMyTaskSortedByDeadline(onCompleted: @escaping ([TaskResponse]) -> Void) {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
+            let currentDate = Date()
+            let calendar = Calendar.current
+            let filteredTasks = tasks.filter { task in
+                let deadline = task.deadline
+                let daysRemaining = calendar.dateComponents([.day], from: currentDate, to: deadline).day ?? 0
+                return daysRemaining >= 0 && daysRemaining <= 3
+            }
+            onCompleted(filteredTasks)
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
@@ -252,20 +261,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             dayLeftText = ""
         }
 
-//        let task = tasks[indexPath.row]
-//        let currentDate = Date()
-//
-//        let daysRemaining = Calendar.current.dateComponents([.day], from: currentDate, to: task.deadline).day
-//        var dayLeftText: String
-//
-//        if (daysRemaining! < 1) && (daysRemaining! >= 0) {
-//            dayLeftText = "1 day left"
-//        } else if daysRemaining! < 3 {
-//            dayLeftText = "2 days left"
-//        } else {
-//            dayLeftText = "" // 3일 이상 남은 경우는 표시하지 않음
-//        }
-
         cell.baseView.backgroundColor = self.colors[indexPath.row % self.colors.count]
         cell.courseNameLabel.text = task.lectureName
         cell.taskNameLabel.text = task.name
@@ -274,21 +269,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.backgroundColor = UIColor.clear
         cell.clipsToBounds = true
         return cell
-    }
-}
-
-extension HomeViewController {
-    func getMyTaskSortedByDeadline(onCompleted: @escaping ([TaskResponse]) -> Void) {
-        let memberId = UserDefaults.standard.integer(forKey: "memberId")
-        getTask.getMyTask(memberId: memberId) { tasks in
-            let currentDate = Date()
-            let sortedTasks = tasks.sorted { task1, task2 in
-                let daysRemaining1 = Calendar.current.dateComponents([.day], from: currentDate, to: task1.deadline).day ?? 0
-                let daysRemaining2 = Calendar.current.dateComponents([.day], from: currentDate, to: task2.deadline).day ?? 0
-                return daysRemaining1 < daysRemaining2
-            }
-            onCompleted(sortedTasks)
-        }
     }
 }
 
