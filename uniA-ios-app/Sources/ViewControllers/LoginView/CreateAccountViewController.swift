@@ -254,11 +254,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
         warningLabel1.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(1)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         warningLabel2.snp.makeConstraints {
             $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(1)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
