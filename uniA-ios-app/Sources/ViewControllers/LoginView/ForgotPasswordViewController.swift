@@ -22,7 +22,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
     let borderView = UIView().then {
-        $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        $0.backgroundColor = .clear
     }
     lazy var newPasswordLabel = UILabel().then {
         $0.text = "New Password"
@@ -60,6 +60,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     lazy var warningLabel1 = UILabel().then {
         $0.text = ""
+        $0.numberOfLines = 0
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
@@ -108,46 +109,41 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
-            $0.centerX.equalToSuperview()
-        }
-        borderView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(22)
-            $0.height.equalTo(Constant.height * 0.5)
-            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(backBtn.snp.bottom).offset(63)
+            $0.leading.equalToSuperview().offset(39)
         }
         newPasswordLabel.snp.makeConstraints {
-            $0.top.equalTo(borderView.snp.bottom).offset(35)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(43)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         newPasswordTextField.snp.makeConstraints {
-            $0.top.equalTo(borderView.snp.bottom).offset(59)
-            $0.bottom.equalTo(borderView.snp.bottom).offset(111)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.top.equalTo(newPasswordLabel.snp.bottom).offset(7)
+            $0.bottom.equalTo(newPasswordLabel.snp.bottom).offset(59)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         confirmPasswordLabel.snp.makeConstraints {
-            $0.top.equalTo(newPasswordTextField.snp.bottom).offset(22)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.top.equalTo(newPasswordTextField.snp.bottom).offset(24) //22
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         confirmPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(newPasswordTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(newPasswordTextField.snp.bottom).offset(96)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
 
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(40)
             $0.bottom.equalTo(confirmPasswordTextField.snp.bottom).offset(96)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
 
         }
         warningLabel1.snp.makeConstraints {
             $0.top.equalTo(newPasswordTextField.snp.bottom).offset(1)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         warningLabel2.snp.makeConstraints {
             $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(1)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
     }
 

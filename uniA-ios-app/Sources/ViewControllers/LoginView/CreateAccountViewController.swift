@@ -130,11 +130,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     lazy var warningLabel1 = UILabel().then {
         $0.text = ""
+        $0.numberOfLines = 0
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
     lazy var warningLabel2 = UILabel().then {
         $0.text = ""
+        $0.numberOfLines = 0
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
@@ -261,7 +263,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordLabel.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(22)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(24) //22
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         confirmPasswordTextField.snp.makeConstraints {
