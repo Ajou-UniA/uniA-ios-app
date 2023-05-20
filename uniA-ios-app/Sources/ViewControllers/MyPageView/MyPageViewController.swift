@@ -63,7 +63,7 @@ class MyPageViewController: UIViewController {
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(deleteBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var editBtn = UIButton().then {
         $0.setTitle("Edit my Profile", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -71,7 +71,7 @@ class MyPageViewController: UIViewController {
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(editBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var logoutBtn = UIButton().then {
         $0.setTitle("Log Out", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -79,21 +79,21 @@ class MyPageViewController: UIViewController {
         $0.contentHorizontalAlignment = .left
         $0.addTarget(self, action: #selector(logoutBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var profileView = UIImageView().then {
         $0.image = UIImage(named: "bear")
     }
-    
+
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
-    
+
     lazy var circleView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 50.0
         $0.layer.borderColor = UIColor.systemGray5.cgColor
     }
-    
+
     // MARK: - Lifecycles
     let memberInfoAccess = FindMemberApiModel()
 
@@ -108,11 +108,11 @@ class MyPageViewController: UIViewController {
                 print("viewWillAppear! \(String(describing: data.memberId))")
             }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
+
         setUpView()
         setUpConstraints()
     }
@@ -186,16 +186,16 @@ class MyPageViewController: UIViewController {
             $0.top.equalTo(midView.snp.top).offset(31)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(17)
             $0.width.equalTo(Constant.width * 100)
-            $0.height.equalTo(Constant.height * 100)
+            $0.height.equalTo(circleView.snp.width).multipliedBy(1.0/1.0)
         }
-        
+
         profileView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(midView.snp.top).offset(37)
             $0.leading.equalTo(profileView.snp.trailing).offset(16)
-            
+
         }
         majorLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
@@ -206,14 +206,14 @@ class MyPageViewController: UIViewController {
         numberLabel.snp.makeConstraints {
             $0.top.equalTo(majorLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileView.snp.trailing).offset(16)
-            
+
         }
-        
+
     }
     // MARK: - Navigation
-    
+
     let logoutAccess = LogoutApiModel()
-    
+
     @objc
     func resetBtnTapped() {
         let resetPasswordViewController = ResetPasswordViewController()
@@ -229,7 +229,7 @@ class MyPageViewController: UIViewController {
         let deleteAccountController = DeleteAccountViewController()
         navigationController?.pushViewController(deleteAccountController, animated: true)
     }
-    
+
     @objc
     func logoutBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         let msg = UIAlertController(title: "Log out", message: "Are you sure to log out UniA?", preferredStyle: UIAlertController.Style.alert)

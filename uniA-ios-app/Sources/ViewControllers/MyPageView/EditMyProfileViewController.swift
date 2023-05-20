@@ -20,11 +20,11 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
         $0.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var titleLabel = UILabel().then {
         $0.text = "Edit My Profile"
         $0.textColor = .black
-        $0.font = UIFont(name: "Urbanist-Bold", size: 30)
+        $0.font = UIFont(name: "Urbanist-Bold", size: 20)
     }
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
@@ -55,7 +55,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.text = "Department"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var departmentTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -63,7 +63,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
         $0.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
         $0.addLeftPadding()
     }
-    
+
     lazy var saveBtn = UIButton().then {
         $0.setTitle("Save", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -84,37 +84,38 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: - Lifecycles
     let memberInfoAccess = FindMemberApiModel()
     let memberIdAccess = CallMemberApiModel()
-    let memberEmail = UserDefaults.standard.string(forKey: "loginemail")
     var memberId: Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        
+
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         departmentTextField.delegate = self
-        
+
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = .white
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
-        
-        memberIdAccess.callMember(memberEmail: memberEmail!) { data in
-            print(data)
-            self.memberInfoAccess.findByMemberId(memberId: data) { data in
+
+        setUpView()
+        setUpConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
+
+            print("\(memberId)hello")
+            memberInfoAccess.findByMemberId(memberId: memberId){ data in
                 self.firstNameTextField.text = data.firstName
                 self.lastNameTextField.text = data.lastName
                 self.departmentTextField.text = data.memberMajor
                 self.memberId = data.memberId!
-                print("editmytprofile\(data.memberId!)")
+                print("viewWillAppear! \(String(describing: data.memberId))")
             }
-        }
-        
-        setUpView()
-        setUpConstraints()
     }
     // MARK: - Helper
 
@@ -126,15 +127,15 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     }
 
     func setUpConstraints() {
-       
+
         backBtn.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
+            $0.centerY.equalTo(backBtn)
             $0.centerX.equalToSuperview()
         }
         borderView.snp.makeConstraints {
@@ -194,23 +195,20 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
           selectMajor = pickerdata[row]
       }
-    // pickerView text color
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        return NSAttributedString(string: pickerdata[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)])
-//    }
+
     @objc func onDoneButtonTapped() {
         departmentTextField.text = selectMajor
         departmentTextField.resignFirstResponder() // pickerView 내리기
         selectMajor = ""
         }
-    
+
     @objc func onCancelButtonTapped() {
         departmentTextField.resignFirstResponder()
         selectMajor = ""
         }
-    
+
     // MARK: - TextFieldDelegate
-    
+
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
@@ -231,24 +229,24 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     // MARK: - Navigation
     let editAccess = EditMyProfileApiModel()
-    
+
     @objc
     func cancelBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc
     func saveBtnTapped() {
         guard let firstName = firstNameTextField.text,
          let lastName = lastNameTextField.text,
          let memberMajor = departmentTextField.text else {return}
-        
+
          let bodyData: Parameters = [
             "firstName": firstName,
             "lastName": lastName,
             "memberMajor": memberMajor
             ]
-        
+
         let msg = UIAlertController(title: "Profile updated", message: "Your changes have been saved.", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: . default) { (_) in
 

@@ -10,7 +10,7 @@ import PDFKit
 
 class PolicyViewController: UIViewController {
     // MARK: - Properties
-    
+
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
@@ -60,90 +60,92 @@ class PolicyViewController: UIViewController {
         $0.setImage(UIImage(named: "circle"), for: .normal)
         $0.addTarget(self, action: #selector(circle2BtnTapped), for: .touchUpInside)
     }
-    
+
     // MARK: - Lifecycles
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        
+
         changeLabelColor()
         setUpView()
         setUpConstraints()
     }
     // MARK: - Helper
-    
+
     func setUpView() {
         [backBtn, titleLabel, circleBtn1, circleBtn2, termView, policyView, agreeBtn].forEach {
             view.addSubview($0)
         }
-        [chevronRightView1, termLabel].forEach { termView.addSubview($0) }
-        [chevronRightView2, policyLabel].forEach { policyView.addSubview($0) }
+        [circleBtn1, chevronRightView1, termLabel].forEach { termView.addSubview($0) }
+        [circleBtn2, chevronRightView2, policyLabel].forEach { policyView.addSubview($0) }
     }
-    
+
     func setUpConstraints() {
         backBtn.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
+
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.bottom).offset(100)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         circleBtn1.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(199)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(25)
+            $0.centerY.equalTo(termView)
+            $0.leading.equalTo(termView.snp.leading)
             $0.width.equalTo(Constant.width * 30)
-            $0.height.equalTo(Constant.height * 30)
+            $0.height.equalTo(circleBtn1.snp.width).multipliedBy(1.0/1.0)
+
         }
+
         circleBtn2.snp.makeConstraints {
-            $0.top.equalTo(circleBtn1.snp.bottom).offset(20)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(25)
+            $0.centerY.equalTo(policyView)
+            $0.leading.equalTo(policyView.snp.leading)
             $0.width.equalTo(Constant.width * 30)
-            $0.height.equalTo(Constant.height * 30)
+            $0.height.equalTo(circleBtn2.snp.width).multipliedBy(1.0/1.0)
         }
         termView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(203)
-            $0.bottom.equalTo(titleLabel.snp.bottom).offset(227)
-            $0.leading.equalTo(circleBtn1.snp.trailing).offset(10)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(27)
+            $0.top.equalTo(agreeBtn.snp.top).offset(-120)
+            $0.bottom.equalTo(agreeBtn.snp.top).offset(-90)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         policyView.snp.makeConstraints {
-            $0.top.equalTo(termView.snp.bottom).offset(28)
-            $0.bottom.equalTo(termView.snp.bottom).offset(52)
-            $0.leading.equalTo(circleBtn2.snp.trailing).offset(10)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(27)
+            $0.top.equalTo(agreeBtn.snp.top).offset(-70)
+            $0.bottom.equalTo(agreeBtn.snp.top).offset(-40)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
         termLabel.snp.makeConstraints {
-            $0.top.equalTo(termView.snp.top)
-            $0.leading.equalTo(termView.snp.leading)
+            $0.centerY.equalTo(termView)
+            $0.leading.equalTo(circleBtn1.snp.trailing).offset(11)
         }
         policyLabel.snp.makeConstraints {
-            $0.top.equalTo(policyView.snp.top)
-            $0.leading.equalTo(policyView.snp.leading)
+            $0.centerY.equalTo(policyView)
+            $0.leading.equalTo(circleBtn2.snp.trailing).offset(11)
         }
         chevronRightView1.snp.makeConstraints {
-            $0.top.equalTo(termView.snp.top)
+            $0.centerY.equalTo(termView)
             $0.trailing.equalTo(termView.snp.trailing)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(chevronRightView1.snp.width).multipliedBy(1.0/1.0)
+
         }
         chevronRightView2.snp.makeConstraints {
-            $0.top.equalTo(policyView.snp.top)
+            $0.centerY.equalTo(policyView)
             $0.trailing.equalTo(policyView.snp.trailing)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(chevronRightView2.snp.width).multipliedBy(1.0/1.0)
         }
         agreeBtn.snp.makeConstraints {
-            $0.top.equalTo(policyView.snp.bottom).offset(43)
-            $0.bottom.equalTo(policyView.snp.bottom).offset(95)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(183)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(131)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(39)
         }
     }
-    
+
     func changeLabelColor() {
         let termAttributedText = NSMutableAttributedString(string: termLabel.text ?? "")
         let termRange = (termLabel.text as NSString?)?.range(of: "Terms of Use")
@@ -155,7 +157,7 @@ class PolicyViewController: UIViewController {
         policyAttributedText.addAttribute(.foregroundColor, value: UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1), range: policyRange!)
         policyLabel.attributedText = policyAttributedText
     }
-    
+
     // MARK: - Objc
 
     @objc
@@ -178,7 +180,7 @@ class PolicyViewController: UIViewController {
         pdfView = PDFView(frame: view.bounds)
         pdfView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(pdfView!)
-        
+
         if let pdfURL = Bundle.main.url(forResource: "Terms&conditions", withExtension: "pdf") {
             if let pdfDocument = PDFDocument(url: pdfURL) {
                 pdfView?.document = pdfDocument
@@ -208,7 +210,7 @@ class PolicyViewController: UIViewController {
         pdfView = PDFView(frame: view.bounds)
         pdfView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(pdfView!)
-        
+
         if let pdfURL = Bundle.main.url(forResource: "Privacy_policy", withExtension: "pdf") {
             if let pdfDocument = PDFDocument(url: pdfURL) {
                 pdfView?.document = pdfDocument
@@ -238,7 +240,7 @@ class PolicyViewController: UIViewController {
                 flag1 = 0
             }
         }
-    
+
     @objc func circle2BtnTapped() {
             if flag2 == 0 {
                 circleBtn2.setImage(UIImage(named: "circle_selected"), for: .normal)
