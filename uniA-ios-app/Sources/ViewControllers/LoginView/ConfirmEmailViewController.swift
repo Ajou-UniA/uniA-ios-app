@@ -12,19 +12,19 @@ import Alamofire
 
 class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
-    
+
     lazy var titleLabel = UILabel().then {
         $0.text = "Confirm Your \nAjou University Email"
         $0.textAlignment = .left
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
         $0.numberOfLines = 2
     }
-    
+
     lazy var emailLabel = UILabel().then {
         $0.text = "Email"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var emailTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -33,7 +33,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
         $0.autocapitalizationType = .none // 입력한 텍스트 대문자로 자동 변환 방지
         $0.keyboardType = .emailAddress
     }
-    
+
     lazy var confirmBtn = UIButton().then {
         $0.setTitle("Confirm", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -42,7 +42,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(confirmBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var explainLabel = UILabel().then {
         $0.lineBreakMode = .byWordWrapping
             var paragraphStyle = NSMutableParagraphStyle()
@@ -52,29 +52,30 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
             $0.numberOfLines = 2
             $0.font = UIFont.systemFont(ofSize: 13)
     }
-    
+
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
+        $0.contentMode = .scaleAspectFit
     }
     lazy var warningLabel = UILabel().then {
         $0.text = ""
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
-    
+
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        
+
         emailTextField.delegate = self
         setUpView()
         setUpConstraints()
     }
-    
+
     // MARK: - Helper
     func setUpView() {
         [titleLabel, emailLabel, emailTextField, confirmBtn, explainLabel, backBtn, warningLabel].forEach {
@@ -83,22 +84,22 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
     }
 
     func setUpConstraints() {
-        
+
         backBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.bottom).offset(74)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            
+
         }
         emailLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(50)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
-            
+
         }
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(72)
@@ -119,7 +120,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    
+
     // MARK: - Navigation
     let checkEmailAccess = CheckEmailApiModel()
     let sendCodeAccess = SendCodeApiModel()
@@ -149,7 +150,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
                     }
                     verificationViewController.email = self.emailTextField.text ?? ""
                     self.navigationController?.pushViewController(verificationViewController, animated: true)
-                    
+
                 } else {
                     let msg = UIAlertController(title: "Invalid email adress", message: "An account using this email address already exists.", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
@@ -187,7 +188,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
 
 
     // MARK: - TextFieldDelegate
-    
+
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.51, green: 0.33, blue: 1.0, alpha: 1.0)

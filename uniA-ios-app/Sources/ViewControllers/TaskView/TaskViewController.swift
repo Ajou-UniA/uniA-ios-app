@@ -131,7 +131,7 @@ class TaskViewController: UIViewController {
         addTaskBtn.heightAnchor.constraint(equalTo: addTaskBtn.widthAnchor, multiplier: 1.0/1.0).isActive = true
         addTaskBtn.snp.makeConstraints {
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(21)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(40) //21
             $0.width.equalTo(Constant.width * 52)
         }
     }

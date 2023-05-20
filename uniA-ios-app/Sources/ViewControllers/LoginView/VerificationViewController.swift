@@ -26,6 +26,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
+        $0.contentMode = .scaleAspectFit
     }
     lazy var subtitleLabel = UILabel().then {
         $0.lineBreakMode = .byWordWrapping
@@ -46,7 +47,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         $0.font = UIFont.systemFont(ofSize: 20)
         $0.keyboardType = .numberPad
     }
-    
+
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -64,7 +65,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
 
     var timer: Timer?
     var secondsLeft: Int = 180
-    
+
     // MARK: - Lifecycles
 
     override func viewDidLoad() {
@@ -86,10 +87,10 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
 
     func setUpConstraints() {
         backBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.top).offset(89)
@@ -104,17 +105,17 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             $0.bottom.equalTo(subtitleLabel.snp.bottom).offset(73)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(38)
         }
-        
+
         timerLabel.snp.makeConstraints {
             $0.top.equalTo(otpField.snp.bottom).offset(10)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(38)
-           
+
         }
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(otpField.snp.bottom).offset(40)
             $0.bottom.equalTo(otpField.snp.bottom).offset(92)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-         
+
         }
         resendBtn.snp.makeConstraints {
             $0.top.equalTo(submitBtn.snp.bottom).offset(12)
@@ -126,7 +127,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     let sendCodeAccess = SendCodeApiModel()
     var email: String = ""
     let branch = UserDefaults.standard.integer(forKey: "branch")
-    
+
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
         guard let code = otpField.text else {return}
@@ -162,7 +163,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+
     @objc func updateTimer() {
         var minutes = self.secondsLeft / 60
         var seconds = self.secondsLeft % 60
@@ -188,7 +189,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         timer?.invalidate()
         timer = nil
     }
-    
+
     @objc func resendBtnTapped() {
         let msg = UIAlertController(title: "Resend Code Success", message: "New verification code has been sent to your Ajou University email.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
@@ -200,6 +201,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         }
         msg.addAction(okAction)
         self.present(msg, animated: true)
-            
+
     }
 }
+

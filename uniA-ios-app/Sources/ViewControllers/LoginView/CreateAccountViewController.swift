@@ -15,30 +15,30 @@ import RxCocoa
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
-    
+
     let pickerView = UIPickerView()
     let pick = pickerdata
     var selectMajor = ""
     lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .white
     }
-    
+
     lazy var backBtn = UIButton().then {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "chevron_left"), for: .normal)
         $0.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
     }
-    
+
     lazy var titleLabel = UILabel().then {
         $0.text = "Create Account"
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
     }
-    
+
     lazy var firstNameLabel = UILabel().then {
         $0.text = "First Name"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var firstNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -49,7 +49,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Last Name"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var lastNameTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -60,7 +60,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Student ID"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var studentIdTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -71,19 +71,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Department"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var departmentTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
-    
+
     lazy var passwordLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var passwordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -91,12 +91,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.isSecureTextEntry = true
         $0.addLeftPadding()
     }
-    
+
     lazy var confirmPasswordLabel = UILabel().then {
         $0.text = "Confirm Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var confirmPasswordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -105,7 +105,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         $0.addLeftPadding()
     }
-    
+
     lazy var submitBtn = UIButton().then {
         $0.setTitle("Submit", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -114,11 +114,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
-    
+
     lazy var policyLabel = UILabel().then {
         $0.text = ""
         }
-    
+
     lazy var toolbar = UIToolbar().then {
         $0.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButtonTapped))
@@ -127,7 +127,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.setItems([cancelButton, space, doneButton], animated: true)
         $0.isUserInteractionEnabled = true
     }
-    
+
     lazy var warningLabel1 = UILabel().then {
         $0.text = ""
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
@@ -138,7 +138,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
-        
+
         // MARK: - Lifecycles
     let disposeBag = DisposeBag()
 
@@ -151,21 +151,21 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         departmentTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
-        
+
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = .white
         departmentTextField.inputView = pickerView
         departmentTextField.inputAccessoryView = toolbar
-        
+
         self.navigationController?.navigationBar.isHidden = true
 
         scrollTap()
         setUpView()
         setUpConstraints()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: passwordTextField)
-        
+
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in
                 guard let strongSelf = self else { return }
@@ -177,11 +177,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             })
             .disposed(by: disposeBag)
     }
-    
-    
-  
+
+
+
     // MARK: - Helper
-    
+
     func setUpView() {
         self.view.addSubview(scrollView)
         self.view.addSubview(backBtn)
@@ -194,10 +194,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     func setUpConstraints() {
 
         backBtn.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         scrollView.snp.makeConstraints {
             $0.top.equalTo(backBtn.snp.bottom).offset(39)
@@ -273,28 +273,28 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(confirmPasswordTextField.snp.bottom).offset(40)
             $0.bottom.equalTo(confirmPasswordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
-            
+
         }
-        
+
         policyLabel.snp.makeConstraints {
             $0.top.equalTo(submitBtn.snp.bottom).offset(18)
             $0.bottom.equalToSuperview() // 마지막에 있는건 무조건..바텀값 주자..안그러면 작동안한다..
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
     }
-    
+
     // MARK: - adjustButtonPosition
-    
+
     private func adjustButtonPositionForKeyboard(height: CGFloat) {
         let bottomInset = max(height - scrollView.safeAreaInsets.bottom, 0)
         scrollView.contentInset.bottom = bottomInset
-        
+
         let scrollViewBottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom)
         scrollView.setContentOffset(scrollViewBottomOffset, animated: true)
     }
 
     // MARK: - scrollView tap시 keboard 내리기
-    
+
     func scrollTap() {
             let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(myTapMethod))
             singleTapGestureRecognizer.numberOfTapsRequired = 1
@@ -302,7 +302,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             singleTapGestureRecognizer.cancelsTouchesInView = false
             scrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
-    
+
     @objc
     func myTapMethod(sender: UITapGestureRecognizer) {
             self.view.endEditing(true)
@@ -313,14 +313,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     @objc
     func submitBtnTapped() {
-        
+
         guard let firstName = firstNameTextField.text,
          let lastName = lastNameTextField.text,
          let memberId = studentIdTextField.text,
          let memberMajor = departmentTextField.text,
          let memberPassword = passwordTextField.text,
          let memberConfirmPassword = confirmPasswordTextField.text else {return}
-        
+
         let isEmptyField = firstName.isEmpty || lastName.isEmpty || memberId.isEmpty || memberMajor.isEmpty || memberPassword.isEmpty || memberConfirmPassword.isEmpty
             if isEmptyField {
                 let msg = UIAlertController(title: "Empty field", message: "It looks like you forgot to fill in this field. Please enter a value.", preferredStyle: UIAlertController.Style.alert)
@@ -348,18 +348,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             "memberMajor": memberMajor,
             "memberPassword": memberPassword
         ]
-        
+
         createAccountAccess.requestSignUpDataModel(bodyData: bodyData) { data in
             print(data.body)
         }
-        
+
         let congratulationsViewController = CongratulationsViewController()
         navigationController?.pushViewController(congratulationsViewController, animated: true)
     }
     @objc func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-   
+
     // MARK: - TextFieldDelegate
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -367,37 +367,37 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         warningLabel2.text = ""
         confirmPasswordLabel.textColor = .black
         confirmPasswordTextField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
-       
+
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
         passwordLabel.textColor = .black
         warningLabel1.text = ""
-        
+
     }
-    
-    
+
+
 
     @objc private func textDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
             if let text = textField.text {
-                
+
                 if text.count > 12 {
                     // 8글자 넘어가면 자동으로 키보드 내려감
                     textField.resignFirstResponder()
                 }
-                
+
                 // 초과되는 텍스트 제거
                 if text.count >= 12 {
                     let index = text.index(text.startIndex, offsetBy: 12)
                     let newString = text[text.startIndex..<index]
                     textField.text = String(newString)
                 }
-                
+
                 // 특수문자 포함 여부 체크
                 let specialCharSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[{]};:'\",<.>/?")
                 let hasSpecialChar = text.rangeOfCharacter(from: specialCharSet) != nil
-                
+
                 if text.count < 8 || !hasSpecialChar {
                     warningLabel1.text = "Your password must contain at least 8 characters and 1 special character."
                     warningLabel1.textColor = UIColor(red: 0.875, green: 0.095, blue: 0.095, alpha: 1)
@@ -446,11 +446,12 @@ extension CreateAccountViewController: UIPickerViewDelegate, UIPickerViewDataSou
         departmentTextField.resignFirstResponder() // pickerView 내리기
         selectMajor = ""
         }
-    
+
     @objc func onCancelButtonTapped() {
         departmentTextField.resignFirstResponder()
         selectMajor = ""
         }
 
 }
+
 

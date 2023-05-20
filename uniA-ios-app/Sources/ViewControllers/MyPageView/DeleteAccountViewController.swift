@@ -19,7 +19,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     lazy var titleLabel = UILabel().then {
         $0.text = "Delete Account"
         $0.textColor = .black
-        $0.font = UIFont(name: "Urbanist-Bold", size: 30)
+        $0.font = UIFont(name: "Urbanist-Bold", size: 20)
     }
     let borderView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
@@ -28,7 +28,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var passwordTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -40,7 +40,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         $0.text = "Confirm Password"
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
     }
-    
+
     lazy var confirmTextField = UITextField().then {
         $0.layer.cornerRadius = 10.0
         $0.layer.borderWidth = 1.0
@@ -57,13 +57,13 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         $0.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
         $0.titleLabel?.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
-    
+
     lazy var warningLabel = UILabel().then {
         $0.text = ""
         $0.textColor = UIColor(red: 0.875, green: 0.094, blue: 0.094, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 10)
     }
-    
+
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.isHidden = true
         passwordTextField.delegate = self
         confirmTextField.delegate = self
-        
+
         setUpView()
         setUpConstraints()
     }
@@ -84,15 +84,15 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     }
 
     func setUpConstraints() {
-      
+
         backBtn.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(24)
             $0.width.equalTo(Constant.width * 24)
-            $0.height.equalTo(Constant.height * 24)
+            $0.height.equalTo(backBtn.snp.width).multipliedBy(1.0/1.0)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
+            $0.centerY.equalTo(backBtn)
             $0.centerX.equalToSuperview()
         }
         borderView.snp.makeConstraints {
@@ -118,7 +118,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
             $0.bottom.equalTo(passwordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-     
+
         submitBtn.snp.makeConstraints {
             $0.top.equalTo(confirmTextField.snp.bottom).offset(44)
             $0.bottom.equalTo(confirmTextField.snp.bottom).offset(96)
@@ -128,10 +128,10 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(confirmTextField.snp.bottom).offset(1)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
-        
+
     }
     // MARK: - TextFieldDelegate
-    
+
     // textfield 입력 시 borderColor 색깔변경
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
@@ -147,9 +147,9 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
+
     // MARK: - Objc
-    
+
     let deleteAccess = DeleteAccountApiModel()
     let memberPassword = UserDefaults.standard.string(forKey: "password")
     let memberId = UserDefaults.standard.integer(forKey: "memberId")
@@ -160,7 +160,7 @@ class DeleteAccountViewController: UIViewController, UITextFieldDelegate {
     func backBtnTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
 
