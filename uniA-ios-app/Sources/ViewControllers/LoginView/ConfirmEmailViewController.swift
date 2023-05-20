@@ -113,7 +113,7 @@ class ConfirmEmailViewController: UIViewController, UITextFieldDelegate {
         }
         explainLabel.snp.makeConstraints {
             $0.top.equalTo(confirmBtn.snp.bottom).offset(15)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(37)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(37)
         }
         warningLabel.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(1)
