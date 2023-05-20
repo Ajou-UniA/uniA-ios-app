@@ -277,7 +277,7 @@ extension UICollectionView {
     func setEmptyView(title: String, message: String, image: UIImage) {
         let emptyView: UIView = {
             let view = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.width, height: self.bounds.height))
-            view.backgroundColor = .white
+            view.backgroundColor = .clear
 
             return view
         }()
@@ -302,17 +302,28 @@ extension UICollectionView {
             return label
         }()
 
-        emptyView.addSubview(titleLabel)
-        emptyView.addSubview(messageLabel)
+        let view = UIView().then {
+            $0.backgroundColor = .clear
+            $0.layer.cornerRadius = 20
+            $0.backgroundColor = UIColor(red: 0.788, green: 0.933, blue: 1, alpha: 1)
+        }
 
+        emptyView.addSubview(view)
+        view.addSubview(titleLabel)
+        view.addSubview(messageLabel)
+
+        view.snp.makeConstraints {
+            $0.leading.top.bottom.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(20)
+        }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(emptyView.snp.top).offset(40)
-            $0.left.equalTo(emptyView.snp.left).offset(20)
+            $0.top.equalTo(view.snp.top).offset(40)
+            $0.left.equalTo(view.snp.left).offset(20)
         }
         messageLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.left.equalTo(emptyView.snp.left).offset(20)
-            $0.right.equalTo(emptyView.snp.right).offset(-40)
+            $0.left.equalTo(view.snp.left).offset(20)
+            $0.right.equalTo(view.snp.right).offset(-20)
         }
         self.backgroundView = emptyView
     }
