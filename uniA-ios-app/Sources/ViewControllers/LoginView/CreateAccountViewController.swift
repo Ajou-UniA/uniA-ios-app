@@ -15,6 +15,7 @@ import RxCocoa
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
+    
     let pickerView = UIPickerView()
     let pick = pickerdata
     var selectMajor = ""
@@ -115,13 +116,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     lazy var policyLabel = UILabel().then {
-        $0.lineBreakMode = .byWordWrapping
-        var paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.41
-        $0.attributedText = NSMutableAttributedString(string: "By signing up, you agree to the User Agreement & Privace \nPolicy.",
-                                                      attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        $0.numberOfLines = 2
-        $0.font = UIFont.systemFont(ofSize: 13)
+        $0.text = ""
         }
     
     lazy var toolbar = UIToolbar().then {

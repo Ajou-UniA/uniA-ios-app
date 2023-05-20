@@ -74,6 +74,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     let memberEmail = UserDefaults.standard.string(forKey: "email")
     let forgotPasswordAccess = ForgotPasswordApiModel()
     var memberId: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -181,7 +182,6 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func submitBtnTapped() { // alert를 띄우고 ok 버튼 누르면 다음 화면으로 이동
-        
         
         if newPasswordTextField.text == confirmPasswordTextField.text {
 
