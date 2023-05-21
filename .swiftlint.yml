@@ -1,0 +1,17 @@
+excluded:
+- Libraries
+disabled_rules:
+- line_length
+
+disabled_rules:
+- leading_whitespace
+- trailing_whitespace
+
+line_length:
+    warning: 250
+    ignores_comments: true
+
+force_cast: warning # implicitly. Give warning only for force casting
+
+force_try:
+  severity: warning

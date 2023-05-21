@@ -1,3 +1,0 @@
-# UniA-ios-app
-
-UniA
