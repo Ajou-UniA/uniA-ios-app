@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tabBarItem.hotPlace.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
