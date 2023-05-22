@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Frame 1 (1).svg",
+      "filename" : "IceCream.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
   }
 }
