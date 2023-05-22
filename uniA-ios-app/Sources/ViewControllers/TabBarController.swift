@@ -13,15 +13,15 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     let height: CGFloat = 85
 
     let taskTab = TaskViewController()
+    let ajouGuideTab = TaskViewController() // 임시
     let homeTab = HomeViewController()
+    let hotPlaceTab = HotPlaceViewController()
     let myPageTab = MyPageViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let taskTab = TaskViewController()
-        let homeTab = HomeViewController()
-        let myPageTab = MyPageViewController()
-        viewControllers = [taskTab, homeTab, myPageTab]
+
+        viewControllers = [taskTab, ajouGuideTab, homeTab, hotPlaceTab, myPageTab]
         setViewControllers(viewControllers, animated: false)
 
         // TaskViewController를 찾아서 createTaskDelegate 설정
@@ -41,9 +41,18 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
         taskTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.task") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.task.fill") ?? UIImage())
         taskTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
 
+        // MARK: - ajouGuideTab
+        ajouGuideTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.ajouGuide") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.ajouGuide.fill") ?? UIImage())
+        ajouGuideTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
+
+
         // MARK: - homeTab
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.home") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.home.fill") ?? UIImage())
         homeTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
+
+        // MARK: - hotPlaceTab
+        hotPlaceTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.hotPlace") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.hotPlace.fill") ?? UIImage())
+        hotPlaceTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
 
         // MARK: - myPageTab
         myPageTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.myPage") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.myPage.fill") ?? UIImage())
