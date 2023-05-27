@@ -11,6 +11,8 @@
 		073F24722A10052C00CF68C7 /* LogoutApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24712A10052C00CF68C7 /* LogoutApiModel.swift */; };
 		073F24742A10054200CF68C7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24732A10054200CF68C7 /* Profile.swift */; };
 		073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */; };
+		075C7CC62A22613A004232C3 /* modalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C7CC52A22613A004232C3 /* modalTableViewCell.swift */; };
+		075C7CC82A228795004232C3 /* AjouGuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */; };
 		076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BA3D22A06714F006895D0 /* CreateAccount.swift */; };
 		0780040F2A13EBAD0079D447 /* ForgotPasswordApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */; };
 		0788640729C0A8F600DA9E6A /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788640629C0A8F600DA9E6A /* ConfirmEmailViewController.swift */; };
@@ -18,6 +20,8 @@
 		0788641129C1719500DA9E6A /* CHIOTPField in Frameworks */ = {isa = PBXBuildFile; productRef = 0788641029C1719500DA9E6A /* CHIOTPField */; };
 		0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641229C179C500DA9E6A /* CreateAccountViewController.swift */; };
 		0788641729C1E69100DA9E6A /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788641629C1E69100DA9E6A /* CongratulationsViewController.swift */; };
+		0789E0742A221D990027B816 /* AjouGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789E0732A221D990027B816 /* AjouGuideViewController.swift */; };
+		0789E0782A2222160027B816 /* SideModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789E0772A2222160027B816 /* SideModalViewController.swift */; };
 		0790540B29E7F30E00EECF2B /* CreateAccountApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790540A29E7F30E00EECF2B /* CreateAccountApiModel.swift */; };
 		0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790541229E966DE00EECF2B /* CheckEmailApiModel.swift */; };
 		0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790541429E99FAD00EECF2B /* VerificationApiModel.swift */; };
@@ -100,12 +104,16 @@
 		073F24712A10052C00CF68C7 /* LogoutApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutApiModel.swift; sourceTree = "<group>"; };
 		073F24732A10054200CF68C7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMemberIdApiModel.swift; sourceTree = "<group>"; };
+		075C7CC52A22613A004232C3 /* modalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modalTableViewCell.swift; sourceTree = "<group>"; };
+		075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouGuideTableViewCell.swift; sourceTree = "<group>"; };
 		076BA3D22A06714F006895D0 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiModel.swift; sourceTree = "<group>"; };
 		0788640629C0A8F600DA9E6A /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		0788640829C0AFA100DA9E6A /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		0788641229C179C500DA9E6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		0788641629C1E69100DA9E6A /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
+		0789E0732A221D990027B816 /* AjouGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouGuideViewController.swift; sourceTree = "<group>"; };
+		0789E0772A2222160027B816 /* SideModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideModalViewController.swift; sourceTree = "<group>"; };
 		0790540A29E7F30E00EECF2B /* CreateAccountApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountApiModel.swift; sourceTree = "<group>"; };
 		0790541229E966DE00EECF2B /* CheckEmailApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailApiModel.swift; sourceTree = "<group>"; };
 		0790541429E99FAD00EECF2B /* VerificationApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationApiModel.swift; sourceTree = "<group>"; };
@@ -194,6 +202,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0789E0722A221D870027B816 /* AjouGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				0789E0732A221D990027B816 /* AjouGuideViewController.swift */,
+				0789E0772A2222160027B816 /* SideModalViewController.swift */,
+				075C7CC52A22613A004232C3 /* modalTableViewCell.swift */,
+				075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */,
+			);
+			path = AjouGuideView;
+			sourceTree = "<group>";
+		};
 		07D950032A179B20007FD282 /* Pdf */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +286,7 @@
 		8A0D212329BB720E0045C456 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0789E0722A221D870027B816 /* AjouGuideView */,
 				8AAF512B2A06A15C00E5CC02 /* TaskView */,
 				8AAF51052A06827900E5CC02 /* HomeView */,
 				8A0D212E29BB72520045C456 /* LoginView */,
@@ -596,6 +616,7 @@
 				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
 				8AA9BCEC2A1619CD0074652D /* DetailMapViewController.swift in Sources */,
 				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
+				0789E0782A2222160027B816 /* SideModalViewController.swift in Sources */,
 				8AAF51012A067DA600E5CC02 /* URL.swift in Sources */,
 				07DBD46629CF376000608A93 /* Department.swift in Sources */,
 				8A0D213229BB72520045C456 /* MyPageViewController.swift in Sources */,
@@ -612,6 +633,7 @@
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
+				075C7CC62A22613A004232C3 /* modalTableViewCell.swift in Sources */,
 				8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
@@ -623,10 +645,12 @@
 				07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */,
 				8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */,
 				8AA9BCE22A14DCE40074652D /* TaskResponse.swift in Sources */,
+				0789E0742A221D990027B816 /* AjouGuideViewController.swift in Sources */,
 				07E298B529FB9DCB000C137E /* DeleteAccountApiModel.swift in Sources */,
 				0790541729EAB5D500EECF2B /* DeleteAccountViewController.swift in Sources */,
 				8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */,
 				8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */,
+				075C7CC82A228795004232C3 /* AjouGuideTableViewCell.swift in Sources */,
 				8AAF51092A06827900E5CC02 /* FavoriteView.swift in Sources */,
 				8AA9BCE42A14DCF90074652D /* Task.swift in Sources */,
 				0790541329E966DE00EECF2B /* CheckEmailApiModel.swift in Sources */,
