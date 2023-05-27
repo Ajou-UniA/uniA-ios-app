@@ -11,7 +11,7 @@
 		073F24722A10052C00CF68C7 /* LogoutApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24712A10052C00CF68C7 /* LogoutApiModel.swift */; };
 		073F24742A10054200CF68C7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24732A10054200CF68C7 /* Profile.swift */; };
 		073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */; };
-		075C7CC62A22613A004232C3 /* modalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C7CC52A22613A004232C3 /* modalTableViewCell.swift */; };
+		075C7CC62A22613A004232C3 /* ModalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C7CC52A22613A004232C3 /* ModalTableViewCell.swift */; };
 		075C7CC82A228795004232C3 /* AjouGuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */; };
 		076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BA3D22A06714F006895D0 /* CreateAccount.swift */; };
 		0780040F2A13EBAD0079D447 /* ForgotPasswordApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */; };
@@ -104,7 +104,7 @@
 		073F24712A10052C00CF68C7 /* LogoutApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutApiModel.swift; sourceTree = "<group>"; };
 		073F24732A10054200CF68C7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		073F24752A10058700CF68C7 /* CallMemberIdApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMemberIdApiModel.swift; sourceTree = "<group>"; };
-		075C7CC52A22613A004232C3 /* modalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modalTableViewCell.swift; sourceTree = "<group>"; };
+		075C7CC52A22613A004232C3 /* ModalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTableViewCell.swift; sourceTree = "<group>"; };
 		075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouGuideTableViewCell.swift; sourceTree = "<group>"; };
 		076BA3D22A06714F006895D0 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		0780040E2A13EBAD0079D447 /* ForgotPasswordApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiModel.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 			children = (
 				0789E0732A221D990027B816 /* AjouGuideViewController.swift */,
 				0789E0772A2222160027B816 /* SideModalViewController.swift */,
-				075C7CC52A22613A004232C3 /* modalTableViewCell.swift */,
+				075C7CC52A22613A004232C3 /* ModalTableViewCell.swift */,
 				075C7CC72A228795004232C3 /* AjouGuideTableViewCell.swift */,
 			);
 			path = AjouGuideView;
@@ -633,7 +633,7 @@
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
-				075C7CC62A22613A004232C3 /* modalTableViewCell.swift in Sources */,
+				075C7CC62A22613A004232C3 /* ModalTableViewCell.swift in Sources */,
 				8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,

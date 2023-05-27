@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import UIKit
 
-class modalTableViewCell: UITableViewCell {
+class ModalTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     static let cellIdentifier = "ModalTableViewCell"

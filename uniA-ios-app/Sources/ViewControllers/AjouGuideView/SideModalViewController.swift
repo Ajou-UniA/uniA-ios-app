@@ -13,7 +13,7 @@ class SideModalViewController: UIViewController {
      // 선택한 셀의 인덱스를 저장할 변수
 
     let items = ["Ajou Campus Life", "Accademic Affairs", "Student Portal", "Immigration Guide", "Life in Korea", "Appendix"]
-    let cell = modalTableViewCell()
+    let cell = ModalTableViewCell()
     let tableView = UITableView()
     let ajouGuide = AjouGuideViewController()
     var overlayView: UIView!
@@ -50,7 +50,7 @@ class SideModalViewController: UIViewController {
         tableView.delegate = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.register(modalTableViewCell.self, forCellReuseIdentifier: modalTableViewCell.cellIdentifier)
+        tableView.register(ModalTableViewCell.self, forCellReuseIdentifier: ModalTableViewCell.cellIdentifier)
     }
     
     func setUpConstraints() {
@@ -103,7 +103,7 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
         }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: modalTableViewCell.cellIdentifier) as? modalTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ModalTableViewCell.cellIdentifier) as? ModalTableViewCell else { return UITableViewCell() }
             cell.selectionStyle = .none
             cell.nameLabel.text = items[indexPath.row]
                 
@@ -127,7 +127,7 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
         selectedCellIndex = indexPath
         self.tableView.reloadData()
 
-        if let cell = tableView.cellForRow(at: indexPath) as? modalTableViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? ModalTableViewCell {
             cell.baseView.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1) // 원하는 색상으로 변경
             cell.nameLabel.textColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1) // 원하는 색상으로 변경
 
