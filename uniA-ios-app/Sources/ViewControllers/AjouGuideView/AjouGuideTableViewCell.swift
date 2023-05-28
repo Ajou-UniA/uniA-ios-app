@@ -21,6 +21,7 @@ class AjouGuideTableViewCell: UITableViewCell {
 
     let nameLabel = UILabel().then {
         $0.textColor = .black
+        $0.numberOfLines = 0
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 15)
     }
 
@@ -54,6 +55,7 @@ class AjouGuideTableViewCell: UITableViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(27)
+            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(100)
             $0.centerY.equalToSuperview()
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class AjouGuideViewController: UIViewController {
     // MARK: - Properties
+    
     let overView = UIView()
     let blurView = UIVisualEffectView()
     let tableView = UITableView()
@@ -105,9 +106,10 @@ class AjouGuideViewController: UIViewController {
 
     @objc func listBtnTapped() {
         let modalViewController = SideModalViewController()
+           modalViewController.didSelectItem = { [weak self] selectedItem in
+               self?.subtitleLabel.text = selectedItem
+           }
         presentSideModal(modalViewController, animated: true, completion: nil)
-        blurView.effect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-        blurView.frame = view.bounds
     }
 }
 
@@ -123,12 +125,10 @@ extension UIViewController {
         self.present(viewControllerToPresent, animated: flag) {
             completion?()
         }
-        // 초기 위치 설정
-        viewControllerToPresent.view.frame = CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight)
         
-        // 애니메이션 적용
+        viewControllerToPresent.view.frame = CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight)
         UIView.animate(withDuration: 0.3) {
-            viewControllerToPresent.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        viewControllerToPresent.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         }
     }
 }
@@ -212,6 +212,10 @@ extension AjouGuideViewController: UITableViewDelegate, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let selectedItem = items[indexPath.row]
             print("Selected item: \(selectedItem)")
+        
+        let detailGuideViewController = DetailGuideViewController()
+        detailGuideViewController.titleLabel.text = subtitleLabel.text
+           navigationController?.pushViewController(detailGuideViewController, animated: true)
         }
 
 }

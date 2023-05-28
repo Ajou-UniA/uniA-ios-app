@@ -11,8 +11,9 @@ class SideModalViewController: UIViewController {
     // MARK: - Properties
 
      // 선택한 셀의 인덱스를 저장할 변수
+    var didSelectItem: ((String) -> Void)?
 
-    let items = ["Ajou Campus Life", "Accademic Affairs", "Student Portal", "Immigration Guide", "Life in Korea", "Appendix"]
+    let items = ["Ajou Campus Life", "Accademic Affairs", "Immigration Guide"]
     let cell = ModalTableViewCell()
     let tableView = UITableView()
     let ajouGuide = AjouGuideViewController()
@@ -75,7 +76,6 @@ class SideModalViewController: UIViewController {
             self.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         }) { (completed) in
             if completed {
-                self.ajouGuide.blurView.effect = nil
                 self.dismiss(animated: false, completion: nil)
             }
         }
@@ -88,7 +88,6 @@ class SideModalViewController: UIViewController {
                 self.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             }) { (completed) in
                 if completed {
-                    self.ajouGuide.blurView.effect = nil
                     self.dismiss(animated: false, completion: nil)
                 }
             }
@@ -114,7 +113,6 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
                     cell.baseView.backgroundColor = .white
                     cell.nameLabel.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
                 }
-      
         return cell
     }
     
@@ -135,7 +133,9 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
         
             let selectedItem = items[indexPath.row]
             print("Selected item: \(selectedItem)")
+            didSelectItem?(selectedItem)
             modalAnimation()
-        }
+       
+    }
     
 }
