@@ -13,7 +13,6 @@ var cnt = 0
 class AjouGuideViewController: UIViewController {
     // MARK: - Properties
     var titla = [String]()
-
     let overView = UIView()
     let tableView = UITableView()
     let ajouCell = AjouGuideTableViewCell()
@@ -43,6 +42,9 @@ class AjouGuideViewController: UIViewController {
         $0.setImage(UIImage(named: "listBtn"), for: .normal)
         $0.addTarget(self, action: #selector(listBtnTapped), for: .touchUpInside)
     }
+    let borderView = UIView().then {
+        $0.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    }
 
     // MARK: - Lifecycles
     
@@ -60,19 +62,13 @@ class AjouGuideViewController: UIViewController {
                self?.tableView.reloadData()
            }
        }
-       
-    func setObjectsAlpha(_ alpha: CGFloat) {
-        overView.backgroundColor = .gray
-        overView.alpha = alpha
-       
-    }
     
     // MARK: - Helper
     
     func setUpView() {
         
         view.addSubview(overView)
-        [titleView, subtitleLabel, tableView].forEach {
+        [titleView, subtitleLabel, borderView, tableView].forEach {
             overView.addSubview($0)
         }
         [titleLabel, logoImageView, listBtn].forEach {
@@ -101,7 +97,7 @@ class AjouGuideViewController: UIViewController {
             $0.centerY.equalTo(logoImageView)
         }
         subtitleLabel.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.top.equalTo(titleView.snp.bottom).offset(33)
         }
         listBtn.snp.makeConstraints {
@@ -109,6 +105,11 @@ class AjouGuideViewController: UIViewController {
             $0.trailing.equalTo(titleView.snp.trailing).inset(20)
             $0.width.equalTo(Constant.width * 20)
             $0.height.equalTo(Constant.height * 17)
+        }
+        borderView.snp.makeConstraints {
+            $0.top.equalTo(subtitleLabel.snp.bottom).offset(31)
+            $0.height.equalTo(Constant.height * 0.8)
+            $0.leading.trailing.equalToSuperview()
         }
         tableView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(32)
@@ -119,8 +120,6 @@ class AjouGuideViewController: UIViewController {
     
     // MARK: - Objc
 
-   // let onoff = UserDefaults.standard.integer(forKey: "onoff")
-    
     let ajouGuideAccess = AjouGuideApiModel()
     @objc func listBtnTapped() {
         let modalViewController = SideModalViewController()
@@ -133,17 +132,15 @@ class AjouGuideViewController: UIViewController {
             } else if self?.subtitleLabel.text == "Accademic Affairs" {
                 id = 2
                 self?.reloadTableViewData()
-            }else {
+            } else {
                 id = 3
                 self?.reloadTableViewData()
             }
+            self!.view.alpha = 1
         }
-       // setObjectsAlpha(0.5)
-       // UserDefaults.standard.set(1, forKey: "onoff")
         presentSideModal(modalViewController, animated: true, completion: nil)
     }
 }
-
 
 extension UIViewController {
     func presentSideModal(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -152,7 +149,9 @@ extension UIViewController {
         
         viewControllerToPresent.modalPresentationStyle = .custom
         viewControllerToPresent.transitioningDelegate = self
-        
+
+        self.view.alpha = 0.7
+
         self.present(viewControllerToPresent, animated: flag) {
             completion?()
         }
@@ -235,7 +234,6 @@ extension AjouGuideViewController: UITableViewDelegate, UITableViewDataSource, U
         }
     
         cell.selectionStyle = .none
-//            cell.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
         return cell
     }
 
@@ -257,6 +255,4 @@ extension AjouGuideViewController: UITableViewDelegate, UITableViewDataSource, U
                 }
            navigationController?.pushViewController(detailGuideViewController, animated: true)
     }
-
 }
-

@@ -33,6 +33,7 @@ class DetailGuideViewController: UIViewController, UITextViewDelegate {
     lazy var textView = UITextView().then {
         $0.isEditable = false
         $0.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
+        $0.font = UIFont(name: "Urbanist-Medium", size: 14)
     }
     
     let textViewPadding: UIEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -49,11 +50,10 @@ class DetailGuideViewController: UIViewController, UITextViewDelegate {
         setUpConstraints()
     }
     
-    
     // MARK: - Helper
     
     func setUpView() {
-        [backBtn, titleLabel,subtitleLabel, textView].forEach {
+        [backBtn, titleLabel, subtitleLabel, textView].forEach {
             view.addSubview($0)
         }
     }
@@ -80,9 +80,7 @@ class DetailGuideViewController: UIViewController, UITextViewDelegate {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        
     }
-    
     // MARK: - Objc
     
     @objc

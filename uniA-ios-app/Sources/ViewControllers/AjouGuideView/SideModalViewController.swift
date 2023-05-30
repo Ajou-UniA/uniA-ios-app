@@ -12,13 +12,16 @@ class SideModalViewController: UIViewController {
 
      // 선택한 셀의 인덱스를 저장할 변수
     var didSelectItem: ((String) -> Void)?
-
+    let ajouGuideAccess = AjouGuideViewController()
     let items = ["Ajou Campus Life", "Accademic Affairs", "Immigration Guide"]
     let cell = ModalTableViewCell()
-    let tableView = UITableView()
     let ajouGuide = AjouGuideViewController()
     var overlayView: UIView!
     
+    let tableView = UITableView().then {
+        $0.isScrollEnabled = false
+    }
+
     let logoImageView = UIImageView().then {
         $0.image = UIImage(named: "logo-small")
         $0.contentMode = .scaleAspectFit
@@ -34,7 +37,7 @@ class SideModalViewController: UIViewController {
         overlayView = UIView(frame: view.bounds)
         view.addSubview(overlayView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayTapped))
-                overlayView.addGestureRecognizer(tapGesture)
+        overlayView.addGestureRecognizer(tapGesture)
         setUpView()
         setUpConstraints()
     }
@@ -59,18 +62,17 @@ class SideModalViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.width.equalTo(Constant.width * 31)
             $0.height.equalTo(Constant.height * 33)
-            
         }
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(64)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(250)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(500)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).dividedBy(2).inset(15)
         }
     }
     
-    func modalAnimation(){
+    func modalAnimation() {
         UIView.animate(withDuration: 0.3, animations: {
             self.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         }) { (completed) in
@@ -82,7 +84,6 @@ class SideModalViewController: UIViewController {
     // MARK: - objc
     
     @objc func overlayTapped() {
-            // 오버레이 뷰를 터치했을 때 모달을 닫고 원래 화면으로 돌아가도록 애니메이션 적용
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             }) { (completed) in
@@ -91,7 +92,6 @@ class SideModalViewController: UIViewController {
                 }
             }
         }
-    
 }
 var selectedCellIndex: IndexPath?
 
@@ -117,7 +117,6 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 48
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -129,12 +128,9 @@ extension SideModalViewController: UITableViewDelegate, UITableViewDataSource, U
             cell.nameLabel.textColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1) // 원하는 색상으로 변경
 
         }
-        
             let selectedItem = items[indexPath.row]
             print("Selected item: \(selectedItem)")
             didSelectItem?(selectedItem)
             modalAnimation()
-       
     }
-    
 }

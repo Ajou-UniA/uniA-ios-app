@@ -5,7 +5,6 @@
 //  Created by HA on 2023/05/28.
 //
 
-
 import SnapKit
 import Then
 import UIKit
@@ -29,6 +28,7 @@ class AjouGuideTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectedBackgroundView = UIView()
         setUpView()
+        addBottomBorder(with: UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1), andWidth: CGFloat(1))
         setUpConstraint()
         self.contentView.backgroundColor = .clear
     }
@@ -57,5 +57,12 @@ class AjouGuideTableViewCell: UITableViewCell {
             $0.centerY.equalToSuperview()
         }
     }
+    func addBottomBorder(with color: UIColor?, andWidth borderWidth: CGFloat) {
+            let border = UIView()
+            border.backgroundColor = color
+            border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+            border.frame = CGRect(x: 0, y: baseView.frame.size.height - borderWidth, width: baseView.frame.size.width, height: borderWidth)
+            baseView.addSubview(border)
+        }
     
 }
