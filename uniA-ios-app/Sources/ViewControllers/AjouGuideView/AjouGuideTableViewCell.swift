@@ -15,9 +15,7 @@ class AjouGuideTableViewCell: UITableViewCell {
 
     static let cellIdentifier = "AjouGuideTableViewCell"
 
-    let baseView = UIView().then {
-        $0.backgroundColor = .clear
-    }
+    let baseView = UIView()
 
     let nameLabel = UILabel().then {
         $0.textColor = .black
@@ -55,7 +53,7 @@ class AjouGuideTableViewCell: UITableViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(27)
-            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(100)
+            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(-27)
             $0.centerY.equalToSuperview()
         }
     }

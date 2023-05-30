@@ -29,7 +29,6 @@ class SideModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         
         overlayView = UIView(frame: view.bounds)

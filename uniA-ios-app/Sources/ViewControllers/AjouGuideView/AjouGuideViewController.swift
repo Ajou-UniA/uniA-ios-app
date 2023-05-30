@@ -7,14 +7,16 @@
 
 import UIKit
 
+var id: Int = 1
+var cnt = 0
 
 class AjouGuideViewController: UIViewController {
     // MARK: - Properties
-    
+    var titla = [String]()
+
     let overView = UIView()
-    let blurView = UIVisualEffectView()
     let tableView = UITableView()
-    let items = ["Ajou Campus Life", "Accademic Affairs", "Student Portal", "Immigration Guide", "Life in Korea", "Appendix"]
+    let ajouCell = AjouGuideTableViewCell()
 
     private let titleView = UIView().then {
         $0.backgroundColor = .clear
@@ -48,10 +50,23 @@ class AjouGuideViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        
         setUpView()
         setUpConstraints()
+        reloadTableViewData()
     }
+    func reloadTableViewData() {
+           ajouGuideAccess.callTableList(id: id) { [weak self] data in
+               cnt = data.count
+               self?.tableView.reloadData()
+           }
+       }
+       
+    func setObjectsAlpha(_ alpha: CGFloat) {
+        overView.backgroundColor = .gray
+        overView.alpha = alpha
+       
+    }
+    
     // MARK: - Helper
     
     func setUpView() {
@@ -70,7 +85,7 @@ class AjouGuideViewController: UIViewController {
     }
     
     func setUpConstraints() {
-        overView.snp.makeConstraints{
+        overView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         titleView.snp.makeConstraints {
@@ -97,18 +112,34 @@ class AjouGuideViewController: UIViewController {
         }
         tableView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(32)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(90)
             $0.leading.trailing.equalToSuperview()
         }
     }
     
     // MARK: - Objc
 
+   // let onoff = UserDefaults.standard.integer(forKey: "onoff")
+    
+    let ajouGuideAccess = AjouGuideApiModel()
     @objc func listBtnTapped() {
         let modalViewController = SideModalViewController()
-           modalViewController.didSelectItem = { [weak self] selectedItem in
-               self?.subtitleLabel.text = selectedItem
-           }
+        modalViewController.didSelectItem = { [weak self] selectedItem in
+            self?.subtitleLabel.text = selectedItem
+            if self?.subtitleLabel.text == "Ajou Campus Life" {
+                id = 1
+                self?.reloadTableViewData()
+                
+            } else if self?.subtitleLabel.text == "Accademic Affairs" {
+                id = 2
+                self?.reloadTableViewData()
+            }else {
+                id = 3
+                self?.reloadTableViewData()
+            }
+        }
+       // setObjectsAlpha(0.5)
+       // UserDefaults.standard.set(1, forKey: "onoff")
         presentSideModal(modalViewController, animated: true, completion: nil)
     }
 }
@@ -192,16 +223,19 @@ class SideModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
     }
 }
 
-
 extension AjouGuideViewController: UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return items.count
-        }
-
+        return cnt
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AjouGuideTableViewCell.cellIdentifier) as? AjouGuideTableViewCell else { return UITableViewCell() }
+        
+        ajouGuideAccess.callTableList(id: id) { data in
+            cell.nameLabel.text = data[indexPath.row]
+        }
+    
         cell.selectionStyle = .none
-        cell.nameLabel.text = items[indexPath.row]
+//            cell.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
         return cell
     }
 
@@ -210,13 +244,19 @@ extension AjouGuideViewController: UITableViewDelegate, UITableViewDataSource, U
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let selectedItem = items[indexPath.row]
-            print("Selected item: \(selectedItem)")
-        
         let detailGuideViewController = DetailGuideViewController()
         detailGuideViewController.titleLabel.text = subtitleLabel.text
+        ajouGuideAccess.callTableList(id: id) { data in
+            detailGuideViewController.subtitleLabel.text = data[indexPath.row]
+            }
+        ajouGuideAccess.callTextList(id: id) { data in
+                    if indexPath.row < data.count {
+                        let selectedData = data[indexPath.row]
+                        detailGuideViewController.textView.text = selectedData
+                    }
+                }
            navigationController?.pushViewController(detailGuideViewController, animated: true)
-        }
+    }
 
 }
 

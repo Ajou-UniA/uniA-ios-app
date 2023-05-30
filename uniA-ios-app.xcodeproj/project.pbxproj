@@ -29,6 +29,8 @@
 		07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD0A982A03F06600FC6EC6 /* SignInApiModel.swift */; };
 		07BD0A9B2A03F43C00FC6EC6 /* LoginCheckApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD0A9A2A03F43C00FC6EC6 /* LoginCheckApiModel.swift */; };
 		07D6509B2A23B4B500444E33 /* DetailGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6509A2A23B4B500444E33 /* DetailGuideViewController.swift */; };
+		07D6509E2A25EA0700444E33 /* AjouGuideApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6509D2A25EA0700444E33 /* AjouGuideApiModel.swift */; };
+		07D650A02A25EBEB00444E33 /* AjouGuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6509F2A25EBEB00444E33 /* AjouGuideModel.swift */; };
 		07D950002A174CFF007FD282 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D94FFF2A174CFF007FD282 /* PolicyViewController.swift */; };
 		07D950022A179732007FD282 /* Privacy_policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 07D950012A179732007FD282 /* Privacy_policy.pdf */; };
 		07D950052A179B32007FD282 /* Terms&conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 07D950042A179B32007FD282 /* Terms&conditions.pdf */; };
@@ -122,6 +124,8 @@
 		07BD0A982A03F06600FC6EC6 /* SignInApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApiModel.swift; sourceTree = "<group>"; };
 		07BD0A9A2A03F43C00FC6EC6 /* LoginCheckApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckApiModel.swift; sourceTree = "<group>"; };
 		07D6509A2A23B4B500444E33 /* DetailGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGuideViewController.swift; sourceTree = "<group>"; };
+		07D6509D2A25EA0700444E33 /* AjouGuideApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouGuideApiModel.swift; sourceTree = "<group>"; };
+		07D6509F2A25EBEB00444E33 /* AjouGuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouGuideModel.swift; sourceTree = "<group>"; };
 		07D94FFF2A174CFF007FD282 /* PolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
 		07D950012A179732007FD282 /* Privacy_policy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Privacy_policy.pdf; sourceTree = "<group>"; };
 		07D950042A179B32007FD282 /* Terms&conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&conditions.pdf"; sourceTree = "<group>"; };
@@ -216,6 +220,15 @@
 			path = AjouGuideView;
 			sourceTree = "<group>";
 		};
+		07D6509C2A24B1B500444E33 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				07D6509D2A25EA0700444E33 /* AjouGuideApiModel.swift */,
+				07D6509F2A25EBEB00444E33 /* AjouGuideModel.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		07D950032A179B20007FD282 /* Pdf */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +317,7 @@
 			children = (
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
+				07D6509C2A24B1B500444E33 /* Guide */,
 				8AA9BCDE2A14DCB50074652D /* Task */,
 				07E298BA29FB9E67000C137E /* Data */,
 				07E298B929FB9E4B000C137E /* Login */,
@@ -615,6 +629,7 @@
 				0790541529E99FAD00EECF2B /* VerificationApiModel.swift in Sources */,
 				0788641329C179C500DA9E6A /* CreateAccountViewController.swift in Sources */,
 				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
+				07D6509E2A25EA0700444E33 /* AjouGuideApiModel.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
 				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
 				8AA9BCEC2A1619CD0074652D /* DetailMapViewController.swift in Sources */,
@@ -636,6 +651,7 @@
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
+				07D650A02A25EBEB00444E33 /* AjouGuideModel.swift in Sources */,
 				075C7CC62A22613A004232C3 /* ModalTableViewCell.swift in Sources */,
 				8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */,
 				07D6509B2A23B4B500444E33 /* DetailGuideViewController.swift in Sources */,

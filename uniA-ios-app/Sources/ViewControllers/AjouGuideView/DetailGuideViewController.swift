@@ -9,7 +9,7 @@ import SnapKit
 import Then
 import UIKit
 
-class DetailGuideViewController: UIViewController, UITextFieldDelegate {
+class DetailGuideViewController: UIViewController, UITextViewDelegate {
     // MARK: - Properties
     
     lazy var backBtn = UIButton().then {
@@ -31,15 +31,20 @@ class DetailGuideViewController: UIViewController, UITextFieldDelegate {
         $0.textColor = UIColor(red: 0.514, green: 0.329, blue: 1, alpha: 1)
     }
     lazy var textView = UITextView().then {
-        $0.backgroundColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
+        $0.isEditable = false
+        $0.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
     }
+    
+    let textViewPadding: UIEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        
+        textView.delegate = self
+        textView.textContainerInset = textViewPadding
+
         setUpView()
         setUpConstraints()
     }
@@ -67,6 +72,7 @@ class DetailGuideViewController: UIViewController, UITextFieldDelegate {
         }
         subtitleLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             $0.top.equalTo(titleLabel.snp.bottom).offset(63)
         }
         textView.snp.makeConstraints {
