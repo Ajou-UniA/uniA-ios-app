@@ -7,7 +7,7 @@
 
 import UIKit
 
-var mapText = [ccc, fff, xxx,jjj, mmm, rrr]
+var mapText = [firstText, secondText]
 
 var aaa = "1 Main Gate\n\n2 School Bus Stop\n\n3 The Pioneer Statue\n\n4 Energy Center\n\n5 Woncheon Hall\n\n6 Woncheon Haedong Hall\n\n"
 var bbb = "7 North Gate\n\n8 Chemical Engineering Laboratory\n\n9 West Hall\n\n10 East Hall"
@@ -27,3 +27,6 @@ var mmm = kkk + lll
 var nnn = "51 Gaon Garden\n\n52 Ilsin Hall\n\n53 Hyegang Hall\n\n54 Connecting Square\n\n55 Mirae Hall\n\n"
 var ooo = "56 Emergency Medical Center\n\n57 Ajou University Intermediate Care Hospital\n\n58 Parking Garage 1"
 var rrr = nnn + ooo
+
+var firstText = ccc + fff + xxx
+var secondText = jjj + mmm + rrr

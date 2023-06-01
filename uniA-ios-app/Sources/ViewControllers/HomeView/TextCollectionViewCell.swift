@@ -39,9 +39,7 @@ class TextCollectionViewCell: UICollectionViewCell {
                 .font: UIFont(name: "Urbanist-SemiBold", size: 14)!,
                 .paragraphStyle: paragraphStyle
             ]
-            
             textView.typingAttributes = attributes
-        
     }
     
     func setUpConstraint() {
@@ -49,7 +47,5 @@ class TextCollectionViewCell: UICollectionViewCell {
             $0.top.bottom.leading.equalToSuperview()
             $0.trailing.equalToSuperview().inset(15)
         }
-        
     }
-    
 }

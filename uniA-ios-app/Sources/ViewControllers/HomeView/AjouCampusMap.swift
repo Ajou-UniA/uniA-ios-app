@@ -15,14 +15,15 @@ class AjouCampusMapView: UIView, UICollectionViewDelegate, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-                    return CGSize(width: 217, height: 350)
-                    
-            }
+                    return CGSize(width: 230, height: 350)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TextCollectionViewCell", for: indexPath) as? TextCollectionViewCell else {
                     return UICollectionViewCell()
@@ -70,7 +71,6 @@ class AjouCampusMapView: UIView, UICollectionViewDelegate, UICollectionViewDeleg
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
-
 
     func setUpView() {
         [titleLabel, imageView, textCollectionView].forEach {
