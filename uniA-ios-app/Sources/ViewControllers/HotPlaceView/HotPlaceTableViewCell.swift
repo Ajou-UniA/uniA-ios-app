@@ -66,10 +66,6 @@ class HotPlaceTableViewCell: UITableViewCell {
         $0.backgroundColor = .clear
     }
 
-    let extraView = UIView().then {
-        $0.backgroundColor = .yellow
-    }
-
     let navigationBtn = UIButton().then {
         $0.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
         $0.layer.cornerRadius = 10
@@ -90,7 +86,6 @@ class HotPlaceTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectedBackgroundView = UIView()
         addBottomBorder(with: UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1), andWidth: CGFloat(1))
-        extraView.isHidden = true
         setUpView()
         setUpConstraint()
     }
@@ -101,7 +96,7 @@ class HotPlaceTableViewCell: UITableViewCell {
 
     func setUpView() {
         self.contentView.addSubview(baseView)
-        [numberLabel, restaurantNameLabel, kmLabel, heartStackView, extraView].forEach {
+        [numberLabel, restaurantNameLabel, kmLabel, heartStackView].forEach {
             baseView.addSubview($0)
         }
         [numberLabel, restaurantNameLabel, kmLabel, countHeartLabel].forEach {
@@ -124,13 +119,12 @@ class HotPlaceTableViewCell: UITableViewCell {
         restaurantNameLabel.snp.makeConstraints {
             $0.top.equalTo(numberLabel.snp.top)
             $0.leading.equalTo(numberLabel.snp.trailing).offset(30)
-            $0.trailing.equalTo(heartStackView.snp.leading).offset(10) // 임시
+            $0.trailing.equalToSuperview().inset(65) // 임시
         }
         kmLabel.snp.makeConstraints {
             $0.top.equalTo(restaurantNameLabel.snp.bottom).offset(7)
             $0.leading.equalTo(restaurantNameLabel)
             $0.bottom.equalToSuperview().inset(34)
-////            $0.bottom.equalTo(extraView.snp.top).inset(34)
         }
         heartStackView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(27)
@@ -139,18 +133,13 @@ class HotPlaceTableViewCell: UITableViewCell {
         }
         heartBtn.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(Constant.height * 25)
-            $0.width.equalTo(Constant.width * 30)
+            $0.height.equalTo(25)
+            $0.width.equalTo(30)
         }
         countHeartLabel.snp.makeConstraints {
             $0.top.equalTo(heartBtn.snp.bottom).offset(6.93)
             $0.bottom.equalToSuperview()
             $0.centerX.equalToSuperview()
-        }
-        extraView.snp.makeConstraints {
-            $0.top.equalTo(kmLabel.snp.bottom).offset(10)
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(Constant.height * 25)
         }
     }
 
