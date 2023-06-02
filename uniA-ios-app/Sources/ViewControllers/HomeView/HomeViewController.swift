@@ -25,6 +25,9 @@ class HomeViewController: UIViewController {
     let getTask = Task()
     var tasks: [TaskResponse] = []
 
+    let getPlace = HotPlace()
+    var places: [HotPlaceResponse] = []
+
     let dateFormatter = DateFormatter()
 
     private let titleView = UIView().then {
@@ -256,7 +259,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if let days = components.day, days > 0 {
             dayLeftText = "\(days) day\(days > 1 ? "s" : "") left"
         } else if let days = components.day, days == 0 {
-            dayLeftText = "Today"
+            dayLeftText = "less than a day left"
         } else {
             dayLeftText = ""
         }

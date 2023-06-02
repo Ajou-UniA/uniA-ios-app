@@ -31,6 +31,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleTaskUpdate), name: Notification.Name("TaskUpdateNotification"), object: nil)
 
+
         UITabBar.clear()
         self.changeRadius()
 
@@ -44,7 +45,6 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
         // MARK: - ajouGuideTab
         ajouGuideTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.ajouGuide") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.ajouGuide.fill") ?? UIImage())
         ajouGuideTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
-
 
         // MARK: - homeTab
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.home") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.home.fill") ?? UIImage())
@@ -87,7 +87,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     func didCreateTask() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
+            taskViewController.getTask.getMyTaskSorted(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()
@@ -99,7 +99,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     @objc func handleTaskUpdate() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
+            taskViewController.getTask.getMyTaskSorted(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()

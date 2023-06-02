@@ -180,7 +180,7 @@ class SaveTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-        getTask.getMyTask(memberId: memberId) { tasks in
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.tasks = tasks
@@ -209,6 +209,7 @@ class SaveTaskPopUpView: UIView, UITextFieldDelegate {
     }
 
     let courseNameLabel = UILabel().then {
+        $0.text = "Course name"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
         $0.numberOfLines = 0
@@ -223,18 +224,21 @@ class SaveTaskPopUpView: UIView, UITextFieldDelegate {
     }
 
     let taskNameLabel = UILabel().then {
+        $0.text = "Task name"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
         $0.numberOfLines = 0
     }
 
     let dueDateLabel = UILabel().then {
+        $0.text = "Select a due date"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
         $0.numberOfLines = 0
     }
 
     let dueTimeLabel = UILabel().then {
+        $0.text = "Select a time"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
         $0.numberOfLines = 0
@@ -398,32 +402,38 @@ class SaveTaskPopUpView: UIView, UITextFieldDelegate {
     // MARK: - TextFieldDelegate
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.498, green: 0.867, blue: 1, alpha: 1).cgColor
-        textField.attributedPlaceholder = NSAttributedString(
-            string: textField.placeholder ?? "",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)]
-        )
+        textField.textColor = UIColor(red: 0.498, green: 0.867, blue: 1, alpha: 1)
     }
 
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1).cgColor
+        textField.textColor = UIColor(red: 0.542, green: 0.542, blue: 0.542, alpha: 1)
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-
             if updatedText?.isEmpty == true {
                 textField.text = textField.placeholder
             }
-
             return true
         }
 }
 
-// MARK: 텍스트필드 왼쪽 간격 주기 -> 패딩에서 텍스트 입력 시작
+// MARK: 텍스트필드 간격 주기 -> 패딩에서 텍스트 입력 시작
 extension UITextField {
     func addLeftPadding2() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 18, height: self.frame.height))
         self.leftView = paddingView
         self.leftViewMode = ViewMode.always
+    }
+    func addLeftPadding3() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
+    func addRightPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: self.frame.height))
+        self.rightView = paddingView
+        self.rightViewMode = ViewMode.always
     }
 }
