@@ -56,6 +56,8 @@
 		8A0D213429BB72520045C456 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D212F29BB72520045C456 /* LoginViewController.swift */; };
 		8A0D213E29BB72B00045C456 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213C29BB72B00045C456 /* Constant.swift */; };
 		8A0D213F29BB72B00045C456 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */; };
+		8A36C8112A1B480300B33E37 /* HotPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36C8102A1B480300B33E37 /* HotPlaceViewController.swift */; };
+		8A36C8132A1B495400B33E37 /* HotPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36C8122A1B495400B33E37 /* HotPlaceTableViewCell.swift */; };
 		8A78C0CF2A06A77000DD2E68 /* AjouCampusMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */; };
 		8A8081C629D077F300CE375D /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */; };
 		8A8081C729D077F300CE375D /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */; };
@@ -77,6 +79,8 @@
 		8A8081D729D077F300CE375D /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */; };
 		8A8081D929D1B77D00CE375D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8081D829D1B77D00CE375D /* SceneDelegate.swift */; };
 		8AA2644329BDD31100AA890D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2644229BDD31100AA890D /* TabBarController.swift */; };
+		8AA7C0932A277C76002DD5B5 /* DetailPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7C0922A277C76002DD5B5 /* DetailPlaceViewController.swift */; };
+		8AA7C0952A279FE8002DD5B5 /* HotPlaceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7C0942A279FE8002DD5B5 /* HotPlaceHeaderView.swift */; };
 		8AA9BCE02A14DCD20074652D /* TaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */; };
 		8AA9BCE22A14DCE40074652D /* TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE12A14DCE40074652D /* TaskResponse.swift */; };
 		8AA9BCE42A14DCF90074652D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9BCE32A14DCF90074652D /* Task.swift */; };
@@ -96,6 +100,8 @@
 		8AAF51332A06A15C00E5CC02 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */; };
 		8AAF51342A06A15C00E5CC02 /* SaveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */; };
 		8AAF51352A06A15C00E5CC02 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */; };
+		8AB597662A222F1C00B41FF0 /* HotPlaceResopnse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB597652A222F1C00B41FF0 /* HotPlaceResopnse.swift */; };
+		8AB5976A2A222F6200B41FF0 /* HotPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB597692A222F6200B41FF0 /* HotPlace.swift */; };
 		8ADFDAD029BB421E006824B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFDACF29BB421E006824B8 /* AppDelegate.swift */; };
 		8ADFDAD929BB421F006824B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDAD829BB421F006824B8 /* Assets.xcassets */; };
 		8ADFDADC29BB421F006824B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */; };
@@ -145,6 +151,8 @@
 		8A0D212F29BB72520045C456 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A0D213C29BB72B00045C456 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		8A36C8102A1B480300B33E37 /* HotPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPlaceViewController.swift; sourceTree = "<group>"; };
+		8A36C8122A1B495400B33E37 /* HotPlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		8A78C0CE2A06A77000DD2E68 /* AjouCampusMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouCampusMap.swift; sourceTree = "<group>"; };
 		8A8081B429D077F300CE375D /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		8A8081B529D077F300CE375D /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -166,6 +174,8 @@
 		8A8081C529D077F300CE375D /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
 		8A8081D829D1B77D00CE375D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8AA2644229BDD31100AA890D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		8AA7C0922A277C76002DD5B5 /* DetailPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceViewController.swift; sourceTree = "<group>"; };
+		8AA7C0942A279FE8002DD5B5 /* HotPlaceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPlaceHeaderView.swift; sourceTree = "<group>"; };
 		8AA9BCDF2A14DCD20074652D /* TaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRequest.swift; sourceTree = "<group>"; };
 		8AA9BCE12A14DCE40074652D /* TaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskResponse.swift; sourceTree = "<group>"; };
 		8AA9BCE32A14DCF90074652D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -183,6 +193,8 @@
 		8AAF512E2A06A15C00E5CC02 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		8AAF512F2A06A15C00E5CC02 /* SaveTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTaskViewController.swift; sourceTree = "<group>"; };
 		8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		8AB597652A222F1C00B41FF0 /* HotPlaceResopnse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPlaceResopnse.swift; sourceTree = "<group>"; };
+		8AB597692A222F6200B41FF0 /* HotPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPlace.swift; sourceTree = "<group>"; };
 		8ADFDACC29BB421E006824B8 /* uniA-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uniA-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADFDACF29BB421E006824B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADFDAD829BB421F006824B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -307,6 +319,7 @@
 		8A0D212329BB720E0045C456 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A36C80F2A1B47DE00B33E37 /* HotPlaceView */,
 				0789E0722A221D870027B816 /* AjouGuideView */,
 				8AAF512B2A06A15C00E5CC02 /* TaskView */,
 				8AAF51052A06827900E5CC02 /* HomeView */,
@@ -322,6 +335,7 @@
 			children = (
 				8AAF510C2A06833C00E5CC02 /* GenericResponse.swift */,
 				8AAF510D2A06833C00E5CC02 /* NetworkResult.swift */,
+				8AB597642A222EF900B41FF0 /* HotPlace */,
 				07D6509C2A24B1B500444E33 /* Guide */,
 				8AA9BCDE2A14DCB50074652D /* Task */,
 				07E298BA29FB9E67000C137E /* Data */,
@@ -386,6 +400,17 @@
 				8A0D213D29BB72B00045C456 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8A36C80F2A1B47DE00B33E37 /* HotPlaceView */ = {
+			isa = PBXGroup;
+			children = (
+				8A36C8102A1B480300B33E37 /* HotPlaceViewController.swift */,
+				8AA7C0942A279FE8002DD5B5 /* HotPlaceHeaderView.swift */,
+				8AA7C0922A277C76002DD5B5 /* DetailPlaceViewController.swift */,
+				8A36C8122A1B495400B33E37 /* HotPlaceTableViewCell.swift */,
+			);
+			path = HotPlaceView;
 			sourceTree = "<group>";
 		};
 		8A8081B329D077DF00CE375D /* Urbanist */ = {
@@ -457,6 +482,15 @@
 				8AAF51302A06A15C00E5CC02 /* TaskTableViewCell.swift */,
 			);
 			path = TaskView;
+			sourceTree = "<group>";
+		};
+		8AB597642A222EF900B41FF0 /* HotPlace */ = {
+			isa = PBXGroup;
+			children = (
+				8AB597652A222F1C00B41FF0 /* HotPlaceResopnse.swift */,
+				8AB597692A222F6200B41FF0 /* HotPlace.swift */,
+			);
+			path = HotPlace;
 			sourceTree = "<group>";
 		};
 		8ADFDAC329BB421E006824B8 = {
@@ -637,6 +671,8 @@
 				8AAF510A2A06827900E5CC02 /* HomeViewController.swift in Sources */,
 				07D6509E2A25EA0700444E33 /* AjouGuideApiModel.swift in Sources */,
 				076BA3D32A06714F006895D0 /* CreateAccount.swift in Sources */,
+				8AB597662A222F1C00B41FF0 /* HotPlaceResopnse.swift in Sources */,
+				8AA7C0932A277C76002DD5B5 /* DetailPlaceViewController.swift in Sources */,
 				8AAF510F2A06833C00E5CC02 /* GenericResponse.swift in Sources */,
 				8AA9BCEC2A1619CD0074652D /* DetailMapViewController.swift in Sources */,
 				8AAF51042A067DF900E5CC02 /* Body.swift in Sources */,
@@ -656,6 +692,7 @@
 				8AAF51312A06A15C00E5CC02 /* CreateTaskViewController.swift in Sources */,
 				073F24702A1004C100CF68C7 /* FindMemberApiModel.swift in Sources */,
 				8A0D213E29BB72B00045C456 /* Constant.swift in Sources */,
+				8A36C8132A1B495400B33E37 /* HotPlaceTableViewCell.swift in Sources */,
 				073F24762A10058700CF68C7 /* CallMemberIdApiModel.swift in Sources */,
 				0788640929C0AFA100DA9E6A /* VerificationViewController.swift in Sources */,
 				07D650A02A25EBEB00444E33 /* AjouGuideModel.swift in Sources */,
@@ -665,7 +702,10 @@
 				07D6509B2A23B4B500444E33 /* DetailGuideViewController.swift in Sources */,
 				07E298BE29FBEAE9000C137E /* SendCodeApiModel.swift in Sources */,
 				07E298BC29FB9F46000C137E /* EditMyProfileApiModel.swift in Sources */,
+				8AB5976A2A222F6200B41FF0 /* HotPlace.swift in Sources */,
+				8A36C8112A1B480300B33E37 /* HotPlaceViewController.swift in Sources */,
 				8AAF51022A067DA600E5CC02 /* Const.swift in Sources */,
+				8AA7C0952A279FE8002DD5B5 /* HotPlaceHeaderView.swift in Sources */,
 				8AAF51102A06833C00E5CC02 /* NetworkResult.swift in Sources */,
 				07BD0A992A03F06600FC6EC6 /* SignInApiModel.swift in Sources */,
 				0780040F2A13EBAD0079D447 /* ForgotPasswordApiModel.swift in Sources */,
