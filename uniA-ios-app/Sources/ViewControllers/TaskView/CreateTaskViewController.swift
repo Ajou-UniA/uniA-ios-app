@@ -171,9 +171,9 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
 
         getTask.createTask(bodyData: bodyData)
 
-        getTask.getMyTask(memberId: memberId) { tasks in
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
             self.tasks = tasks
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.tasks = tasks
                 self.createTaskDelegate?.didCreateTask()
                 // Task 생성 후에 NotificationCenter로 TaskViewController로 데이터 업데이트 요청
@@ -182,19 +182,6 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
         }
 
         self.dismiss(animated: true, completion: nil)
-
-//        getTask.getMyTask(memberId: 202021758) { tasks in
-//            print(tasks.count)
-//            self.tasks = tasks
-//            DispatchQueue.main.async {
-//                // Task 생성 후에 TaskViewController를 업데이트
-//                if let taskViewController = self.presentingViewController as? TaskViewController {
-//                taskViewController.refreshTasks()
-//            }
-//                self.taskViewController.taskTableView.reloadData()
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
     }
 
     @objc
@@ -204,7 +191,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate {
             self.selectedAssignmentID = lastAssignmentId!
             let indexPath = IndexPath(row: lastAssignmentId!+1, section: 0)
             self.taskTableView.insertRows(at: [indexPath], with: .automatic)
-            self.getTask.getMyTask(memberId: memberId) { tasks in
+            self.getTask.getMyTaskSorted(memberId: memberId) { tasks in
                 print(tasks.count)
                 self.tasks = tasks
                 self.taskTableView.reloadData()
@@ -252,7 +239,7 @@ class CreateTaskPopUpView: UIView, UITextFieldDelegate {
         $0.font = UIFont(name: "Urbanist-SemiBold", size: 13)
         $0.numberOfLines = 0
     }
-
+    
     let dueDateLabel = UILabel().then {
         $0.text = "Select a due date"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)

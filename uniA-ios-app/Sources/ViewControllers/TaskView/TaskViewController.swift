@@ -83,12 +83,18 @@ class TaskViewController: UIViewController {
         super.viewWillAppear(animated)
 
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
-        getTask.getMyTask(memberId: memberId) { tasks in
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
                 self.taskTableView.reloadData()
             }
         }
+//        getTask.getMyTask(memberId: memberId) { tasks in
+//            self.tasks = tasks
+//            DispatchQueue.main.async {
+//                self.taskTableView.reloadData()
+//            }
+//        }
     }
 
     func setUpView() {
@@ -146,7 +152,7 @@ class TaskViewController: UIViewController {
 
     @objc func handleTaskUpdate() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
-        getTask.getMyTask(memberId: memberId) { tasks in
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
                 self.taskTableView.reloadData()
@@ -169,7 +175,6 @@ class TaskViewController: UIViewController {
         if sender.state == .began {
             let touchPoint = sender.location(in: taskTableView)
             if let indexPath = taskTableView.indexPathForRow(at: touchPoint) {
-                // your code here, get the row for the indexPath or do whatever you want
             }
         }
     }
@@ -284,7 +289,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource, UITabB
 extension TaskViewController {
     func refreshTasks() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
-        getTask.getMyTask(memberId: memberId) { tasks in
+        getTask.getMyTaskSorted(memberId: memberId) { tasks in
             self.tasks = tasks
             DispatchQueue.main.async {
                 self.taskTableView.reloadData()

@@ -13,7 +13,7 @@ import Then
 
 class HomeViewController: UIViewController {
 
-    var nickname: String = "UniA Paranni"
+    var nickname: String = "Hello"
 
     let colors = [UIColor(red: 0.733, green: 0.558, blue: 1, alpha: 1),
                   UIColor(red: 0.864, green: 0.775, blue: 1, alpha: 1),
@@ -24,6 +24,9 @@ class HomeViewController: UIViewController {
 
     let getTask = Task()
     var tasks: [TaskResponse] = []
+
+    let getPlace = HotPlace()
+    var places: [HotPlaceResponse] = []
 
     let dateFormatter = DateFormatter()
 
@@ -48,6 +51,7 @@ class HomeViewController: UIViewController {
     }
 
     let helloLabel = UILabel().then {
+        $0.text = "Hello!"
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = UIFont(name: "Urbanist-Bold", size: 30)
         $0.numberOfLines = 0
@@ -71,7 +75,6 @@ class HomeViewController: UIViewController {
     let favoriteView = FavoriteView()
     let ajouCampusMapView = AjouCampusMapView()
     let cell = TaskCollectionViewCell()
-
     let memberInfoAccess = FindMemberApiModel()
 
     override func viewDidLoad() {
@@ -256,7 +259,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if let days = components.day, days > 0 {
             dayLeftText = "\(days) day\(days > 1 ? "s" : "") left"
         } else if let days = components.day, days == 0 {
-            dayLeftText = "Today"
+            dayLeftText = "less than a day left"
         } else {
             dayLeftText = ""
         }

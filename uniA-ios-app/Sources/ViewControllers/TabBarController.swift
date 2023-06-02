@@ -13,15 +13,15 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     let height: CGFloat = 85
 
     let taskTab = TaskViewController()
+    let ajouGuideTab = AjouGuideViewController()
     let homeTab = HomeViewController()
+    let hotPlaceTab = HotPlaceViewController()
     let myPageTab = MyPageViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let taskTab = TaskViewController()
-        let homeTab = HomeViewController()
-        let myPageTab = MyPageViewController()
-        viewControllers = [taskTab, homeTab, myPageTab]
+
+        viewControllers = [taskTab, ajouGuideTab, homeTab, hotPlaceTab, myPageTab]
         setViewControllers(viewControllers, animated: false)
 
         // TaskViewController를 찾아서 createTaskDelegate 설정
@@ -34,16 +34,24 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
         UITabBar.clear()
         self.changeRadius()
 
-        self.selectedIndex = 1
+        self.selectedIndex = 2
         self.tabBar.isTranslucent = true
 
         // MARK: - taskTab
         taskTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.task") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.task.fill") ?? UIImage())
         taskTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
 
+        // MARK: - ajouGuideTab
+        ajouGuideTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.ajouGuide") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.ajouGuide.fill") ?? UIImage())
+        ajouGuideTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
+
         // MARK: - homeTab
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.home") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.home.fill") ?? UIImage())
         homeTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
+
+        // MARK: - hotPlaceTab
+        hotPlaceTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.hotPlace") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.hotPlace.fill") ?? UIImage())
+        hotPlaceTab.tabBarItem.imageInsets = UIEdgeInsets(top: 20.5, left: 0, bottom: -20.5, right: 0)
 
         // MARK: - myPageTab
         myPageTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tabBarItem.myPage") ?? UIImage(), selectedImage: UIImage(named: "tabBarItem.myPage.fill") ?? UIImage())
@@ -78,7 +86,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     func didCreateTask() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
+            taskViewController.getTask.getMyTaskSorted(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()
@@ -90,7 +98,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     @objc func handleTaskUpdate() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
         if let taskViewController = viewControllers?.first(where: { $0 is TaskViewController }) as? TaskViewController {
-            taskViewController.getTask.getMyTask(memberId: memberId) { tasks in
+            taskViewController.getTask.getMyTaskSorted(memberId: memberId) { tasks in
                 taskViewController.tasks = tasks
                 DispatchQueue.main.async {
                     taskViewController.taskTableView.reloadData()
