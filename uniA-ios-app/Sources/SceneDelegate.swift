@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -19,11 +20,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         let autoLoginFlag = UserDefaults.standard.bool(forKey: "isAutoLoginEnabled")
         let logoutFlag = UserDefaults.standard.bool(forKey: "logoutSuccess")
+        let signInAccess = SignInApiModel()
+        let memberIdAccess = CallMemberApiModel()
+        let loginEmail = UserDefaults.standard.string(forKey: "loginemail")
+        let loginPassword = UserDefaults.standard.string(forKey: "password")
+        if autoLoginFlag == true { // 자동 로그인 완료
 
-        if autoLoginFlag == true {
+            guard let loginId = loginEmail,
+             let password = loginPassword else {return}
+
+            let bodyData: Parameters = [
+                "loginId": loginId,
+                "password": password
+            ]
+            signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
+            }
+            //
             self.window?.rootViewController = UINavigationController(rootViewController: TabBarController())
             
-        } else {
+        } else { //
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
             }

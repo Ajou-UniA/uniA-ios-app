@@ -13,7 +13,7 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
     let height: CGFloat = 85
 
     let taskTab = TaskViewController()
-    let ajouGuideTab = TaskViewController() // 임시
+    let ajouGuideTab = AjouGuideViewController()
     let homeTab = HomeViewController()
     let hotPlaceTab = HotPlaceViewController()
     let myPageTab = MyPageViewController()
@@ -31,11 +31,10 @@ class TabBarController: UITabBarController, CreateTaskDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleTaskUpdate), name: Notification.Name("TaskUpdateNotification"), object: nil)
 
-
         UITabBar.clear()
         self.changeRadius()
 
-        self.selectedIndex = 1
+        self.selectedIndex = 2
         self.tabBar.isTranslucent = true
 
         // MARK: - taskTab
