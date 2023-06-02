@@ -241,7 +241,13 @@ class MyPageViewController: UIViewController {
                 print(data.body)
                 UserDefaults.standard.removeObject(forKey: "memberId")
                 UserDefaults.standard.removeObject(forKey: "password")
-                self.navigationController?.popToRootViewController(animated: true)
+                UserDefaults.standard.set(false, forKey: "isAutoLoginEnabled")
+               
+                let loginViewController = LoginViewController()
+                let navigationController = UINavigationController(rootViewController: loginViewController)
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+
             }
         }
         msg.addAction(cancelAction)
