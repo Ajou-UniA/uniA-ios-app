@@ -36,8 +36,6 @@ class SideModalViewController: UIViewController {
         
         overlayView = UIView(frame: view.bounds)
         view.addSubview(overlayView)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayTapped))
-        overlayView.addGestureRecognizer(tapGesture)
         setUpView()
         setUpConstraints()
     }
@@ -66,7 +64,7 @@ class SideModalViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(64)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(500)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(400)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).dividedBy(2).inset(15)
         }
@@ -83,15 +81,6 @@ class SideModalViewController: UIViewController {
     }
     // MARK: - objc
     
-    @objc func overlayTapped() {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            }) { (completed) in
-                if completed {
-                    self.dismiss(animated: false, completion: nil)
-                }
-            }
-        }
 }
 var selectedCellIndex: IndexPath?
 
