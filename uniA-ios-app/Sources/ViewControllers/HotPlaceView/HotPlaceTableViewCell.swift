@@ -124,7 +124,7 @@ class HotPlaceTableViewCell: UITableViewCell {
         restaurantNameLabel.snp.makeConstraints {
             $0.top.equalTo(numberLabel.snp.top)
             $0.leading.equalTo(numberLabel.snp.trailing).offset(30)
-            $0.trailing.equalTo(heartStackView.snp.leading).inset(10) // 임시
+            $0.trailing.equalTo(heartStackView.snp.leading).offset(10) // 임시
         }
         kmLabel.snp.makeConstraints {
             $0.top.equalTo(restaurantNameLabel.snp.bottom).offset(7)

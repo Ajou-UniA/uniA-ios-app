@@ -21,7 +21,8 @@ class AjouCampusMapView: UIView, UICollectionViewDelegate, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-                    return CGSize(width: 230, height: 350)
+        let height = textCollectionView.frame.height
+        return CGSize(width: 230, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,12 +85,12 @@ class AjouCampusMapView: UIView, UICollectionViewDelegate, UICollectionViewDeleg
         }
         imageView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.bottom.equalToSuperview().inset(547)
             $0.leading.trailing.equalToSuperview()
         }
         textCollectionView.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(20)
-            $0.bottom.equalTo(imageView.snp.bottom).offset(348)
+            $0.height.equalTo(Constant.height * 350)
+            $0.bottom.equalToSuperview().inset(38)
             $0.leading.trailing.equalToSuperview()
         }
     }
