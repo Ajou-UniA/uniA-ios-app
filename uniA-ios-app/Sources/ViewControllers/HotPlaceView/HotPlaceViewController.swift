@@ -14,28 +14,14 @@ class HotPlaceViewController: UIViewController, UITextFieldDelegate, HotPlaceHea
 
     let getPlace = HotPlace()
     var places: [HotPlaceResponse] = []
-
     let cell = HotPlaceTableViewCell()
-
     let headerView = HotPlaceHeaderView()
-
     var likedPlaces: [String] = []
-    var selectedPlace = ""
-
     var countLike: Int = 0
-
-
-//    var restaurants: [Restaurant] = [] // 전체 식당 목록을 저장할 배열
-    var likedRestaurantsString: [String] = [] // 사용자가 좋아요를 누른 식당들을 저장할 배열
-    var likedRestaurantsInt: [Int] = []
-
     var height = 0
-
     var data = [String]()
     var filteredData = [HotPlaceResponse]()
     var filtered = false
-
-    var likeStatus = false
 
     private let titleView = UIView().then {
         $0.backgroundColor = .white
@@ -90,7 +76,7 @@ class HotPlaceViewController: UIViewController, UITextFieldDelegate, HotPlaceHea
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
             getPlace.getLikedPlace(memberId: memberId) { places in
                 self.likedPlaces = places
-                self.hotPlaceTableView.reloadData() // 데이터를 가져온 후에 테이블 뷰를 업데이트
+                self.hotPlaceTableView.reloadData()
         }
     }
 
@@ -194,6 +180,7 @@ class HotPlaceViewController: UIViewController, UITextFieldDelegate, HotPlaceHea
     }
 
     @objc func likeButtonTapped(_ sender: UIButton) {
+        let memberId = UserDefaults.standard.integer(forKey: "memberId")
         let place: HotPlaceResponse
         if headerView.searchTextField.text?.isEmpty ?? true {
             place = places[sender.tag]
@@ -202,9 +189,6 @@ class HotPlaceViewController: UIViewController, UITextFieldDelegate, HotPlaceHea
         } else {
             return
         }
-
-        let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
         if likedPlaces.contains(place.placeName) {
             getPlace.decreaseLike(placeName: place.placeName, memberId: memberId) { success in
                 if success {
@@ -236,6 +220,13 @@ class HotPlaceViewController: UIViewController, UITextFieldDelegate, HotPlaceHea
                 places[placeIndex].hitCount += 1
             }
             hotPlaceTableView.reloadData()
+        }
+        if let filteredIndex = filteredData.firstIndex(where: { $0.placeName == placeName }) {
+            if decrease {
+                filteredData[filteredIndex].hitCount -= 1
+            } else {
+                filteredData[filteredIndex].hitCount += 1
+            }
         }
     }
 }
@@ -289,7 +280,6 @@ extension HotPlaceViewController: UITableViewDelegate, UITableViewDataSource, UI
         } else if filteredData.isEmpty {
             // 검색 결과가 없을 때는 빈 데이터를 표시하는 셀 반환
             let emptyCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-//                  emptyCell.textLabel?.text = "No results found"
             return emptyCell
         } else {
             // 검색 결과가 있을 때는 필터링된 데이터를 표시하는 셀 반환
@@ -298,7 +288,6 @@ extension HotPlaceViewController: UITableViewDelegate, UITableViewDataSource, UI
             cell.restaurantNameLabel.text = cell.restaurantName
             cell.kmLabel.text = place.distance
             cell.numberLabel.text = "\(indexPath.row + 1)"
-//            cell.count = place.hitCount
             countLike = place.hitCount
             cell.countHeartLabel.text = "\(countLike)"
             cell.selectedPlace = place.placeName
@@ -319,9 +308,7 @@ extension HotPlaceViewController: UITableViewDelegate, UITableViewDataSource, UI
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-        let place = places[indexPath.row]
         let popUpView = DetailPlaceViewController()
-
         if headerView.searchTextField.text?.isEmpty ?? true {
             // 검색어가 비어있을 때는 모든 데이터를 표시하는 셀 반환
             let place = places[indexPath.row]
@@ -334,7 +321,6 @@ extension HotPlaceViewController: UITableViewDelegate, UITableViewDataSource, UI
             popUpView.modalPresentationStyle = .overFullScreen
             popUpView.modalTransitionStyle = .crossDissolve
             self.present(popUpView, animated: true)
-
         } else {
             // 검색 결과가 있을 때는 필터링된 데이터를 표시하는 셀 반환
             let place = filteredData[indexPath.row]
@@ -354,65 +340,3 @@ extension HotPlaceViewController: UITableViewDelegate, UITableViewDataSource, UI
         return CGFloat(height)
     }
 }
-
-
-
-////좋아요버튼의 on/off 상태를 지정
-//func likeButtonController() {
-//
-//    //로컬저장소에 저장된 모든 좋아요 리스트를 가져와 현재 레시피seq와 비교
-//    let request = NSFetchRequest<NSManagedObject>(entityName: "Like")
-//    do{
-//        let likes = try self.context.fetch(getPlace.getLikedPlace(memberId: <#T##Int#>, onCompleted: <#T##([String]) -> Void#>))
-//
-//        for like in likes{
-//            likeRecipes.append(like.value(forKey: "recipe_seq") as? String)
-//        }
-//
-//        //해당 레시피와 좋아요목록에 일치하는 seq가 있는경우
-//        if likeRecipes.contains(self.recipeTuple.seq!) {
-//            //좋아요 활성화 상태로 변경
-//            self.likeRecipeStatus = true
-//            DispatchQueue.main.async {
-//                self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//                self.likeButton.tintColor = .red
-//                self.likeRecipeStatus = true
-//            }
-//        }
-//        else{
-//            //좋아요 비활성화 상태로 변경
-//            self.likeRecipeStatus = false
-//            DispatchQueue.main.async {
-//                self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-//                self.likeButton.tintColor = .black
-//                self.likeRecipeStatus = false
-//            }
-//        }
-//    }
-//    catch{
-//        print(error)
-//    }
-//    likeRecipes = []
-//}
-//
-//
-//@objc
-//func likeButton(_ sender: UIButton) {
-//    let memberId = UserDefaults.standard.integer(forKey: "memberId")
-//    if likeStatus == true{
-//        //좋아요 취소
-//        getPlace.decreaseLike(placeName: selectedPlace, memberId: memberId) { place in
-//            print(self.selectedPlace, "decreaseLike \(place)")
-//        }
-//        likeStatus = false
-//    }
-//    else{
-//        //좋아요
-//        getPlace.increaseLike(placeName: selectedPlace, memberId: memberId) { place in
-//            print(self.selectedPlace, "increaseLike \(place)")
-//        }
-//        likeStatus = true
-//    }
-//    //좋아요 여부 확인 후 버튼색을 변경
-//    likeButtonController()
-//}

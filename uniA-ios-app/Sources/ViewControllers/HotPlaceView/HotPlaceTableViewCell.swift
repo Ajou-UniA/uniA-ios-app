@@ -51,9 +51,6 @@ class HotPlaceTableViewCell: UITableViewCell {
     }
 
     let heartBtn = UIButton()
-//        .then {
-//        $0.setImage(UIImage(named: "heart-off"), for: .normal)
-//    }
 
     let countHeartLabel = UILabel().then {
         $0.text = "0"
@@ -157,26 +154,6 @@ class HotPlaceTableViewCell: UITableViewCell {
         }
     }
 
-//    func updateLikeButton() {
-//        let memberId = UserDefaults.standard.integer(forKey: "memberId")
-//        getPlace.getLikedPlace(memberId: memberId) { likedRestaurants in
-//            if likedRestaurants.contains(self.restaurantName) {
-//                DispatchQueue.main.async {
-//                    self.heartBtn.setImage(UIImage(named: "heart-on"), for: .normal)
-//                }
-//            } else {
-//                DispatchQueue.main.async {
-//                    self.heartBtn.setImage(UIImage(named: "heart-off"), for: .normal)
-//                }
-//            }
-//        }
-//    }
-
-//    @objc
-//    func heartBtnTapped(_ sender: UIButton) {
-//        updateLikeButton()
-//    }
-
     func addBottomBorder(with color: UIColor?, andWidth borderWidth: CGFloat) {
         let border = UIView()
         border.backgroundColor = color
@@ -192,32 +169,3 @@ extension HotPlaceViewController: ContentsMainTextDelegate {
 //        print("사용하고 싶은 기능들 추가")
     }
 }
-
-
-
-//print("heartBtnTapped")
-//cellDelegate?.categoryButtonTapped()
-//sender.isSelected.toggle()
-//let memberId = UserDefaults.standard.integer(forKey: "memberId")
-//let isSelected = sender.isSelected
-//UserDefaults.standard.set(isSelected, forKey: selectedPlace)
-//if isSelected == true {
-//    print("selected")
-//    getPlace.increaseLike(placeName: selectedPlace, memberId: memberId) { place in
-//        print(self.selectedPlace, "increaseLike \(place)")
-//        self.count += 1
-//        DispatchQueue.main.async {
-//        }
-//    }
-//    countHeartLabel.text = "\(count)"
-//} else {
-//    print("unselected")
-//    getPlace.decreaseLike(placeName: selectedPlace, memberId: memberId) { place in
-//        print(self.selectedPlace, "decreaseLike \(place)")
-//        self.count -= 1
-//        DispatchQueue.main.async {
-//        }
-//    }
-//    countHeartLabel.text = "\(count)"
-//}
-//print("heartBtnTapped 2")

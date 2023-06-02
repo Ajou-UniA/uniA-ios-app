@@ -158,8 +158,8 @@ class HotPlaceHeaderView: UIView, UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()  // 키보드를 닫습니다.
-        delegate?.searchBtnTapped2() // 검색을 수행합니다.
+        textField.resignFirstResponder()
+        delegate?.searchBtnTapped2()
         return true
     }
 }

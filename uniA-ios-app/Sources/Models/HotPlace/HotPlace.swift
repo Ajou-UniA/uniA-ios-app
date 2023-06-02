@@ -14,7 +14,6 @@ class HotPlace {
     static let shared = HotPlace()
 
     var allRestaurantArr: [String] = []
-//    var myRestaurantArr: [String] = []
 
     func getAllPlace(completion: @escaping ([HotPlaceResponse]) -> Void) {
         let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/list"
@@ -204,80 +203,4 @@ class HotPlace {
                 }
             }
     }
-
-    func getLike(onCompleted: @escaping ([Int]) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/sorted/like"
-        let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedStr)!
-
-        AF.request(url, method: .get, headers: ["accept": "*/*"])
-            .validate()
-            .responseData { response in
-                switch response.result {
-                case .success(let value):
-                    guard let jsonData = try? JSON(data: value) else {
-                        print("Error: Failed to decode JSON data")
-                        return
-                    }
-
-                    let hitCounts = jsonData.arrayValue.compactMap { placeJSON -> Int? in
-                        guard let hitCount = placeJSON["hitCount"].int else {
-                            print("Unexpected string format")
-                            return nil
-                        }
-                        return hitCount
-                    }
-
-                    onCompleted(hitCounts)
-
-                case .failure(let error):
-                    if let afError = error.asAFError, afError.responseCode == 204 {
-                        // If the server returns an empty response (HTTP 204), treat it as a completed call with an empty array
-                        onCompleted([])
-                    } else {
-                        print("Error: \(error)")
-                    }
-                }
-            }
-    }
 }
-
-
-
-
-//    func getAllPlace(onCompleted: @escaping([HotPlaceResponse]) -> Void) {
-//
-//        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/list"
-//        let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-//        let url = URL(string: encodedStr)!
-//
-//        AF.request(url, method: .get, headers: ["accept": "*/*"])
-//            .validate()
-//            .responseData { response in
-//                switch response.result {
-//                case .success(let value):
-//                    guard let jsonData = try? JSON(data: value) else {
-//                        print("Error: Failed to decode JSON data")
-//                        return
-//                    }
-//                    let places = jsonData.arrayValue.compactMap { placeJSON -> HotPlaceResponse? in
-//                        guard let placeName = placeJSON["placeName"].string
-//                        else {
-//                            print("Unexpected string format")
-//                            return nil
-//                        }
-//                        print(response.debugDescription)
-//                        let description = placeJSON["description"].string ?? ""
-//                        return HotPlaceResponse(placeName: placeName, description: description)
-//                    }
-//                    onCompleted(places)
-//                case .failure(let error):
-//                    if let afError = error.asAFError, afError.responseCode == 204 {
-//                        // 만약 서버에서 데이터가 없는 응답을 보낸 경우 (HTTP 204), 빈 배열로 호출 완료 처리
-//                        onCompleted([])
-//                    } else {
-//                        print("Error: \(error)")
-//                    }
-//                }
-//            }
-//    }
