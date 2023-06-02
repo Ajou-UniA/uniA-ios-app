@@ -17,24 +17,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        let autoLoginFlag = UserDefaults.standard.bool(forKey: "isAutoLoginEnabled")
+        let logoutFlag = UserDefaults.standard.bool(forKey: "logoutSuccess")
+
+        if autoLoginFlag == true {
+            self.window?.rootViewController = UINavigationController(rootViewController: TabBarController())
+            
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            }
+
         }
 
-        //        // MARK: 자동로그인을 위한 코드
-        //        var loginSuccess: Bool = UserDefaults.standard.bool(forKey: "loginSuccess") ?? false
-        //
-        //        print("자동로그인 \(loginSuccess)")
-        //
-        //        if loginSuccess == true {
-        //            print("자동로그인 성공")
-        //            self.window?.rootViewController = UINavigationController(rootViewController: TabBarController())
-        //        } else if loginSuccess == false {
-        //            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        //        }
-        //        window?.makeKeyAndVisible()
-        //    }
-        
+       
+
+                
         func sceneDidDisconnect(_: UIScene) {}
         
         func sceneDidBecomeActive(_: UIScene) {}

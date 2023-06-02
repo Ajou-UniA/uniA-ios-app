@@ -211,7 +211,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         ]
 
         signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
-            if data == 1 {
+            if data == 1 { // login 성공
                 self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
@@ -220,9 +220,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if self.flag == 1 { // remember me check
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "rememberemail")
                     UserDefaults.standard.set(password, forKey: "rememberpassword")
+                    UserDefaults.standard.set(true, forKey: "isAutoLoginEnabled")
                 } else {
                     UserDefaults.standard.removeObject(forKey: "rememberemail")
                     UserDefaults.standard.removeObject(forKey: "rememberpassword")
+                    UserDefaults.standard.removeObject(forKey: "isAutoLoginEnabled")
+
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                 }
