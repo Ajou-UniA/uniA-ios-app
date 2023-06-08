@@ -60,10 +60,11 @@ class HotPlaceTableViewCell: UITableViewCell {
 
     let heartStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.alignment = .fill
+        $0.alignment = .center
         $0.distribution = .fillProportionally
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .clear
+        $0.spacing = 7
     }
 
     let navigationBtn = UIButton().then {
@@ -104,7 +105,7 @@ class HotPlaceTableViewCell: UITableViewCell {
             $0.adjustsFontForContentSizeCategory = true
         }
         [heartBtn, countHeartLabel].forEach {
-            heartStackView.addSubview($0)
+            heartStackView.addArrangedSubview($0)
         }
     }
 
@@ -127,7 +128,8 @@ class HotPlaceTableViewCell: UITableViewCell {
             $0.bottom.equalToSuperview().inset(34)
         }
         heartStackView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(27)
+//            $0.top.bottom.equalToSuperview().inset(27)
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(30)
             $0.width.equalTo(heartBtn.snp.width)
         }
