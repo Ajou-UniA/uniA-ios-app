@@ -36,14 +36,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if let homeViewController = tabBarController.viewControllers?.first(where: { $0 is HomeViewController }) as? HomeViewController {
                            homeViewController.fetchData()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.3) { [self] in
-                        window?.rootViewController = tabBarController
+                        self.window?.rootViewController = UINavigationController(rootViewController: TabBarController())
                     }
                 }
             }
         } else { //
             let loginViewController = LoginViewController()
-                   let navigationController = UINavigationController(rootViewController: loginViewController)
-                   window?.rootViewController = navigationController
+            let navigationController = UINavigationController(rootViewController: loginViewController)
+            window?.rootViewController = navigationController
         }
         func sceneDidDisconnect(_: UIScene) {}
         
