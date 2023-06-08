@@ -91,22 +91,30 @@ class HomeViewController: UIViewController {
         taskCollectionView.reloadData()
         setUpView()
         setUpConstraints()
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchData()
+    }
 
-        self.taskCollectionView.reloadData()
+    let login = LoginViewController()
+    let signInAccess = SignInApiModel()
+    let memberIdAccess = CallMemberApiModel()
 
+    func fetchData() {
         let memberId = UserDefaults.standard.integer(forKey: "memberId")
-
-        memberInfoAccess.findByMemberId(memberId: memberId) { data in
-            self.helloLabel.text = "Hello \(data.firstName!)!"
-        }
-
-        getMyTaskSortedByDeadline { tasks in
-            self.tasks = tasks
-            self.taskCollectionView.reloadData()
+        memberInfoAccess.findByMemberId(memberId: memberId) { [weak self] data in
+            DispatchQueue.main.async {
+                self?.helloLabel.text = "Hello \(data.firstName!)!"
+            }
+            self?.getMyTaskSortedByDeadline { tasks in
+                self!.tasks = tasks
+                DispatchQueue.main.async {
+                    self!.taskCollectionView.reloadData()
+                }
+            }
         }
     }
 

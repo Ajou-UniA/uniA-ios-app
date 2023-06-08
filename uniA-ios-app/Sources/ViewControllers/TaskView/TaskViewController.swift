@@ -89,12 +89,6 @@ class TaskViewController: UIViewController {
                 self.taskTableView.reloadData()
             }
         }
-//        getTask.getMyTask(memberId: memberId) { tasks in
-//            self.tasks = tasks
-//            DispatchQueue.main.async {
-//                self.taskTableView.reloadData()
-//            }
-//        }
     }
 
     func setUpView() {
