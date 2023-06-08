@@ -203,9 +203,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
          let password = passwordTextField.text else {return}
 
         let bodyData: Parameters = [
-
-            //"loginId": "gkxotjs12@ajou.ac.kr",
-            //"password": "1234567!"
             "loginId": loginId,
             "password": password
         ]
@@ -216,9 +213,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
                     let tabBarController = TabBarController()
-                    tabBarController.selectedIndex = 2
                     if let homeViewController = tabBarController.viewControllers?.first(where: { $0 is HomeViewController }) as? HomeViewController {
                         homeViewController.fetchData()
+                        self.navigationController?.pushViewController(TabBarController(), animated: true)
                     }
                 }
                 UserDefaults.standard.set(password, forKey: "password")
@@ -234,9 +231,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                 }
-                let signInAccess = SignInApiModel()
-                let homeViewController = TabBarController()
-                self.navigationController?.pushViewController(homeViewController, animated: true)
+                let tabBarController = TabBarController()
+                tabBarController.selectedIndex = 2
             } else {
                 let msg = UIAlertController(title: "Login failed", message: "Sorry, incorrect email or password.", preferredStyle: UIAlertController.Style.alert)
                 let okAction = UIAlertAction(title: "OK", style: . cancel) { (_) in
