@@ -215,6 +215,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.memberIdAccess.callMember(memberEmail: self.emailTextField.text!) { data in
                     UserDefaults.standard.set(self.emailTextField.text, forKey: "loginemail")
                     UserDefaults.standard.set(data, forKey: "memberId")
+                    let tabBarController = TabBarController()
+                    tabBarController.selectedIndex = 2
+                    if let homeViewController = tabBarController.viewControllers?.first(where: { $0 is HomeViewController }) as? HomeViewController {
+                        homeViewController.fetchData()
+                    }
                 }
                 UserDefaults.standard.set(password, forKey: "password")
                 if self.flag == 1 { // remember me check
@@ -229,6 +234,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                 }
+                let signInAccess = SignInApiModel()
                 let homeViewController = TabBarController()
                 self.navigationController?.pushViewController(homeViewController, animated: true)
             } else {

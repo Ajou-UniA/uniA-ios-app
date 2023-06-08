@@ -64,6 +64,7 @@ class TaskTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectedBackgroundView = UIView()
+        addBottomBorder(with: UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1), andWidth: CGFloat(1))
         setUpView()
         setUpConstraint()
     }
@@ -134,5 +135,13 @@ class TaskTableViewCell: UITableViewCell {
             $0.height.equalTo(Constant.height * 21)
             $0.width.equalTo(Constant.width * 21)
         }
+    }
+
+    func addBottomBorder(with color: UIColor?, andWidth borderWidth: CGFloat) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: baseView.frame.size.height - borderWidth, width: baseView.frame.size.width, height: borderWidth)
+        baseView.addSubview(border)
     }
 }

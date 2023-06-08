@@ -19,35 +19,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         let autoLoginFlag = UserDefaults.standard.bool(forKey: "isAutoLoginEnabled")
-        let logoutFlag = UserDefaults.standard.bool(forKey: "logoutSuccess")
         let signInAccess = SignInApiModel()
-        let memberIdAccess = CallMemberApiModel()
         let loginEmail = UserDefaults.standard.string(forKey: "loginemail")
         let loginPassword = UserDefaults.standard.string(forKey: "password")
         if autoLoginFlag == true { // 자동 로그인 완료
-
             guard let loginId = loginEmail,
-             let password = loginPassword else {return}
-
+                  let password = loginPassword else {return}
             let bodyData: Parameters = [
                 "loginId": loginId,
                 "password": password
             ]
+            let tabBarController = TabBarController()
             signInAccess.requestSignInDataModel(bodyData: bodyData) { data in
+                print(data)
+                tabBarController.selectedIndex = 2
+                if let homeViewController = tabBarController.viewControllers?.first(where: { $0 is HomeViewController }) as? HomeViewController {
+                           homeViewController.fetchData()
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.3) { [self] in
+                        window?.rootViewController = tabBarController
+                    }
+                }
             }
-            //
-            self.window?.rootViewController = UINavigationController(rootViewController: TabBarController())
-            
         } else { //
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-            }
-
+            let loginViewController = LoginViewController()
+                   let navigationController = UINavigationController(rootViewController: loginViewController)
+                   window?.rootViewController = navigationController
         }
-
-       
-
-                
         func sceneDidDisconnect(_: UIScene) {}
         
         func sceneDidBecomeActive(_: UIScene) {}
