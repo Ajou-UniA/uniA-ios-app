@@ -295,9 +295,10 @@
 		8A0D212129BB71E90045C456 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */,
+				8ADFDADD29BB421F006824B8 /* Info.plist */,
 				07D950032A179B20007FD282 /* Pdf */,
 				8AAF50FA2A067DA600E5CC02 /* Constants */,
-				8A0D213B29BB72B00045C456 /* Extensions */,
 				8A0D213A29BB72860045C456 /* Assets */,
 				8A0D213929BB727F0045C456 /* Fonts */,
 			);
@@ -307,8 +308,6 @@
 		8A0D212229BB71FF0045C456 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
-				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
 				8A0D212529BB72250045C456 /* Views */,
 				8A0D212429BB72200045C456 /* Models */,
 				8A0D212329BB720E0045C456 /* ViewControllers */,
@@ -493,6 +492,147 @@
 			path = HotPlace;
 			sourceTree = "<group>";
 		};
+		8ACF125C2A866BE600150B70 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8ADFDACF29BB421E006824B8 /* AppDelegate.swift */,
+				8A8081D829D1B77D00CE375D /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		8ACF125D2A866DEC00150B70 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF125E2A866DF300150B70 /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		8ACF125E2A866DF300150B70 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		8ACF125F2A866E1500150B70 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		8ACF12602A866E2700150B70 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF12632A866E3F00150B70 /* View */,
+				8ACF12612A866E2F00150B70 /* Utility */,
+				8ACF12642A866E5A00150B70 /* ViewModel */,
+				8ACF12622A866E3800150B70 /* ViewController */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8ACF12612A866E2F00150B70 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		8ACF12622A866E3800150B70 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8ACF12632A866E3F00150B70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8ACF12642A866E5A00150B70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8ACF12652A866E6E00150B70 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF126A2A866ECD00150B70 /* Network */,
+				8ACF12662A866E8400150B70 /* Session */,
+				8ACF12682A866EA700150B70 /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8ACF12662A866E8400150B70 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF12672A866E9600150B70 /* Error */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		8ACF12672A866E9600150B70 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		8ACF12682A866EA700150B70 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF12692A866EBF00150B70 /* DTO */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		8ACF12692A866EBF00150B70 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		8ACF126A2A866ECD00150B70 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF126E2A866F0300150B70 /* Endpoints */,
+				8ACF126C2A866EE700150B70 /* Namespaces */,
+				8ACF126B2A866ED400150B70 /* Error */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8ACF126B2A866ED400150B70 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		8ACF126C2A866EE700150B70 /* Namespaces */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Namespaces;
+			sourceTree = "<group>";
+		};
+		8ACF126E2A866F0300150B70 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		8ADFDAC329BB421E006824B8 = {
 			isa = PBXGroup;
 			children = (
@@ -514,10 +654,14 @@
 		8ADFDACE29BB421E006824B8 /* uniA-ios-app */ = {
 			isa = PBXGroup;
 			children = (
-				8A0D212229BB71FF0045C456 /* Sources */,
+				8ACF12652A866E6E00150B70 /* Data */,
+				8ACF12602A866E2700150B70 /* Presentation */,
+				8ACF125F2A866E1500150B70 /* Entity */,
+				8ACF125D2A866DEC00150B70 /* Domain */,
+				8ACF125C2A866BE600150B70 /* Application */,
 				8A0D212129BB71E90045C456 /* Resources */,
-				8ADFDADA29BB421F006824B8 /* LaunchScreen.storyboard */,
-				8ADFDADD29BB421F006824B8 /* Info.plist */,
+				8A0D213B29BB72B00045C456 /* Extensions */,
+				8A0D212229BB71FF0045C456 /* Sources */,
 			);
 			path = "uniA-ios-app";
 			sourceTree = "<group>";
