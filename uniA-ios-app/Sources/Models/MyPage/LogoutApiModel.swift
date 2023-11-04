@@ -9,9 +9,11 @@ import Foundation
 import Alamofire
 
 class LogoutApiModel {
-    
+
+    let baseURL = Const.URL.baseURL
+
     func logout(onCompleted: @escaping(CreateAccount) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/logout"
+        let urlSTR = "\(baseURL)member/logout"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
         

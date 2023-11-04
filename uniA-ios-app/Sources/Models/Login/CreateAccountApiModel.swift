@@ -11,10 +11,11 @@ import Alamofire
 class CreateAccountApiModel {
     
     var urlString: String?
+    let baseURL = Const.URL.baseURL
     
     func requestSignUpDataModel(bodyData: Parameters, onCompleted: @escaping(CreateAccount) -> Void) {
 
-        urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/create"
+        urlString = "\(baseURL)create"
         
         guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}

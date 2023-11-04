@@ -9,10 +9,12 @@ import Foundation
 import Alamofire
 
 class SendCodeApiModel {
-    
+
+    let baseURL = Const.URL.baseURL
+
     func sendCode(memberEmail: String, onCompleted: @escaping(CreateAccount) -> Void) {
         
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/verify/\(memberEmail)"
+        let urlSTR = "\(baseURL)verify/\(memberEmail)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
         let header: HTTPHeaders = ["accept": "*/*"]

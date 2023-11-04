@@ -9,10 +9,12 @@ import Foundation
 import Alamofire
 
 class AjouGuideApiModel {
+
+    let baseURL = Const.URL.baseURL
     
     func callTableList(id: Int, onCompleted: @escaping ([String]) -> Void) {
 
-            let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/guide/title/\(id)"
+            let urlSTR = "\(baseURL)guide/title/\(id)"
             let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let url = URL(string: encodedStr)!
             let header: HTTPHeaders = ["accept": "*/*"]
@@ -48,7 +50,7 @@ class AjouGuideApiModel {
     
     func callTextList(id: Int, onCompleted: @escaping ([String]) -> Void) {
 
-            let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/guide/content/\(id)"
+            let urlSTR = "\(baseURL)guide/content/\(id)"
             let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let url = URL(string: encodedStr)!
             let header: HTTPHeaders = ["accept": "*/*"]

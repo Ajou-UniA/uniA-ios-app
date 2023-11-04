@@ -12,11 +12,12 @@ import SwiftyJSON
 class HotPlace {
 
     static let shared = HotPlace()
+    let baseURL = Const.URL.baseURL
 
     var allRestaurantArr: [String] = []
 
     func getAllPlace(completion: @escaping ([HotPlaceResponse]) -> Void) {
-        let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/list"
+        let url = "\(baseURL)restaurant/list"
 
         AF.request(url, method: .get)
             .validate()
@@ -51,7 +52,7 @@ class HotPlace {
 
     func getSortedByDistance(onCompleted: @escaping([HotPlaceResponse]) -> Void) {
 
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/sorted/distance"
+        let urlSTR = "\(baseURL)restaurant/sorted/distance"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -93,7 +94,7 @@ class HotPlace {
     }
 
     func getSortedByLike(onCompleted: @escaping ([HotPlaceResponse]) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/sorted/like"
+        let urlSTR = "\(baseURL)restaurant/sorted/like"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -140,7 +141,7 @@ class HotPlace {
 
     func increaseLike(placeName: String, memberId: Int, onCompleted: @escaping (Bool) -> Void) {
 
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/\(placeName)/\(memberId)"
+        let urlSTR = "\(baseURL)restaurant/\(placeName)/\(memberId)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -159,7 +160,7 @@ class HotPlace {
 
     func decreaseLike(placeName: String, memberId: Int, onCompleted: @escaping (Bool) -> Void) {
 
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/\(placeName)/unlike/\(memberId)"
+        let urlSTR = "\(baseURL)restaurant/\(placeName)/unlike/\(memberId)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -178,7 +179,7 @@ class HotPlace {
 
     func getLikedPlace(memberId: Int, onCompleted: @escaping([String]) -> Void) {
 
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/restaurant/memberLikes/\(memberId)"
+        let urlSTR = "\(baseURL)restaurant/memberLikes/\(memberId)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 

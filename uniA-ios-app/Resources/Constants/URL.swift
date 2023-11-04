@@ -9,6 +9,6 @@ import Foundation
 
 extension Const {
     struct URL {
-        static let baseURL = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1"
+        static let baseURL = "http://ec2-43-202-102-96.ap-northeast-2.compute.amazonaws.com:8080/api/v1/"
     }
 }
