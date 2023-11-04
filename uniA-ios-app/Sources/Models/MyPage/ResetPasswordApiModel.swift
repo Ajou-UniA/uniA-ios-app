@@ -10,9 +10,11 @@ import Alamofire
 
 class ResetPasswordApiModel {
 
+    let baseURL = Const.URL.baseURL
+
     func resetPassword(newPassword: String, memberId: Int, onCompleted: @escaping(Profile) -> Void) {
         
-        let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/\(memberId)"
+        let url = "\(baseURL)member/\(memberId)"
         let parameters: [String: Any] = ["newPassword": newPassword]
         
         AF.request(url, method: .patch, parameters: parameters)

@@ -9,10 +9,12 @@ import Foundation
 import Alamofire
 
 class EditMyProfileApiModel {
-    
+
+    let baseURL = Const.URL.baseURL
+
     func editProfile(memberId: Int, bodyData: Parameters, onCompleted: @escaping(Profile) -> Void) {
         
-        let url = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/update/\(memberId)"
+        let url = "\(baseURL)member/update/\(memberId)"
         
         let headers: HTTPHeaders = ["accept": "*/*","Content-Type": "application/json"]
           
