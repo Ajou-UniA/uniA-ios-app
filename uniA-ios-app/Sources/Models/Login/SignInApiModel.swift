@@ -11,10 +11,11 @@ import Alamofire
 class SignInApiModel {
     
     var urlString: String?
-    
+    let baseURL = Const.URL.baseURL
+
     func requestSignInDataModel(bodyData: Parameters, onCompleted: @escaping(Int) -> Void) {
 
-        urlString = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/member/login"
+        urlString = "\(baseURL)member/login"
         
         guard let urlString = urlString else { return}
         guard let url = URL(string: urlString) else {return print("error")}

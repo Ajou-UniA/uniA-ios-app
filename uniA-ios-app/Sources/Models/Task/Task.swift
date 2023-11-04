@@ -12,9 +12,10 @@ import SwiftyJSON
 class Task {
 
     static let shared = Task()
+    let baseURL = Const.URL.baseURL
 
     func createTask(bodyData: Parameters) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo"
+        let urlSTR = "\(baseURL)todo"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -31,7 +32,7 @@ class Task {
     }
 
     func getAllTask(onCompleted: @escaping([TaskResponse]) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/list"
+        let urlSTR = "\(baseURL)todo/list"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -48,7 +49,7 @@ class Task {
     }
 
     func getLastAssignmentId(onCompleted: @escaping (Int?) -> Void) {
-        let urlStr = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/list"
+        let urlStr = "\(baseURL)todo/list"
         guard let url = URL(string: urlStr) else {
             print("Invalid URL: \(urlStr)")
             onCompleted(nil)
@@ -86,7 +87,7 @@ class Task {
 
     func deleteTask(assignmentId: Int, onCompleted: @escaping (Bool) -> Void) {
 
-        let urlStr = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/\(assignmentId)"
+        let urlStr = "\(baseURL)todo/\(assignmentId)"
         guard let url = URL(string: urlStr) else {
             return print("Error: Invalid URL")
         }
@@ -105,7 +106,7 @@ class Task {
     }
 
     func getMyTask(memberId: Int, onCompleted: @escaping([TaskResponse]) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/\(memberId)"
+        let urlSTR = "\(baseURL)todo/\(memberId)"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -153,7 +154,7 @@ class Task {
     }
 
     func getMyTaskSorted(memberId: Int, onCompleted: @escaping([TaskResponse]) -> Void) {
-        let urlSTR = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/\(memberId)/sorted"
+        let urlSTR = "\(baseURL)todo/\(memberId)/sorted"
         let encodedStr = urlSTR.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: encodedStr)!
 
@@ -201,7 +202,7 @@ class Task {
     }
 
     func updateTask(assignmentId: Int, bodyData: Parameters, onCompleted: @escaping (Bool) -> Void) {
-        let urlStr = "http://ec2-52-79-76-213.ap-northeast-2.compute.amazonaws.com:8080/api/v1/todo/\(assignmentId)"
+        let urlStr = "\(baseURL)todo/\(assignmentId)"
         guard let url = URL(string: urlStr) else {
             return print("Error: Invalid URL")
         }
